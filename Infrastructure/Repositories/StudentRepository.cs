@@ -1,3 +1,5 @@
+using Application.ContextClasses;
+using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
 
 namespace Application.Repositories;
