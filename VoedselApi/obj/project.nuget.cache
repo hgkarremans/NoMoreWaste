@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "XrR9DTqW6deWKksWFDTfbTSvbgZyl+1w4iF45iKvO7TqmdnQq4ocEfmKfhPGesCL7weIvP1JOWF5uhYsLAd1xg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\VoedselApi\\VoedselApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hgkar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\hgkar\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
