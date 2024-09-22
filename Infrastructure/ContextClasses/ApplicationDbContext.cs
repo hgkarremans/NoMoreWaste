@@ -11,7 +11,7 @@ public class ApplicationDbContext : DbContext
     public virtual DbSet<CanteenWorker> CanteenWorkers { get; set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Student> Students { get; set; }
-    
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
@@ -19,7 +19,7 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
         //STUDENTS  
         var student = new Student()
         {
@@ -101,7 +101,7 @@ public class ApplicationDbContext : DbContext
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
-        
+
         //CANTEENS
 
 
@@ -137,9 +137,9 @@ public class ApplicationDbContext : DbContext
             IsWarmFood = true,
             Name = "LD Canteen"
         };
-        
+
         //PRODUCTS
-        
+
         var product1 = new Product()
         {
             Id = 1,
@@ -175,111 +175,116 @@ public class ApplicationDbContext : DbContext
             HasAlcohol = false,
             ImageUrl = "orange.jpg"
         };
-        
+
         //MEALBOXES
         var mealBox1 = new MealBox()
         {
             Id = 1,
             Name = "Bierbox",
             Price = 10,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
             Products = new List<Product>()
-            {
-                product3,
-                product4
-            }
         };
+
         var mealBox2 = new MealBox()
         {
             Id = 2,
             Name = "Fruitbox",
             Price = 5,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
             Products = new List<Product>()
-            {
-                product1,
-                product2,
-                product5
-            }
         };
         var mealBox3 = new MealBox()
         {
             Id = 3,
             Name = "Wijnbox",
             Price = 15,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
             Products = new List<Product>()
-            {
-                product4
-            }
         };
         var mealBox4 = new MealBox()
         {
             Id = 4,
             Name = "Fruitbox",
             Price = 5,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
             Products = new List<Product>()
-            {
-                product1,
-                product2,
-                product5
-            }
         };
         var mealBox5 = new MealBox()
         {
             Id = 5,
             Name = "Bierbox",
             Price = 10,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
             Products = new List<Product>()
-            {
-                product3,
-                product4
-            }
         };
         var mealBox6 = new MealBox()
         {
             Id = 6,
             Name = "Fruitbox",
             Price = 5,
-            Canteen = LA,
+            CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
             Products = new List<Product>()
-            {
-                product1,
-                product2,
-                product5
-            }
         };
+        modelBuilder.Entity<Student>().HasData(student, student2, student3, student4, student5, student6, student7,
+            student8, student9, student10);
+        modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
+        modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
+        modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);
+        
+        modelBuilder.Entity<MealBox>()
+            .HasMany(p => p.Products)
+            .WithMany(t => t.MealBoxes)
+            .UsingEntity<Dictionary<string, object>>(
+                "MealBoxProduct",
+                r => r.HasOne<Product>().WithMany().HasForeignKey("ProductsId"),
+                l => l.HasOne<MealBox>().WithMany().HasForeignKey("MealBoxesId"),
+                je =>
+                {
+                    je.HasKey("ProductsId", "MealBoxesId");
+                    je.HasData(
+                        new { ProductsId = 7, MealBoxesId = 1 },
+                        new { ProductsId = 7, MealBoxesId = 5 },
+                        new { ProductsId = 1, MealBoxesId = 2 },
+                        new { ProductsId = 2, MealBoxesId = 2 },
+                        new { ProductsId = 5, MealBoxesId = 2 },
+                        new { ProductsId = 6, MealBoxesId = 2 },
+                        new { ProductsId = 2, MealBoxesId = 6 },
+                        new { ProductsId = 1, MealBoxesId = 5 },
+                        new { ProductsId = 3, MealBoxesId = 5 },
+                        new { ProductsId = 3, MealBoxesId = 4 });
+                });
     }
+
+    
 }

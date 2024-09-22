@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Beschikbare Maaltijdboxen";
+}
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@if (User.IsInRole("employee") && ViewBag.cantine != null)
+{
+    <h1 class="text-center" >Maaltijdboxen van uw kantine:</h1>
+}
+else
+{
+    <h1 class="text-center">Beschikbare Maaltijdboxen</h1>
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+<div class="w-75 mx-auto  mt-5 grid-container mb-5 ">
+    @foreach (var m in Model)
+    {
+        <partial name="MaaltijdBox" model="m"/>
+    }
+</div>

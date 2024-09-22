@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VoedselApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bb01073fb13cf32c60039e1c5b6a72625ec7314")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e418e6462b5c0251dc84931edaacb1298c51cce")]
 [assembly: System.Reflection.AssemblyProductAttribute("VoedselApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VoedselApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
