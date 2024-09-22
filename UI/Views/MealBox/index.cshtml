@@ -1,0 +1,31 @@
+@model IEnumerable<NoMoreWaste.Domain.DomainModels.MealBox>
+
+<h1>Meal Boxes</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Canteen</th>
+        <th>PickUp Date</th>
+        <th>Expire Date</th>
+        <th>City</th>
+        <th>Meal Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var mealBox in Model)
+    {
+    <tr>
+        <td>@mealBox.Name</td>
+        <td>@mealBox.Price</td>
+        <td>@mealBox.CanteenId</td>
+        <td>@mealBox.PickUpDate.ToString("yyyy-MM-dd")</td>
+        <td>@mealBox.ExpireDate.ToString("yyyy-MM-dd")</td>
+        <td>@mealBox.City</td>
+        <td>@mealBox.MealType</td>
+    </tr>
+    }
+    </tbody>
+</table>

@@ -279,7 +279,7 @@ public class ApplicationDbContext : DbContext
                         new { ProductsId = 1, MealBoxId = 4 },
                         new { ProductsId = 5, MealBoxId = 4 }
                     );
-                });
+                });                                                                                      
     }
     // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     // {
