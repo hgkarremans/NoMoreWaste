@@ -10,6 +10,7 @@
         "dependencies": {
           "DomainServices": "1.0.0",
           "Infrastructure": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "9.0.0-rc.1.24451.1",
           "Microsoft.EntityFrameworkCore.Design": "9.0.0-rc.1.24451.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0-rc.1.24451.1",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.0-rc.1.24451.1"

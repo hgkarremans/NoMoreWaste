@@ -181,7 +181,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 1,
             Name = "Bierbox",
-            Price = 10,
+            Price = 10M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -195,7 +195,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 2,
             Name = "Fruitbox",
-            Price = 5,
+            Price = 5M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -208,7 +208,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 3,
             Name = "Wijnbox",
-            Price = 15,
+            Price = 15M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -221,7 +221,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 4,
             Name = "Fruitbox",
-            Price = 5,
+            Price = 5M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -234,7 +234,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 5,
             Name = "Bierbox",
-            Price = 10,
+            Price = 10M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -247,7 +247,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 6,
             Name = "Fruitbox",
-            Price = 5,
+            Price = 5M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
             ExpireDate = DateTime.Today.AddDays(10),
@@ -261,30 +261,29 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
         modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
         modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);
-        
+
         modelBuilder.Entity<MealBox>()
             .HasMany(p => p.Products)
             .WithMany(t => t.MealBoxes)
             .UsingEntity<Dictionary<string, object>>(
                 "MealBoxProduct",
                 r => r.HasOne<Product>().WithMany().HasForeignKey("ProductsId"),
-                l => l.HasOne<MealBox>().WithMany().HasForeignKey("MealBoxesId"),
+                l => l.HasOne<MealBox>().WithMany().HasForeignKey("MealBoxId"),
                 je =>
                 {
-                    je.HasKey("ProductsId", "MealBoxesId");
+                    je.HasKey("ProductsId", "MealBoxId");
                     je.HasData(
-                        new { ProductsId = 7, MealBoxesId = 1 },
-                        new { ProductsId = 7, MealBoxesId = 5 },
-                        new { ProductsId = 1, MealBoxesId = 2 },
-                        new { ProductsId = 2, MealBoxesId = 2 },
-                        new { ProductsId = 5, MealBoxesId = 2 },
-                        new { ProductsId = 6, MealBoxesId = 2 },
-                        new { ProductsId = 2, MealBoxesId = 6 },
-                        new { ProductsId = 1, MealBoxesId = 5 },
-                        new { ProductsId = 3, MealBoxesId = 5 },
-                        new { ProductsId = 3, MealBoxesId = 4 });
+                        new { ProductsId = 5, MealBoxId = 1 },
+                        new { ProductsId = 2, MealBoxId = 2 },
+                        new { ProductsId = 4, MealBoxId = 3 },
+                        new { ProductsId = 1, MealBoxId = 4 },
+                        new { ProductsId = 5, MealBoxId = 4 }
+                    );
                 });
     }
-
-    
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     optionsBuilder.UseSqlServer(
+    //         "");
+    // }
 }

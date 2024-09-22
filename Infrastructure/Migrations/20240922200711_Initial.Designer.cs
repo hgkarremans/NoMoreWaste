@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240922173016_Initial")]
+    [Migration("20240922200711_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -30,65 +30,40 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MealBoxesId")
+                    b.Property<int>("MealBoxId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "MealBoxesId");
+                    b.HasKey("ProductsId", "MealBoxId");
 
-                    b.HasIndex("MealBoxesId");
+                    b.HasIndex("MealBoxId");
 
                     b.ToTable("MealBoxProduct");
 
                     b.HasData(
                         new
                         {
-                            ProductsId = 7,
-                            MealBoxesId = 1
-                        },
-                        new
-                        {
-                            ProductsId = 7,
-                            MealBoxesId = 5
-                        },
-                        new
-                        {
-                            ProductsId = 1,
-                            MealBoxesId = 2
+                            ProductsId = 5,
+                            MealBoxId = 1
                         },
                         new
                         {
                             ProductsId = 2,
-                            MealBoxesId = 2
+                            MealBoxId = 2
+                        },
+                        new
+                        {
+                            ProductsId = 4,
+                            MealBoxId = 3
+                        },
+                        new
+                        {
+                            ProductsId = 1,
+                            MealBoxId = 4
                         },
                         new
                         {
                             ProductsId = 5,
-                            MealBoxesId = 2
-                        },
-                        new
-                        {
-                            ProductsId = 6,
-                            MealBoxesId = 2
-                        },
-                        new
-                        {
-                            ProductsId = 2,
-                            MealBoxesId = 6
-                        },
-                        new
-                        {
-                            ProductsId = 1,
-                            MealBoxesId = 5
-                        },
-                        new
-                        {
-                            ProductsId = 3,
-                            MealBoxesId = 5
-                        },
-                        new
-                        {
-                            ProductsId = 3,
-                            MealBoxesId = 4
+                            MealBoxId = 4
                         });
                 });
 
@@ -485,7 +460,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("NoMoreWaste.Domain.DomainModels.MealBox", null)
                         .WithMany()
-                        .HasForeignKey("MealBoxesId")
+                        .HasForeignKey("MealBoxId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

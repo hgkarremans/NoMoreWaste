@@ -119,14 +119,14 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     ProductsId = table.Column<int>(type: "int", nullable: false),
-                    MealBoxesId = table.Column<int>(type: "int", nullable: false)
+                    MealBoxId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MealBoxProduct", x => new { x.ProductsId, x.MealBoxesId });
+                    table.PrimaryKey("PK_MealBoxProduct", x => new { x.ProductsId, x.MealBoxId });
                     table.ForeignKey(
-                        name: "FK_MealBoxProduct_MealBoxes_MealBoxesId",
-                        column: x => x.MealBoxesId,
+                        name: "FK_MealBoxProduct_MealBoxes_MealBoxId",
+                        column: x => x.MealBoxId,
                         principalTable: "MealBoxes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -193,19 +193,14 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "MealBoxProduct",
-                columns: new[] { "MealBoxesId", "ProductsId" },
+                columns: new[] { "MealBoxId", "ProductsId" },
                 values: new object[,]
                 {
-                    { 2, 1 },
-                    { 5, 1 },
+                    { 4, 1 },
                     { 2, 2 },
-                    { 6, 2 },
-                    { 4, 3 },
-                    { 5, 3 },
-                    { 2, 5 },
-                    { 2, 6 },
-                    { 1, 7 },
-                    { 5, 7 }
+                    { 3, 4 },
+                    { 1, 5 },
+                    { 4, 5 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -224,9 +219,9 @@ namespace Infrastructure.Migrations
                 column: "ReservedStudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MealBoxProduct_MealBoxesId",
+                name: "IX_MealBoxProduct_MealBoxId",
                 table: "MealBoxProduct",
-                column: "MealBoxesId");
+                column: "MealBoxId");
         }
 
         /// <inheritdoc />
