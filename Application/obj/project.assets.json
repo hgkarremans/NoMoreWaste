@@ -27,35 +27,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hgkar\\.nuget\\packages\\": {}
+    "/home/hg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\Application\\Application.csproj",
+      "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\hgkar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\Application\\obj\\",
+      "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj",
+      "packagesPath": "/home/hg/.nuget/packages/",
+      "outputPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hgkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/hg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\Domain\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\hgkar\\Documents\\Avans\\Jaar 2\\Periode 1\\SSWP Project\\NoMoreWaste\\Domain\\Domain\\Domain.csproj"
+            "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj": {
+              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj"
             }
           }
         }
@@ -90,7 +87,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/hg/.dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
