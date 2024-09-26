@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UpKbjWaiqGE=",
+  "dgSpecHash": "rl965F7N07w=",
   "success": true,
-  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/DomainServices.csproj",
+  "projectFilePath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\Domain\\DomainServices\\DomainServices.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

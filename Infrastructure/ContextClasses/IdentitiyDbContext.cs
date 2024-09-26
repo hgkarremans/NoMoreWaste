@@ -49,15 +49,6 @@ public class IdentitiyDbContext : IdentityDbContext
             {
                 RoleId = "2",
                 UserId = studentId
-            }, 
-            
-            
-        
-                    
-                    
-            
-        
+            });
     }
-    
-    
 }

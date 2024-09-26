@@ -4951,35 +4951,38 @@
     ]
   },
   "packageFolders": {
-    "/home/hg/.nuget/packages/": {}
+    "C:\\Users\\hgkar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/UI/UI.csproj",
+      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\UI\\UI.csproj",
       "projectName": "UI",
-      "projectPath": "/home/hg/Documents/projects/NoMoreWaste/UI/UI.csproj",
-      "packagesPath": "/home/hg/.nuget/packages/",
-      "outputPath": "/home/hg/Documents/projects/NoMoreWaste/UI/obj/",
+      "projectPath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\UI\\UI.csproj",
+      "packagesPath": "C:\\Users\\hgkar\\.nuget\\packages\\",
+      "outputPath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/hg/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\hgkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/DomainServices.csproj": {
-              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/DomainServices.csproj"
+            "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\Domain\\DomainServices\\DomainServices.csproj": {
+              "projectPath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\Domain\\DomainServices\\DomainServices.csproj"
             },
-            "/home/hg/Documents/projects/NoMoreWaste/Infrastructure/Infrastructure.csproj": {
-              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Infrastructure/Infrastructure.csproj"
+            "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -5039,7 +5042,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
