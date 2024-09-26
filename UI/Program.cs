@@ -14,8 +14,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); }
 );
+builder.Services.AddDbContext<NoMoreWasteIdentityDbContext>(
+    options => { options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")); }
+);
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<NoMoreWasteIdentityStore>();
+    .AddEntityFrameworkStores<NoMoreWasteIdentityDbContext>();
 builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
