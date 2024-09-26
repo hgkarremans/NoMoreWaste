@@ -1,7 +1,9 @@
 using Application;
 using Application.ContextClasses;
 using Application.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); }
 );
-
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<NoMoreWasteIdentityStore>();
 builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();
 builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

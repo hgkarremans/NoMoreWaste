@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.ContextClasses;
 
-public class IdentitiyDbContext : IdentityDbContext
+public class NoMoreWasteIdentityStore : IdentityDbContext
 {
-    public IdentitiyDbContext(DbContextOptions<IdentitiyDbContext> options) : base(options)
+    public NoMoreWasteIdentityStore(DbContextOptions<NoMoreWasteIdentityStore> options) : base(options)
     {
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
