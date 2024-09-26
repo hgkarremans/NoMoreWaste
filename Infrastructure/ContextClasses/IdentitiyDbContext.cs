@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 
 namespace Application.ContextClasses;
 
@@ -37,9 +36,25 @@ public class IdentitiyDbContext : IdentityDbContext
             new IdentityUser
             {
                 Id = studentId,
-                
+                UserName = "hg@gmail.com",
+                NormalizedUserName = "HG@GMAIL.COM",
+                PasswordHash = hasher.HashPassword(null, "test1234")
+            });
+        modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>()
+            {
+                RoleId = "1",
+                UserId = "8e445865-a24d-4523-a6c6-9443d048cdb9"     
+            }, new IdentityUserRole<string>()
+            {
+                RoleId = "2",
+                UserId = studentId
+            }, 
             
-            )
+            
+        
+                    
+                    
             
         
     }

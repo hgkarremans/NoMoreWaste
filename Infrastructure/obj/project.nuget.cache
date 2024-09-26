@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1H83YbpAaio=",
+  "dgSpecHash": "Cgnmf3eob0Q=",
   "success": true,
-  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Infrastructure/Infrastructure.csproj",
+  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/Infrastructure/Infrastructure.csproj",
   "expectedPackageFiles": [
     "/home/hg/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/hg/.nuget/packages/azure.identity/1.11.3/azure.identity.1.11.3.nupkg.sha512",

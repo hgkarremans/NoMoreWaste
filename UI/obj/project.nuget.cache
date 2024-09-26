@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i+MpFA9J6zk=",
+  "dgSpecHash": "7EB4hthQkfs=",
   "success": true,
-  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/UI/UI.csproj",
+  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/UI/UI.csproj",
   "expectedPackageFiles": [
     "/home/hg/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/hg/.nuget/packages/azure.identity/1.11.3/azure.identity.1.11.3.nupkg.sha512",

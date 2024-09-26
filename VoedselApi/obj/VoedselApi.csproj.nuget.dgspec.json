@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/VoedselApi/VoedselApi.csproj": {}
+    "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/VoedselApi.csproj": {}
   },
   "projects": {
-    "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/VoedselApi/VoedselApi.csproj": {
+    "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/VoedselApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/VoedselApi/VoedselApi.csproj",
+        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/VoedselApi.csproj",
         "projectName": "VoedselApi",
-        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/VoedselApi/VoedselApi.csproj",
+        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/VoedselApi.csproj",
         "packagesPath": "/home/hg/.nuget/packages/",
-        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/VoedselApi/obj/",
+        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/hg/.nuget/NuGet/NuGet.Config"
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/hg/.dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

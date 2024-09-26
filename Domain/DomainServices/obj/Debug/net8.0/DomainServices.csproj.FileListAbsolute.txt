@@ -1,22 +1,44 @@
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\Domain.deps.json
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\Domain.runtimeconfig.json
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\Domain.exe
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\DomainServices.exe
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\DomainServices.deps.json
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\DomainServices.runtimeconfig.json
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\DomainServices.dll
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\DomainServices.pdb
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\Domain.dll
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\bin\Debug\net8.0\Domain.pdb
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.csproj.AssemblyReference.cache
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.AssemblyInfoInputs.cache
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.AssemblyInfo.cs
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.csproj.CoreCompileInputs.cache
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.sourcelink.json
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainSe.7BD32716.Up2Date
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.dll
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\refint\DomainServices.dll
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.pdb
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\DomainServices.genruntimeconfig.cache
-C:\Users\hgkar\Documents\Avans\Jaar 2\Periode 1\SSWP Project\NoMoreWaste\Domain\DomainServices\obj\Debug\net8.0\ref\DomainServices.dll
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.deps.json
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.runtimeconfig.json
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.exe
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.exe
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.deps.json
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.runtimeconfig.json
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.dll
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.pdb
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.dll
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.pdb
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.csproj.AssemblyReference.cache
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.AssemblyInfoInputs.cache
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.AssemblyInfo.cs
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.csproj.CoreCompileInputs.cache
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.sourcelink.json
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainSe.7BD32716.Up2Date
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.dll
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/refint/DomainServices.dll
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.pdb
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.genruntimeconfig.cache
+C:/Users/hgkar/Documents/Avans/Jaar 2/Periode 1/SSWP Project/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/ref/DomainServices.dll
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.deps.json
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.runtimeconfig.json
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.deps.json
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.runtimeconfig.json
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.dll
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/DomainServices.pdb
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.dll
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/bin/Debug/net8.0/Domain.pdb
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.csproj.AssemblyReference.cache
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.GeneratedMSBuildEditorConfig.editorconfig
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.AssemblyInfoInputs.cache
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.AssemblyInfo.cs
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.csproj.CoreCompileInputs.cache
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.sourcelink.json
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainSe.7BD32716.Up2Date
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.dll
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/refint/DomainServices.dll
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.pdb
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/DomainServices.genruntimeconfig.cache
+/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/obj/Debug/net8.0/ref/DomainServices.dll

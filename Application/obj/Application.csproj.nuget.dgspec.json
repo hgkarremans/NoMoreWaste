@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj": {}
+    "/home/hg/Documents/projects/NoMoreWaste/Application/Application.csproj": {}
   },
   "projects": {
-    "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj": {
+    "/home/hg/Documents/projects/NoMoreWaste/Application/Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj",
+        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/Application/Application.csproj",
         "projectName": "Application",
-        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/Application.csproj",
+        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Application/Application.csproj",
         "packagesPath": "/home/hg/.nuget/packages/",
-        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Application/obj/",
+        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/hg/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj": {
-                "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj"
+              "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/Domain.csproj": {
+                "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/Domain.csproj"
               }
             }
           }
@@ -62,18 +62,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/hg/.dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj": {
+    "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj",
+        "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/Domain.csproj",
+        "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/Domain.csproj",
         "packagesPath": "/home/hg/.nuget/packages/",
-        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/Domain/obj/",
+        "outputPath": "/home/hg/Documents/projects/NoMoreWaste/Domain/Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/hg/.nuget/NuGet/NuGet.Config"
@@ -120,7 +120,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/hg/.dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

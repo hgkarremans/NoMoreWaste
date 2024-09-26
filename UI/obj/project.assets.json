@@ -4956,11 +4956,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/UI/UI.csproj",
+      "projectUniqueName": "/home/hg/Documents/projects/NoMoreWaste/UI/UI.csproj",
       "projectName": "UI",
-      "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/UI/UI.csproj",
+      "projectPath": "/home/hg/Documents/projects/NoMoreWaste/UI/UI.csproj",
       "packagesPath": "/home/hg/.nuget/packages/",
-      "outputPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/UI/obj/",
+      "outputPath": "/home/hg/Documents/projects/NoMoreWaste/UI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/hg/.nuget/NuGet/NuGet.Config"
@@ -4975,11 +4975,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/DomainServices/DomainServices.csproj": {
-              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Domain/DomainServices/DomainServices.csproj"
+            "/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/DomainServices.csproj": {
+              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Domain/DomainServices/DomainServices.csproj"
             },
-            "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Infrastructure/Infrastructure.csproj": {
-              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/NoMoreWaste/Infrastructure/Infrastructure.csproj"
+            "/home/hg/Documents/projects/NoMoreWaste/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/home/hg/Documents/projects/NoMoreWaste/Infrastructure/Infrastructure.csproj"
             }
           }
         }
@@ -5039,7 +5039,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/hg/.dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
