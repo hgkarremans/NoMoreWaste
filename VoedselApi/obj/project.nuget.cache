@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "a9JEIc5qmLY=",
+  "dgSpecHash": "Bu39ApHniq4=",
   "success": true,
-  "projectFilePath": "\\\\wsl.localhost\\Ubuntu\\home\\hg\\projects\\NoMoreWaste\\VoedselApi\\VoedselApi.csproj",
+  "projectFilePath": "/home/hg/Documents/projects/NoMoreWaste/VoedselApi/VoedselApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hgkar\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\hgkar\\.nuget\\packages\\microsoft.openapi\\1.6.14\\microsoft.openapi.1.6.14.nupkg.sha512",
-    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore\\6.7.3\\swashbuckle.aspnetcore.6.7.3.nupkg.sha512",
-    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.7.3\\swashbuckle.aspnetcore.swagger.6.7.3.nupkg.sha512",
-    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.7.3\\swashbuckle.aspnetcore.swaggergen.6.7.3.nupkg.sha512",
-    "C:\\Users\\hgkar\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.7.3\\swashbuckle.aspnetcore.swaggerui.6.7.3.nupkg.sha512"
+    "/home/hg/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/hg/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/home/hg/.nuget/packages/swashbuckle.aspnetcore/6.7.3/swashbuckle.aspnetcore.6.7.3.nupkg.sha512",
+    "/home/hg/.nuget/packages/swashbuckle.aspnetcore.swagger/6.7.3/swashbuckle.aspnetcore.swagger.6.7.3.nupkg.sha512",
+    "/home/hg/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.7.3/swashbuckle.aspnetcore.swaggergen.6.7.3.nupkg.sha512",
+    "/home/hg/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.7.3/swashbuckle.aspnetcore.swaggerui.6.7.3.nupkg.sha512"
   ],
   "logs": []
 }
