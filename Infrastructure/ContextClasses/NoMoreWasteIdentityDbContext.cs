@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.ContextClasses;
+namespace Infrastructure.ContextClasses;
 
 public class NoMoreWasteIdentityDbContext : IdentityDbContext
 {

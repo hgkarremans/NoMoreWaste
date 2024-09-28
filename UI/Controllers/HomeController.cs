@@ -1,31 +1,33 @@
-using System.Diagnostics;
+using Application;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using UI.Models;
 
 namespace UI.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IMealBoxRepository _mealBoxRepository;
+    private readonly ICanteenRepository _canteenRepository;
+    private readonly IStudentRepository _studentRepository;
+    private readonly IProductRepository _productRepository;
+    private readonly ICanteenWorkerRepository _canteenWorkerRepository;
+    
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IMealBoxRepository mealBoxRepository, ICanteenRepository canteenRepository, IStudentRepository studentRepository, IProductRepository productRepository, ICanteenWorkerRepository canteenWorkerRepository)
     {
-        _logger = logger;
+        _mealBoxRepository = mealBoxRepository;
+        _canteenRepository = canteenRepository;
+        _studentRepository = studentRepository;
+        _productRepository = productRepository;
+        _canteenWorkerRepository = canteenWorkerRepository;
     }
-
-    public IActionResult Index()
+    
+    [AllowAnonymous]
+    [HttpGet]
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+        var mealBoxes = await _mealBoxRepository.GetAllAsync();
+        return View(mealBoxes);
+    } 
+    
 }

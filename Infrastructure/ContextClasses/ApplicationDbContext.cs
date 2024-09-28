@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
 using NoMoreWaste.Domain.DomainModels.Enums;
 
-namespace Application.ContextClasses;
+namespace Infrastructure.ContextClasses;
 
 public class ApplicationDbContext : DbContext
 {

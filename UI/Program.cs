@@ -1,8 +1,9 @@
 using Application;
-using Application.ContextClasses;
 using Application.Repositories;
+using Infrastructure.ContextClasses;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +15,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); }
 );
-builder.Services.AddDbContext<NoMoreWasteIdentityDbContext>(
-    options => { options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")); }
+builder.Services.AddDbContext<NoMoreWasteIdentityDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
+        .ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning))
 );
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<NoMoreWasteIdentityDbContext>();
 builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();

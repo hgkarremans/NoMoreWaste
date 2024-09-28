@@ -1,4 +1,4 @@
-using Application.ContextClasses;
+using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
 
