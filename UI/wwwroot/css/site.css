@@ -34,7 +34,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-button-cards {
+.button-cards {
   background-color: var(--accent-color);
   color: white;
   border: none;
@@ -55,6 +55,8 @@ h1, h2, h3 {
 h4, h5 {
   color: var(--primary-color);
   font-weight: bold;
+}
+
 
   .foodbox-list {
     background-color: white;
@@ -66,4 +68,4 @@ h4, h5 {
   .navbar-brand {
     background-color: var(--background-color);
   }
-}
+
