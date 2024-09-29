@@ -13,9 +13,9 @@ public class MealBoxRepository : IMealBoxRepository
         _dbContext = dbContext;
     }
 
-    public async Task<MealBox> GetByIdAsync(int id)
+    public async Task<MealBox> GetByIdAsync(string id)
     {
-        var mealbox = await _dbContext.MealBoxes.FirstOrDefaultAsync(x => x.Id == id);
+        var mealbox = await _dbContext.MealBoxes.FirstOrDefaultAsync(x => x.Id.ToString() == id);
         if (mealbox == null)
         {
             throw new Exception("MealBox not found");
