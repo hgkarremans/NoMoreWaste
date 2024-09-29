@@ -1,25 +1,31 @@
+@using Microsoft.AspNetCore.Identity
 @model IEnumerable<NoMoreWaste.Domain.DomainModels.MealBox>
 
 <h1>Available boxes</h1>
+@inject SignInManager<IdentityUser> SignInManager
 
 <div class="container">
     <div class="row">
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("employee"))
+        {
+        <button class="btn btn-primary">Add a new mealbox</button>
+        }
         @foreach (var mealBox in Model)
         {
-        <div class="col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">@mealBox.Name</h5>
-                    <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
-                    <p class="card-text"><strong>Canteen:</strong> @mealBox.CanteenId</p>
-                    <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
-                    <p class="card-text"><strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
-                    <p class="card-text"><strong>City:</strong> @mealBox.City</p>
-                    <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@mealBox.Name</h5>
+                        <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
+                        <p class="card-text"><strong>Canteen:</strong> @mealBox.CanteenId</p>
+                        <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
+                        <p class="card-text"><strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
+                        <p class="card-text"><strong>City:</strong> @mealBox.City</p>
+                        <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
+                    </div>
+                    <button class="button-cards">Reservate this box!</button>
                 </div>
-                <button class="button-cards">Reservate this box!</button>
             </div>
-        </div>
         }
     </div>
 </div>
