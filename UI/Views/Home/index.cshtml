@@ -1,31 +1,25 @@
 @model IEnumerable<NoMoreWaste.Domain.DomainModels.MealBox>
 
-<h1>Meal Boxes</h1>
+<h1>Available boxes</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Canteen</th>
-        <th>PickUp Date</th>
-        <th>Expire Date</th>
-        <th>City</th>
-        <th>Meal Type</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var mealBox in Model)
-    {
-    <tr>
-        <td>@mealBox.Name</td>
-        <td>@mealBox.Price</td>
-        <td>@mealBox.CanteenId</td>
-        <td>@mealBox.PickUpDate.ToString("yyyy-MM-dd")</td>
-        <td>@mealBox.ExpireDate.ToString("yyyy-MM-dd")</td>
-        <td>@mealBox.City</td>
-        <td>@mealBox.MealType</td>
-    </tr>
-    }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        @foreach (var mealBox in Model)
+        {
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@mealBox.Name</h5>
+                    <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
+                    <p class="card-text"><strong>Canteen:</strong> @mealBox.CanteenId</p>
+                    <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
+                    <p class="card-text"><strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
+                    <p class="card-text"><strong>City:</strong> @mealBox.City</p>
+                    <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
+                </div>
+                <button class="button-cards">Reservate this box!</button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
