@@ -275,15 +275,10 @@ public class ApplicationDbContext : DbContext
                     je.HasData(
                         new { ProductsId = 5, MealBoxId = 1 },
                         new { ProductsId = 2, MealBoxId = 2 },
-                        new { ProductsId = 4, MealBoxId = 3 },
+                        new { ProductsId = 4 , MealBoxId = 3 },
                         new { ProductsId = 1, MealBoxId = 4 },
-                        new { ProductsId = 5, MealBoxId = 4 }
+                        new { ProductsId = 5, MealBoxId = 4}
                     );
                 });                                                                                      
     }
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     optionsBuilder.UseSqlServer(
-    //         "");
-    // }
 }

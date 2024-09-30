@@ -22,6 +22,15 @@ public class StudentRepository : IStudentRepository
         }
         return student;
     }
+    public async Task<Student> GetByEmailAsync(string email)
+    {
+        var student = await _context.Students.FirstOrDefaultAsync(x => x.Email == email);
+        if (student == null)
+        {
+            throw new Exception("Student not found");
+        }
+        return student;
+    }
 
     public async Task<List<Student>> GetAllAsync()
     {

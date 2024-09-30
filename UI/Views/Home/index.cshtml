@@ -23,7 +23,11 @@
                         <p class="card-text"><strong>City:</strong> @mealBox.City</p>
                         <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
                     </div>
-                    <button class="button-cards">Reservate this box!</button>
+                    <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">
+                        @Html.AntiForgeryToken()  
+                        <input type="hidden" name="mealBoxId" value="@mealBox.Id" />
+                        <button type="submit" class="button-cards">Reservate this box!</button>
+                    </form>
                 </div>
             </div>
         }

@@ -9,6 +9,7 @@ public interface IMealBoxRepository
     Task<MealBox> CreateAsync(MealBox mealbox);
     Task<MealBox> UpdateAsync(MealBox mealbox);
     Task<MealBox> DeleteAsync(MealBox mealbox);
+    MealBox ReservateMealBoxAsync(int mealBoxId, int userId);
     
     
 }

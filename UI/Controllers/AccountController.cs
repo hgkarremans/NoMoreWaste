@@ -25,6 +25,7 @@ public class AccountController : Controller
     {
         return View();
     }
+
     [ValidateAntiForgeryToken]
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
@@ -42,7 +43,6 @@ public class AccountController : Controller
                 Console.WriteLine("Login successful");
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
-                    
                     return LocalRedirect(returnUrl);
                 }
 
@@ -54,6 +54,7 @@ public class AccountController : Controller
 
         return View(model);
     }
+
     [HttpPost]
     public async Task<IActionResult> Logout()
     {
