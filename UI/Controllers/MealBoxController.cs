@@ -35,17 +35,19 @@ public class MealBoxController : Controller
         return View(mealBoxes);
     }
 
-    [Authorize]
-    [HttpPut]
-    public async Task<IActionResult> ReservateMealBox(string mealBoxId)
+    [Authorize(Roles = "student")]
+    public async IActionResult Reserveer(int mealBoxId)
     {
-        var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
-
-        var user = await _userManager.GetUserAsync(User);
-        var student = await _studentRepository.GetByEmailAsync(user.Email);
-        mealBox.ReservedStudent = student;
-        await _mealBoxRepository.UpdateAsync(mealBox);
-
-        return Ok(mealBox);
+        try
+        {
+            var userIdentity = await _userManager.GetUserAsync(User);
+            var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
+            var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
+            return RedirectToAction("Index");
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }
