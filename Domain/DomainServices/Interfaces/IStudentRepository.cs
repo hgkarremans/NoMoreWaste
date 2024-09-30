@@ -4,7 +4,7 @@ namespace Application;
 
 public interface IStudentRepository
 {
-    Task<Student> GetByIdAsync(string id);
+    Task<Student> GetByIdAsync(int id);
     Task<List<Student>> GetAllAsync();
     Task<Student> GetByEmailAsync(string email);
     Task<Student> CreateAsync(Student student);

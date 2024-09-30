@@ -5,7 +5,7 @@ namespace NoMoreWaste.Domain.DomainModels;
 public class Product
 {
     [Key]
-    public string Id { get; set; }
+    public int Id { get; set; }
     [Required]
     public string Name { get; set; } = null!;
     [Required]

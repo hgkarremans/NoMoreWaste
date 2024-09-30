@@ -6,7 +6,7 @@ namespace NoMoreWaste.Domain.DomainModels;
 public class Canteen
 {
     [Key]
-    public string Id { get; set; }
+    public int Id { get; set; }
     [Required]
     public City City { get; set; }
     [Required]

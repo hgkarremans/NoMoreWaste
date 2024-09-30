@@ -13,7 +13,7 @@ public class StudentRepository : IStudentRepository
         _context = context;
     }
 
-    public async Task<Student> GetByIdAsync(string id)
+    public async Task<Student> GetByIdAsync(int id)
     {
         var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
         if (student == null)

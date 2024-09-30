@@ -13,7 +13,7 @@ public class MealBoxRepository : IMealBoxRepository
         _dbContext = dbContext;
     }
 
-    public async Task<MealBox> GetByIdAsync(string id)
+    public async Task<MealBox> GetByIdAsync(int id)
     {
         var mealbox = await _dbContext.MealBoxes.FirstOrDefaultAsync(x => x.Id == id);
         if (mealbox == null)

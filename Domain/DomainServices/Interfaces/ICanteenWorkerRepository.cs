@@ -5,7 +5,7 @@ namespace Application;
 public interface ICanteenWorkerRepository
 {
     
-    Task<CanteenWorker> GetByIdAsync(string id);
+    Task<CanteenWorker> GetByIdAsync(int id);
     Task<List<CanteenWorker>> GetAllAsync();
     Task<CanteenWorker> CreateAsync(CanteenWorker canteenWorker);
     Task<CanteenWorker> UpdateAsync(CanteenWorker canteenWorker);
