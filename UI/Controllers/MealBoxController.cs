@@ -13,9 +13,11 @@ public class MealBoxController : Controller
     private readonly IProductRepository _productRepository;
     private readonly ICanteenWorkerRepository _canteenWorkerRepository;
     private readonly UserManager<IdentityUser> _userManager;
-    
 
-    public MealBoxController(IMealBoxRepository mealBoxRepository, ICanteenRepository canteenRepository, IStudentRepository studentRepository, IProductRepository productRepository, ICanteenWorkerRepository canteenWorkerRepository, UserManager<IdentityUser> userManager)
+
+    public MealBoxController(IMealBoxRepository mealBoxRepository, ICanteenRepository canteenRepository,
+        IStudentRepository studentRepository, IProductRepository productRepository,
+        ICanteenWorkerRepository canteenWorkerRepository, UserManager<IdentityUser> userManager)
     {
         _mealBoxRepository = mealBoxRepository;
         _canteenRepository = canteenRepository;
@@ -24,7 +26,7 @@ public class MealBoxController : Controller
         _canteenWorkerRepository = canteenWorkerRepository;
         _userManager = userManager;
     }
-    
+
     [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -34,19 +36,16 @@ public class MealBoxController : Controller
     }
 
     [Authorize]
-[HttpPut]
-public async Task<IActionResult> ReservateMealBox(string mealBoxId)
-{
-    var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
-    
-    var user = await _userManager.GetUserAsync(User); 
-    var userId = user.Id;
-    
+    [HttpPut]
+    public async Task<IActionResult> ReservateMealBox(string mealBoxId)
+    {
+        var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
 
-    mealBox.ReservedStudent = userId;
-    await _mealBoxRepository.UpdateAsync(mealBox);
-    
-    return Ok(mealBox);
-}
-    
+        var user = await _userManager.GetUserAsync(User);
+        var student = await _studentRepository.GetByEmailAsync(user.Email);
+        mealBox.ReservedStudent = student;
+        await _mealBoxRepository.UpdateAsync(mealBox);
+
+        return Ok(mealBox);
+    }
 }

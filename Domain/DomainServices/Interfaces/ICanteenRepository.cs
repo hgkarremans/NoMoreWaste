@@ -4,7 +4,7 @@ namespace Application;
 
 public interface ICanteenRepository
 {
-    Task<Canteen> GetByIdAsync(int id);
+    Task<Canteen> GetByIdAsync(string id);
     Task<List<Canteen>> GetAllAsync();
     Task<Canteen> CreateAsync(Canteen canteen);
     Task<Canteen> UpdateAsync(Canteen canteen);

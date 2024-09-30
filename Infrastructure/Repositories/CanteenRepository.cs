@@ -13,9 +13,9 @@ public class CanteenRepository : ICanteenRepository
         _context = context;
     }
 
-    public async Task<Canteen> GetByIdAsync(int id)
+    public async Task<Canteen> GetByIdAsync(string id)
 {
-    var canteen = await _context.Canteens.FindAsync(id);
+    var canteen = await _context.Canteens.FirstOrDefaultAsync(x => x.Id == id);
     return canteen ?? throw new KeyNotFoundException($"Canteen with id {id} not found.");
 }
 

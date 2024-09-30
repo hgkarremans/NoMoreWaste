@@ -245,7 +245,7 @@ public class ApplicationDbContext : DbContext
         };
         var mealBox6 = new MealBox()
         {
-            Id = 6,
+            Id = "6",
             Name = "Fruitbox",
             Price = 5M,
             CanteenId = 1,
@@ -273,11 +273,11 @@ public class ApplicationDbContext : DbContext
                 {
                     je.HasKey("ProductsId", "MealBoxId");
                     je.HasData(
-                        new { ProductsId = 5, MealBoxId = 1 },
-                        new { ProductsId = 2, MealBoxId = 2 },
-                        new { ProductsId = 4, MealBoxId = 3 },
-                        new { ProductsId = 1, MealBoxId = 4 },
-                        new { ProductsId = 5, MealBoxId = 4 }
+                        new { ProductsId = "5", MealBoxId = "1" },
+                        new { ProductsId = "2", MealBoxId = "2" },
+                        new { ProductsId = "4", MealBoxId = "3" },
+                        new { ProductsId = "1", MealBoxId = "4" },
+                        new { ProductsId = "5", MealBoxId = "4"}
                     );
                 });                                                                                      
     }
