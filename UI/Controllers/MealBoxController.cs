@@ -36,10 +36,11 @@ public class MealBoxController : Controller
     }
 
     [Authorize(Roles = "student")]
-    public async IActionResult Reserveer(int mealBoxId)
+    public async Task<IActionResult> ReservateMealBox(int mealBoxId)
     {
         try
         {
+            
             var userIdentity = await _userManager.GetUserAsync(User);
             var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
             var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);

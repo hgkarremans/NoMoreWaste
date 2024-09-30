@@ -25,7 +25,6 @@
                     </div>
                     <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">
                         @Html.AntiForgeryToken()  
-                        <input type="hidden" name="_method" value="PUT" />  
                         <input type="hidden" name="mealBoxId" value="@mealBox.Id" />
                         <button type="submit" class="button-cards">Reservate this box!</button>
                     </form>
