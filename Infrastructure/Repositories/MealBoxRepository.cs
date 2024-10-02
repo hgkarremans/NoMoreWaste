@@ -44,6 +44,10 @@ public class MealBoxRepository : IMealBoxRepository
 
     public async Task<MealBox> DeleteAsync(MealBox mealbox)
     {
+        if (mealbox.ReservedStudent != null)
+        {
+            throw new Exception("MealBox is reserved");
+        }
         _dbContext.MealBoxes.Remove(mealbox);
         await _dbContext.SaveChangesAsync();
         return mealbox;
