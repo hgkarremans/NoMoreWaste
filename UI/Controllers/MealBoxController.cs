@@ -31,11 +31,10 @@ public class MealBoxController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var mealBoxes = await _mealBoxRepository.GetAllAsync();
+        var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
         return View(mealBoxes);
     }
 
-    [Authorize(Roles = "student")]
     public async Task<IActionResult> ReservateMealBox(int mealBoxId)
     {
         try
@@ -44,7 +43,8 @@ public class MealBoxController : Controller
             var userIdentity = await _userManager.GetUserAsync(User);
             var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
             var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
-            return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "Meal box reserved successfully!";
+            return RedirectToAction("Index", "home");
         }
         catch (Exception e)
         {

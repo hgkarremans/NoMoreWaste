@@ -28,7 +28,7 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        var mealBoxes = await _mealBoxRepository.GetAllAsync();
+        var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
         return View(mealBoxes);
     }
 }

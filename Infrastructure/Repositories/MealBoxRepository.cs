@@ -27,6 +27,11 @@ public class MealBoxRepository : IMealBoxRepository
     {
         return await _dbContext.MealBoxes.ToListAsync();
     }
+    public async Task<List<MealBox>> GetAllAvailableAsync()
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.ReservedStudent == null).ToListAsync();
+    }
 
     public async Task<MealBox> CreateAsync(MealBox mealbox)
     {
@@ -52,7 +57,7 @@ public class MealBoxRepository : IMealBoxRepository
         await _dbContext.SaveChangesAsync();
         return mealbox;
     }
-    public MealBox ReservateMealBoxAsync(int mealBoxId, int userId)
+    public async Task<MealBox> ReservateMealBoxAsync(int mealBoxId, int userId)
     {
         var mealBox = _dbContext.MealBoxes.Include(
                 box => box.Products).Include(box => box.ReservedStudent)
