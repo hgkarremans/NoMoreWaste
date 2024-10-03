@@ -47,7 +47,6 @@ public class MealBoxController : Controller
     {
         try
         {
-            
             var userIdentity = await _userManager.GetUserAsync(User);
             var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
             var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);

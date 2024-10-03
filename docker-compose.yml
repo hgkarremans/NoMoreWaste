@@ -1,0 +1,36 @@
+﻿services:
+  application:
+    image: application
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+
+  domain:
+    image: domain
+    build:
+      context: .
+      dockerfile: Domain/Domain/Dockerfile
+
+  ui:
+    image: ui
+    build:
+      context: .
+      dockerfile: UI/Dockerfile
+
+  domainservices:
+    image: domainservices
+    build:
+      context: .
+      dockerfile: Domain/DomainServices/Dockerfile
+
+  infrastructure:
+    image: infrastructure
+    build:
+      context: .
+      dockerfile: Infrastructure/Dockerfile
+
+  voedselapi:
+    image: voedselapi
+    build:
+      context: .
+      dockerfile: VoedselApi/Dockerfile
