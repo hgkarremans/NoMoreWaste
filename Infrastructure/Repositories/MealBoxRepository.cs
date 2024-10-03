@@ -27,6 +27,13 @@ public class MealBoxRepository : IMealBoxRepository
     {
         return await _dbContext.MealBoxes.ToListAsync();
     }
+
+    public async Task<List<MealBox>> GetMyMealboxes(int userId)
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.ReservedStudent.Id == userId).ToListAsync();
+    }
+
     public async Task<List<MealBox>> GetAllAvailableAsync()
     {
         return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)

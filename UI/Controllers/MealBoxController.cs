@@ -2,6 +2,7 @@ using Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NoMoreWaste.Domain.DomainModels;
 
 namespace UI.Controllers;
 
@@ -27,12 +28,19 @@ public class MealBoxController : Controller
         _userManager = userManager;
     }
 
-    [AllowAnonymous]
-    [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> GetMyMealBoxes()
     {
-        var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
-        return View(mealBoxes);
+        try
+        {
+            var userId = _userManager.GetUserAsync(User).Id;
+            var mealBoxes = await _mealBoxRepository.GetMyMealboxes(userId);
+            return View(mealBoxes);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task<IActionResult> ReservateMealBox(int mealBoxId)
