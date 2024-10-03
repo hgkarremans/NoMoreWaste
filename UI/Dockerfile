@@ -1,26 +1,42 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+﻿# Use the .NET SDK image for the build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Copy project files for all projects
 COPY ["UI/UI.csproj", "UI/"]
 COPY ["Domain/DomainServices/DomainServices.csproj", "Domain/DomainServices/"]
 COPY ["Domain/Domain/Domain.csproj", "Domain/Domain/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["VoedselApi/VoedselApi.csproj", "VoedselApi/"]  
+
+# Restore dependencies for all projects
 RUN dotnet restore "UI/UI.csproj"
+RUN dotnet restore "VoedselApi/VoedselApi.csproj"  # Add this line
+
+# Copy the rest of the application files
 COPY . .
+
+# Build the UI application
 WORKDIR "/src/UI"
 RUN dotnet build "UI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "UI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Build the VoedselApi application
+WORKDIR "/src/VoedselApi"
+RUN dotnet build "VoedselApi.csproj" -c $BUILD_CONFIGURATION -o /app/build  # Add this line
 
-FROM base AS final
+# Publish the applications
+FROM build AS publish
+RUN dotnet publish "UI/UI.csproj" -c $BUILD_CONFIGURATION -o /app/publish/UI /p:UseAppHost=false
+RUN dotnet publish "VoedselApi/VoedselApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish/VoedselApi /p:UseAppHost=false  # Add this line
+
+# Use the official ASP.NET runtime as a base image for running the applications
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "UI.dll"]
+COPY --from=publish /app/publish/UI ./UI
+COPY --from=publish /app/publish/VoedselApi ./VoedselApi  
+EXPOSE 8080
+EXPOSE 8081
+
+# Choose which application to run as the entry point
+ENTRYPOINT ["dotnet", "UI/UI.dll"]  
