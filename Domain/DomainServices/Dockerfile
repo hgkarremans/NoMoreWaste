@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Domain/DomainServices/DomainServices.csproj", "Domain/DomainServices/"]
-COPY ["Domain/Domain/Domain.csproj", "Domain/Domain/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
 RUN dotnet restore "Domain/DomainServices/DomainServices.csproj"
 COPY . .
 WORKDIR "/src/Domain/DomainServices"

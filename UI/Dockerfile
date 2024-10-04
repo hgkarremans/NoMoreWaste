@@ -9,7 +9,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["UI/UI.csproj", "UI/"]
 COPY ["Domain/DomainServices/DomainServices.csproj", "Domain/DomainServices/"]
-COPY ["Domain/Domain/Domain.csproj", "Domain/Domain/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 RUN dotnet restore "UI/UI.csproj"
 COPY . .

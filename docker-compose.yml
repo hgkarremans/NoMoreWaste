@@ -1,68 +1,11 @@
-﻿version: '3.9'  # Updated to a more recent version
-
-services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=${SA_PASSWORD}  # Set your SA password here
-    ports:
-      - "1433:1433"
-    networks:
-      - my-network
-
-  application:
-    image: application
-    build:
-      context: .
-      dockerfile: Application/Dockerfile
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=NoMoreWasteStore;User Id=sa;Password=${SA_PASSWORD}
-      - ConnectionStrings__IdentityConnection=Server=sqlserver;Database=NoMoreWasteIdentityStore;User Id=sa;Password=${SA_PASSWORD}
-    depends_on:
-      - sqlserver
-    networks:
-      - my-network
-
-  domain:
-    image: domain
-    build:
-      context: .
-      dockerfile: Domain/Domain/Dockerfile
-
+﻿services:
   ui:
     image: ui
     build:
       context: .
       dockerfile: UI/Dockerfile
     ports:
-      - "8080:8080"
-      - "8081:8081"
-    environment:
-      - ASPNETCORE_URLS=http://+:8080
-    depends_on:
-      - sqlserver
-    networks:
-      - my-network
-
-  ef:
-    image: mcr.microsoft.com/dotnet/sdk:8.0
-    build:
-      context: .
-      dockerfile: UI/Dockerfile
-    command: ["dotnet", "ef", "database", "update", "--context", "IdentityDbContext"]
-    environment:
-      - ConnectionStrings__IdentityConnection=Server=sqlserver;Database=NoMoreWasteIdentityStore;User Id=sa;Password=${SA_PASSWORD}
-    depends_on:
-      - sqlserver
-    networks:
-      - my-network
-
-  domainservices:
-    image: domainservices
-    build:
-      context: .
-      dockerfile: Domain/DomainServices/Dockerfile
+      - "8080:80"
 
   infrastructure:
     image: infrastructure
@@ -70,12 +13,66 @@ services:
       context: .
       dockerfile: Infrastructure/Dockerfile
 
+  domainservices:
+    image: domainservices
+    build:
+      context: .
+      dockerfile: Domain/DomainServices/Dockerfile
+
+  domain:
+    image: domain
+    build:
+      context: .
+      dockerfile: Domain/Domain/Dockerfile
+
+  application:
+    image: application
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+
   voedselapi:
     image: voedselapi
     build:
       context: .
       dockerfile: VoedselApi/Dockerfile
 
+ 
+  mealboxes_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mealboxes_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}         
+      - MSSQL_PID=Express
+      - MSSQL_DB=MealboxesDB
+    ports:
+      - "1434:1433"
+    volumes:
+      - mealboxes_data:/var/opt/mssql
+    networks:
+      - app-network
+
+
+  identity_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: identity_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}       
+      - MSSQL_PID=Express
+      - MSSQL_DB=IdentityDB
+    ports:
+      - "1435:1433"
+    volumes:
+      - identity_data:/var/opt/mssql
+    networks:
+      - app-network
+
+volumes:
+  mealboxes_data:
+  identity_data:
+
 networks:
-  my-network:
+  app-network:
     driver: bridge
