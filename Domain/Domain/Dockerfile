@@ -1,7 +1,7 @@
 ﻿# Base image for running the application
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
 WORKDIR /app
-EXPOSE 8080  # Expose the necessary ports
+EXPOSE 8080  
 
 # Build stage with the SDK
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
