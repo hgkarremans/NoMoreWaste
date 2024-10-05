@@ -37,7 +37,6 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
-        var user = _userManager.GetUserAsync(User);
         return View(mealBoxes);
     }
 }

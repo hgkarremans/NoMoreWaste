@@ -23,10 +23,13 @@
                         <p class="card-text"><strong>City:</strong> @mealBox.City</p>
                         <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
                     </div>
-                    <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">
-                        <input type="hidden" name="mealBoxId" value="@mealBox.Id" />
-                        <button type="submit" class="button-cards">Reservate this box!</button>
-                    </form>
+                    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("employee"))
+                    {
+                        <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">
+                            <input type="hidden" name="mealBoxId" value="@mealBox.Id"/>
+                            <button type="submit" class="button-cards">Reservate this box!</button>
+                        </form>
+                    }
                 </div>
             </div>
         }
