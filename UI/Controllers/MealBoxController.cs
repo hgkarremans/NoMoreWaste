@@ -44,6 +44,19 @@
                 throw;
             }
         }
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            try
+            {
+                var mealBox = await _mealBoxRepository.GetByIdAsync(id);
+                return View("MealBox", mealBox);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         public async Task<IActionResult> GetCanteenMealboxes()
         {

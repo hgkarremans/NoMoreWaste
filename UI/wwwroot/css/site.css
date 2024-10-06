@@ -46,6 +46,15 @@ body {
 button:hover {
   background-color: var(--primary-color); 
 }
+.hover-card {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.hover-card:hover {
+  transform: scale(1.05); /* Scale the card to 105% on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: add shadow effect */
+}
+
 
 h1, h2, h3 {
   color: var(--primary-color);
