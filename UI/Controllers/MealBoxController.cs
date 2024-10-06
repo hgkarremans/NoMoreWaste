@@ -33,8 +33,10 @@
             try
             {
                 //student still null when getting there
-                var userIdentity = await _userManager.GetUserAsync(User).ConfigureAwait(false);
-                var user = await _studentRepository.GetByEmailAsync(userIdentity.Email).ConfigureAwait(false);
+                var userIdentity = await _userManager.GetUserAsync(User);
+                Console.WriteLine(User);
+                Console.WriteLine(userIdentity);
+                var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
                 var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
                 return View("MyMealboxes", mealBoxes);
             }

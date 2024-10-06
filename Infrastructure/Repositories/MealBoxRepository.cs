@@ -80,7 +80,7 @@ public class MealBoxRepository : IMealBoxRepository
         }
 
         mealBox.ReservedStudent = user;
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         return mealBox;
     }
     

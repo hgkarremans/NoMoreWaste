@@ -136,6 +136,10 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CanteenId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -148,6 +152,16 @@ namespace Infrastructure.Migrations
                     b.HasIndex("CanteenId");
 
                     b.ToTable("CanteenWorkers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CanteenId = 4,
+                            Email = "hg.karremans@gmail.com",
+                            Name = "Hg Karremans",
+                            PersonalNumber = 123456
+                        });
                 });
 
             modelBuilder.Entity("NoMoreWaste.Domain.DomainModels.MealBox", b =>
@@ -201,10 +215,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 1,
                             Name = "Bierbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 10m
                         },
                         new
@@ -213,10 +227,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 2,
                             Name = "Fruitbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         },
                         new
@@ -225,10 +239,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 1,
                             Name = "Wijnbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 15m
                         },
                         new
@@ -237,10 +251,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 2,
                             Name = "Fruitbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         },
                         new
@@ -249,10 +263,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 1,
                             Name = "Bierbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 10m
                         },
                         new
@@ -261,10 +275,10 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 10, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 10, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             MealType = 2,
                             Name = "Fruitbox",
-                            PickUpDate = new DateTime(2024, 10, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         });
                 });
@@ -365,8 +379,8 @@ namespace Infrastructure.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateTime(2006, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "John.gmail.com",
-                            Name = "John Doe",
+                            Email = "hg@gmail.com",
+                            Name = "HG Karremans",
                             PhoneNumber = "123456",
                             StudentNumber = 0
                         },
