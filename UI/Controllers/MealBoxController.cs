@@ -52,7 +52,8 @@
                 var userIdentity = await _userManager.GetUserAsync(User);
                 var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
                 var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
-                return View("CanteenMealboxes", mealBoxes);
+                var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+                return View("CanteenMealboxes", sortedMealBoxes);
             }
             catch (Exception e)
             {

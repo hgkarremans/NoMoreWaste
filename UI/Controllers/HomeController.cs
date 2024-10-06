@@ -37,6 +37,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
-        return View(mealBoxes);
+        var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+        return View(sortedMealBoxes);
     }
 }
