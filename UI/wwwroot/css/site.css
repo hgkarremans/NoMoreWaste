@@ -21,11 +21,11 @@ body {
   margin-bottom: 60px;
 }
 :root {
-  --primary-color: #4CAF50; /* Groen - hoofdthema voor duurzaamheid */
+  --primary-color: #433878; /* Blauw - hoofdthema voor duurzaamheid */
   --secondary-color: #FF9800; /* Oranje - accentkleur voor oproepen tot actie */
-  --background-color: #F5F5F5; /* Lichtgrijs/wit - achtergrond voor helderheid */
+  --background-color: #FFE1FF; /* Pink/wit - achtergrond voor helderheid */
   --text-color: #333333; /* Donkergrijs - voor leestekst */
-  --accent-color: #8BC34A; /* Limoengroen - voor knoppen en actiemomenten */
+  --accent-color: #7E60BF; /* Lila - voor knoppen en actiemomenten */
   --neutral-color: #9E9E9E; /* Neutraal grijs voor minder prominente teksten */
 }
 body {

@@ -19,10 +19,10 @@
                         <p class="card-text"><strong>City:</strong> @mealBox.City</p>
                         <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
                     </div>
-                    <form asp-controller="" asp-action="" >
-                        <input type="hidden" name="mealBoxId" value="@mealBox.Id" />
-                        <button type="submit" class="button-cards">See Details!</button>
-                    </form>
+                    <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="btn btn-primary button-cards">
+                        See Details!
+                    </a>
+
                 </div>
             </div>
         }

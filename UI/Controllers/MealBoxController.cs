@@ -28,7 +28,7 @@
             _canteenWorkerRepository = canteenWorkerRepository;
             _userManager = userManager;
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetMyMealBoxes()
         {
             try
@@ -44,11 +44,12 @@
                 throw;
             }
         }
-        public async Task<IActionResult> GetByIdAsync(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetByIdAsync(int mealBoxId)
         {
             try
             {
-                var mealBox = await _mealBoxRepository.GetByIdAsync(id);
+                var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
                 return View("MealBox", mealBox);
             }
             catch (Exception e)
@@ -57,7 +58,7 @@
                 throw;
             }
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetCanteenMealboxes()
         {
             try
