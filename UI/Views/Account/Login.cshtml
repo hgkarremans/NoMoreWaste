@@ -28,9 +28,10 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
-            <button type="submit" class="button-cards">Sign in</button>
+            <form asp-area="" asp-controller="MealBox" asp-action="ReservateMealBox" method="post" class="d-inline">
+                <button type="submit" class="button-cards">Sign in</button>
+            </form>
         </div>
     </form>
 </bodyd>
 </html>
-

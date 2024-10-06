@@ -6,10 +6,12 @@ public interface IMealBoxRepository
 {
     Task<MealBox> GetByIdAsync(int id);
     Task<List<MealBox>> GetAllAsync();
+    Task<List<MealBox>> GetMyMealboxes(int userId);
     Task<MealBox> CreateAsync(MealBox mealbox);
     Task<MealBox> UpdateAsync(MealBox mealbox);
     Task<MealBox> DeleteAsync(MealBox mealbox);
-    MealBox ReservateMealBoxAsync(int mealBoxId, int userId);
+    Task<MealBox> ReservateMealBoxAsync(int mealBoxId, int userId);
+    Task<List<MealBox>> GetAllAvailableAsync();
     
     
 }
