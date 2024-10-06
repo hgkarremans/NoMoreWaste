@@ -19,6 +19,7 @@ public class CanteenWorkerRepository : ICanteenWorkerRepository
         var canteenWorker = await _context.CanteenWorkers.FirstOrDefaultAsync(x => x.Id == id);
         return canteenWorker ?? throw new KeyNotFoundException($"CanteenWorker with id {id} not found.");
     }
+    
 
     public async Task<List<CanteenWorker>> GetAllAsync()
     {
@@ -45,5 +46,10 @@ public class CanteenWorkerRepository : ICanteenWorkerRepository
         await _context.SaveChangesAsync();
         return canteenWorker;
     }
-    
+
+    public int GetCanteenByUserEmail(string email)
+    {
+        var canteenWorker = _context.CanteenWorkers.FirstOrDefault(x => x.Email == email);
+        return canteenWorker.CanteenId;
+    }
 }

@@ -10,5 +10,6 @@ public interface ICanteenWorkerRepository
     Task<CanteenWorker> CreateAsync(CanteenWorker canteenWorker);
     Task<CanteenWorker> UpdateAsync(CanteenWorker canteenWorker);
     Task<CanteenWorker> DeleteAsync(CanteenWorker canteenWorker);
+    int GetCanteenByUserEmail(string email);
     
 }

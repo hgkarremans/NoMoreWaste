@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using NoMoreWaste.Domain.DomainModels;
+    using UI.Models;
 
     namespace UI.Controllers;
 
@@ -32,13 +33,26 @@
         {
             try
             {
-                //student still null when getting there
                 var userIdentity = await _userManager.GetUserAsync(User);
-                Console.WriteLine(User);
-                Console.WriteLine(userIdentity);
                 var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
                 var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
                 return View("MyMealboxes", mealBoxes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public async Task<IActionResult> GetCanteenMealboxes()
+        {
+            try
+            {   
+                var userIdentity = await _userManager.GetUserAsync(User);
+                var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+                var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
+                return View("CanteenMealboxes", mealBoxes);
             }
             catch (Exception e)
             {

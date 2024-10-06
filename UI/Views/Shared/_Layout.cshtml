@@ -28,6 +28,12 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="MealBox" asp-action="GetMyMealboxes">My Mealboxes</a>
                     </li>
                     }
+                    @if (User.IsInRole("employee"))
+                    {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="MealBox" asp-action="GetCanteenMealBoxes">Canteen Mealboxes</a>
+                    </li>
+                    }
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item ms-auto">
