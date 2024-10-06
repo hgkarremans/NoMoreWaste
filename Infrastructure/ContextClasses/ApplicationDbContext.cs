@@ -144,7 +144,7 @@ public class ApplicationDbContext : DbContext
             Name = "Hg Karremans",
             Email = "hg.karremans@gmail.com",
             PersonalNumber = 123456,
-            CanteenId = 4
+            CanteenId = 1
         };
 
         //PRODUCTS

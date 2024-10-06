@@ -157,7 +157,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CanteenId = 4,
+                            CanteenId = 1,
                             Email = "hg.karremans@gmail.com",
                             Name = "Hg Karremans",
                             PersonalNumber = 123456
