@@ -31,14 +31,14 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
                 Id = "8e445865-a24d-4523-a6c6-9443d048cdb9",
                 UserName = "hg.karremans@gmail.com",
                 NormalizedUserName = "HG.KARREMANS@GMAIL.COM",
-                PasswordHash = hasher.HashPassword(null, "test1234")
+                PasswordHash = hasher.HashPassword(new IdentityUser(), "test1234")
             },
             new IdentityUser
             {
                 Id = studentId,
                 UserName = "hg@gmail.com",
                 NormalizedUserName = "HG@GMAIL.COM",
-                PasswordHash = hasher.HashPassword(null, "test1234")
+                PasswordHash = hasher.HashPassword(new IdentityUser(), "test1234")
             });
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>()

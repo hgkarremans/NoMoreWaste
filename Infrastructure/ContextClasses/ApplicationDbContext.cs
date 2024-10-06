@@ -24,8 +24,8 @@ public class ApplicationDbContext : DbContext
         var student = new Student()
         {
             Id = 1,
-            Name = "John Doe",
-            Email = "John.gmail.com",
+            Name = "HG Karremans",
+            Email = "hg@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -136,6 +136,15 @@ public class ApplicationDbContext : DbContext
             Address = "LD street",
             IsWarmFood = true,
             Name = "LD Canteen"
+        };
+        //CANTEENWORKERS
+        var worker = new CanteenWorker()
+        {
+            Id = 1,
+            Name = "Hg Karremans",
+            Email = "hg.karremans@gmail.com",
+            PersonalNumber = 123456,
+            CanteenId = 1
         };
 
         //PRODUCTS
@@ -261,6 +270,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
         modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
         modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);
+        modelBuilder.Entity<CanteenWorker>().HasData(worker);
 
         modelBuilder.Entity<MealBox>()
             .HasMany(p => p.Products)
@@ -275,15 +285,10 @@ public class ApplicationDbContext : DbContext
                     je.HasData(
                         new { ProductsId = 5, MealBoxId = 1 },
                         new { ProductsId = 2, MealBoxId = 2 },
-                        new { ProductsId = 4, MealBoxId = 3 },
+                        new { ProductsId = 4 , MealBoxId = 3 },
                         new { ProductsId = 1, MealBoxId = 4 },
-                        new { ProductsId = 5, MealBoxId = 4 }
+                        new { ProductsId = 5, MealBoxId = 4}
                     );
                 });                                                                                      
     }
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     optionsBuilder.UseSqlServer(
-    //         "");
-    // }
 }

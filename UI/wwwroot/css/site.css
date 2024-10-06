@@ -20,3 +20,61 @@ html {
 body {
   margin-bottom: 60px;
 }
+:root {
+  --primary-color: #433878; /* Blauw - hoofdthema voor duurzaamheid */
+  --secondary-color: #FF9800; /* Oranje - accentkleur voor oproepen tot actie */
+  --background-color: #FFE1FF; /* Pink/wit - achtergrond voor helderheid */
+  --text-color: #333333; /* Donkergrijs - voor leestekst */
+  --accent-color: #7E60BF; /* Lila - voor knoppen en actiemomenten */
+  --neutral-color: #9E9E9E; /* Neutraal grijs voor minder prominente teksten */
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+.button-cards {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-color); 
+}
+.hover-card {
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.hover-card:hover {
+  transform: scale(1.05); /* Scale the card to 105% on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: add shadow effect */
+}
+
+
+h1, h2, h3 {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: bold;
+}
+h4, h5 {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+
+  .foodbox-list {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-brand {
+    background-color: var(--background-color);
+  }
+

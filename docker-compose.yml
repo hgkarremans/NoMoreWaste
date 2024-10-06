@@ -1,0 +1,78 @@
+﻿services:
+  ui:
+    image: ui
+    build:
+      context: .
+      dockerfile: UI/Dockerfile
+    ports:
+      - "8080:80"
+
+  infrastructure:
+    image: infrastructure
+    build:
+      context: .
+      dockerfile: Infrastructure/Dockerfile
+
+  domainservices:
+    image: domainservices
+    build:
+      context: .
+      dockerfile: Domain/DomainServices/Dockerfile
+
+  domain:
+    image: domain
+    build:
+      context: .
+      dockerfile: Domain/Domain/Dockerfile
+
+  application:
+    image: application
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+
+  voedselapi:
+    image: voedselapi
+    build:
+      context: .
+      dockerfile: VoedselApi/Dockerfile
+
+ 
+  mealboxes_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mealboxes_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}         
+      - MSSQL_PID=Express
+      - MSSQL_DB=MealboxesDB
+    ports:
+      - "1434:1433"
+    volumes:
+      - mealboxes_data:/var/opt/mssql
+    networks:
+      - app-network
+
+
+  identity_db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: identity_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}       
+      - MSSQL_PID=Express
+      - MSSQL_DB=IdentityDB
+    ports:
+      - "1435:1433"
+    volumes:
+      - identity_data:/var/opt/mssql
+    networks:
+      - app-network
+
+volumes:
+  mealboxes_data:
+  identity_data:
+
+networks:
+  app-network:
+    driver: bridge

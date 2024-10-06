@@ -1,0 +1,20 @@
+@using Microsoft.AspNetCore.Identity
+@model NoMoreWaste.Domain.DomainModels.MealBox
+
+<div class="container mt-5">
+    <div class="card" style="max-width: 1000px; margin: auto;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">
+                <strong>Products:</strong> @Model.Products <br />
+                <strong>Price:</strong> @Model.Price.ToString("C") <br />
+                //canteen not working
+                <strong>Canteen:</strong> @Model.Canteen?.Name<br />
+                <strong>Pick-Up Date:</strong> @Model.PickUpDate.ToString("dd-MM-yyyy") <br />
+                <strong>Expire Date:</strong> @Model.ExpireDate.ToString("dd-MM-yyyy") <br />
+                <strong>City:</strong> @Model.City <br />
+                <strong>Meal Type:</strong> @Model.MealType
+            </p>
+        </div>
+    </div>
+</div>

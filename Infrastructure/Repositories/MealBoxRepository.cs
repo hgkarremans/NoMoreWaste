@@ -28,6 +28,23 @@ public class MealBoxRepository : IMealBoxRepository
         return await _dbContext.MealBoxes.ToListAsync();
     }
 
+    public async Task<List<MealBox>> GetMyMealboxes(int userId)
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.ReservedStudent.Id == userId).ToListAsync();
+    }
+
+    public async Task<List<MealBox>> GetAllAvailableAsync()
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.ReservedStudent == null).ToListAsync();
+    }
+    public async Task<List<MealBox>> GetCanteenMealboxesAsync(int canteenId)
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.Canteen.Id == canteenId).ToListAsync();
+    }
+
     public async Task<MealBox> CreateAsync(MealBox mealbox)
     {
         await _dbContext.MealBoxes.AddAsync(mealbox);
@@ -44,9 +61,32 @@ public class MealBoxRepository : IMealBoxRepository
 
     public async Task<MealBox> DeleteAsync(MealBox mealbox)
     {
+        if (mealbox.ReservedStudent != null)
+        {
+            throw new Exception("MealBox is reserved");
+        }
         _dbContext.MealBoxes.Remove(mealbox);
         await _dbContext.SaveChangesAsync();
         return mealbox;
+    }
+    public async Task<MealBox> ReservateMealBoxAsync(int mealBoxId, int userId)
+    {
+        var mealBox = _dbContext.MealBoxes.Include(
+                box => box.Products).Include(box => box.ReservedStudent)
+            .FirstOrDefault(box => box.Id == mealBoxId);
+        var user = _dbContext.Students.FirstOrDefault(student => student.Id == userId);
+        if (mealBox == null)
+        {
+            throw new Exception("MealBox not found");
+        }
+        if (mealBox.ReservedStudent != null)
+        {
+            throw new Exception("MealBox already reserved");
+        }
+
+        mealBox.ReservedStudent = user;
+        await _dbContext.SaveChangesAsync();
+        return mealBox;
     }
     
 }
