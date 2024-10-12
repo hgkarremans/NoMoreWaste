@@ -15,7 +15,9 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
-            <img src="Images/Logo_Food.png" alt="Description of Image" asp-append-version="true" />
+            <a asp-controller="Home" asp-action="Index">
+            <img src="~/Images/Logo_Food.png" alt="No More Waste Logo" asp-append-version="true"/>
+            </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +34,15 @@
                     @if (User.IsInRole("employee"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MealBox" asp-action="GetCanteenMealBoxes">Canteen Mealboxes</a>
+                            <a class="nav-link text-dark"style="margin-left:30px" asp-area="" asp-controller="MealBox" asp-action="GetCanteenMealBoxes">Canteen Mealboxes</a>
                         </li>
                     }
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item ms-auto">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                            </form>
                         </li>
                     }
                     else
@@ -58,7 +62,7 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer class="border-top footer">
     <div class="container">
         &copy; 2024 - Copy Right - No More Waste
     </div>
