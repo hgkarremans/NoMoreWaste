@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NoMoreWaste.Domain.DomainModels;
 using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace UI.Models
@@ -31,8 +32,8 @@ namespace UI.Models
         [Display(Name = "Type of Meal")]
         public MealType MealType { get; set; }
 
-        public ICollection<int> SelectedProducts { get; set; } = new List<int>();
 
-        public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
+        public List<Product> Products { get; set; } = null!;
+        public List<int> SelectedProducts { get; set; } = null!;
     }
 }
