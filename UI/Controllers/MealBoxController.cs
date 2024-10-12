@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using NoMoreWaste.Domain.DomainModels;
+    using UI.Models;
 
     namespace UI.Controllers;
 
@@ -27,18 +28,46 @@
             _canteenWorkerRepository = canteenWorkerRepository;
             _userManager = userManager;
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetMyMealBoxes()
         {
             try
             {
-                //student still null when getting there
                 var userIdentity = await _userManager.GetUserAsync(User);
-                Console.WriteLine(User);
-                Console.WriteLine(userIdentity);
                 var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
                 var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
                 return View("MyMealboxes", mealBoxes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetByIdAsync(int mealBoxId)
+        {
+            try
+            {
+                var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+                return View("MealBox", mealBox);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCanteenMealboxes()
+        {
+            try
+            {   
+                var userIdentity = await _userManager.GetUserAsync(User);
+                var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+                var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
+                var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+                return View("CanteenMealboxes", sortedMealBoxes);
             }
             catch (Exception e)
             {
@@ -61,5 +90,10 @@
             {
                 return BadRequest(e.Message);
             }
+        }
+        [HttpGet]
+        public async Task<IActionResult> CreateMealBox()
+        {
+            return View();
         }
     }

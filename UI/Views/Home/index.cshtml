@@ -6,14 +6,11 @@
 
 <div class="container">
     <div class="row">
-        @if (SignInManager.IsSignedIn(User) && User.IsInRole("employee"))
-        {
-        <button class="btn btn-primary">Add a new mealbox</button>
-        }
+        
         @foreach (var mealBox in Model)
         {
             <div class="col-md-6 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 hover-card">
                     <div class="card-body">
                         <h5 class="card-title">@mealBox.Name</h5>
                         <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>

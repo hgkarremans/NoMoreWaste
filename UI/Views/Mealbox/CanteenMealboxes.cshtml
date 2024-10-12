@@ -1,11 +1,17 @@
 @using Microsoft.AspNetCore.Identity
+@using NoMoreWaste.Domain.DomainModels
 @model IEnumerable<NoMoreWaste.Domain.DomainModels.MealBox>
 
-<h1>Available boxes</h1>
+<h1>Current boxes for your canteen</h1>
+
 @inject SignInManager<IdentityUser> SignInManager
 
 <div class="container">
     <div class="row">
+
+        <a asp-controller="MealBox" asp-action="CreateMealBox"  class="button-top btn btn-primary">
+            Add a new mealbox
+        </a>
         @foreach (var mealBox in Model)
         {
             <div class="col-md-6 mb-4">
@@ -19,10 +25,9 @@
                         <p class="card-text"><strong>City:</strong> @mealBox.City</p>
                         <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
                     </div>
-                    <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="btn btn-primary button-cards">
+                    <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary">
                         See Details!
                     </a>
-
                 </div>
             </div>
         }
