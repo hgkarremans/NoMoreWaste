@@ -19,9 +19,9 @@ start-db:
 	# Wait for SQL Server to start
 	@sleep 10
 
-	# Install sqlcmd tools inside the container as root
-	@echo "Installing sqlcmd tools..."
-	@docker exec -u root -it $(CONTAINER_NAME) bash -c "apt-get update && apt-get install -y mssql-tools unixodbc-dev"
+	# Check if sqlcmd tools are installed, install them if not
+	@echo "Checking if sqlcmd tools are installed..."
+	@docker exec -it $(CONTAINER_NAME) bash -c "command -v /opt/mssql-tools/bin/sqlcmd || { echo 'Installing sqlcmd tools...'; apt-get update && apt-get install -y mssql-tools unixodbc-dev; }"
 
 	# Create the databases
 	@echo "Creating databases..."

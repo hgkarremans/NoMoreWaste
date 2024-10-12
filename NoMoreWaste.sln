@@ -6,12 +6,13 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoedselApi", "VoedselApi\VoedselApi.csproj", "{D73E7477-8A1F-454B-9872-66F8C5774EC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{8ECA642F-A9FB-4078-BBBE-ECF1CFBB9A93}"
+	ProjectSection(SolutionItems) = preProject
+		packages-microsoft-prod.deb = packages-microsoft-prod.deb
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D6B750E4-933B-4E1F-BF55-212D6E91555C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{0CF4AA42-18D7-4E99-9332-073B28DC598A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{6CCC6DDA-8A25-4948-997A-A07C91E9C43E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{EF709360-D881-4F5A-B3AE-3A26B0EB4CA0}"
 EndProject
