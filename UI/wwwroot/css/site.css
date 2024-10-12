@@ -33,7 +33,10 @@ body {
   font-family: Arial, sans-serif;
 }
 body {
-  background-image: url('https://static.vecteezy.com/system/resources/previews/010/594/734/non_2x/beautiful-mountain-landscape-with-fog-and-forest-outdoor-and-hiking-concept-illustration-vector.jpg');
+  background-image: image-set(
+          url('/Images/mountains.jpg') 1x,
+          url('/Images/mountains.jpg') 2x
+  );
   background-size: cover; /* Make sure the image covers the whole navbar */
   background-position: center center; /* Center the image both vertically and horizontally */
   background-repeat: no-repeat; /* Prevents the image from repeating */
