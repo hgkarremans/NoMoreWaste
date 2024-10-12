@@ -9,7 +9,9 @@
 <div class="container">
     <div class="row">
 
-<button class="button-top btn btn-primary" >Add a new mealbox</button>
+        <a asp-controller="MealBox" asp-action="CreateMealBox"  class="button-top btn btn-primary">
+            Add a new mealbox
+        </a>
         @foreach (var mealBox in Model)
         {
             <div class="col-md-6 mb-4">

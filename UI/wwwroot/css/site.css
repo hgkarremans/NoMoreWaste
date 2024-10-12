@@ -96,6 +96,24 @@ h4, h5 {
   text-align: center;
   color: white;
 }
+.custom-control {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center align items vertically */
+}
+
+.custom-control-input {
+  width: 25px; /* Width of the checkbox */
+  height: 25px; /* Height of the checkbox */
+  cursor: pointer; /* Change cursor on hover */
+  margin-right: 10px; /* Space between checkbox and label */
+}
+
+.custom-control-label {
+  font-size: 1.2em; /* Size of the label */
+  margin-right: 5px;
+}
+
+
 
 
 

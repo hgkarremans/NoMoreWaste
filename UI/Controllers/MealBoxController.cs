@@ -91,4 +91,9 @@
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> CreateMealBox()
+        {
+            return View();
+        }
     }
