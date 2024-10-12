@@ -105,4 +105,29 @@ public class MealBoxController : Controller
         };
         return View(viewModel);
     }
+    [HttpPost]
+    public async Task<IActionResult> CreateMealBox(MealBoxViewModel viewModel)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(viewModel);
+        }
+
+        var userIdentity = await _userManager.GetUserAsync(User);
+        var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.Email);
+        var mealBox = new MealBox
+        {
+            Name = viewModel.Name,
+            PickUpDate = viewModel.PickUpDate,
+            ExpireDate = viewModel.ExpireDate,
+            EighteenPlus = viewModel.EighteenPlus,
+            Price = viewModel.Price,
+            MealType = viewModel.MealType,
+            CanteenId = canteenId,
+            Products = viewModel.SelectedProducts.Select(id => new Product {Id = id}).ToList()
+        };
+        await _mealBoxRepository.CreateAsync(mealBox);
+        TempData["SuccessMessage"] = "Meal box created successfully!";
+        return RedirectToAction("Index", "Home");
+    }
 }

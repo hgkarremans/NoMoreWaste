@@ -13,11 +13,15 @@ namespace UI.Models
 
         [Required(ErrorMessage = "Pick Up Date is required.")]
         [Display(Name = "Pick Up Date")]
-        public DateTime PickUpDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime PickUpDate { get; set; } = DateTime.Now;
+        
 
         [Required(ErrorMessage = "Expire Date is required.")]
         [Display(Name = "Expiration Date")]
-        public DateTime ExpireDate { get; set; }
+        [DataType(DataType.Date)]
+
+        public DateTime ExpireDate { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "You must confirm if you are 18 or older.")]
         [Display(Name = "18+ Only")]
