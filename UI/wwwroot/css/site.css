@@ -59,6 +59,15 @@ body {
   font-size: 1rem;
   cursor: pointer;
 }
+.button-danger {
+  background-color: var(--bs-danger);
+  color: var(--bs-white);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 
 button-cards:hover {
   background-color: var(--accent-color); 

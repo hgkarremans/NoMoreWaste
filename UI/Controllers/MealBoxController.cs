@@ -235,4 +235,26 @@ public class MealBoxController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+    [HttpPost]
+    public async Task<IActionResult> DeleteMealBox(int mealBoxId)
+    {
+        try
+        {
+            var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+            if (mealBox == null)
+            {
+                TempData["ErrorMessage"] = "Meal box not found.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            await _mealBoxRepository.DeleteAsync(mealBox);
+            TempData["SuccessMessage"] = "Meal box deleted successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception e)
+        {
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
+        }
+    }
 }

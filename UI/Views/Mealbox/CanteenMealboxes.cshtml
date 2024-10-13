@@ -51,9 +51,16 @@
                         </p>
                         <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image"/>
                     </div>
-                    <a asp-controller="MealBox" asp-action="UpdateMealBox" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary">
-                        Edit this box
-                    </a>
+                    <div class="d-flex justify-content-between">
+                        <a asp-controller="MealBox" asp-action="UpdateMealBox" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary w-50">
+                            Edit this box
+                        </a>
+                        <form asp-controller="MealBox" asp-action="DeleteMealBox" asp-route-mealBoxId="@mealBox.Id" method="post" class="w-50">
+                            <button type="submit" class="button-danger btn w-100">
+                                Delete this box
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 </a>
             </div>
