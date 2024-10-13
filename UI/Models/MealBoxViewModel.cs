@@ -37,7 +37,7 @@ namespace UI.Models
         public MealType MealType { get; set; }
 
 
-        public List<Product> Products { get; set; } = null!;
-        public List<int> SelectedProducts { get; set; } = null!;
+        public List<Product> Products { get; set; } = new List<Product>();
+        public List<int> SelectedProducts { get; set; }
     }
 }

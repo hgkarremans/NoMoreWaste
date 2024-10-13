@@ -99,22 +99,45 @@ public class MealBoxController : Controller
     public async Task<IActionResult> CreateMealBox()
     {
         var products = await _productRepository.GetAllAsync();
-        var viewModel = new MealBoxViewModel
+        var viewModel = new MealBoxViewModel()
         {
             Products = products
         };
         return View(viewModel);
     }
+
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateMealBox(MealBoxViewModel viewModel)
     {
+        viewModel.Products = await _productRepository.GetAllAsync();
+
         if (!ModelState.IsValid)
         {
+            // Log ModelState errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error.ErrorMessage);
+            }
+
             return View(viewModel);
         }
 
         var userIdentity = await _userManager.GetUserAsync(User);
-        var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.Email);
+        var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+
+        // Retrieve existing products from the database
+        var selectedProducts = new List<Product>();
+        foreach (var productId in viewModel.SelectedProducts)
+        {
+            var product = await _productRepository.GetByIdAsync(productId);
+            if (product != null)
+            {
+                selectedProducts.Add(product);
+            }
+        }
+
         var mealBox = new MealBox
         {
             Name = viewModel.Name,
@@ -124,8 +147,9 @@ public class MealBoxController : Controller
             Price = viewModel.Price,
             MealType = viewModel.MealType,
             CanteenId = canteenId,
-            Products = viewModel.SelectedProducts.Select(id => new Product {Id = id}).ToList()
+            Products = selectedProducts
         };
+
         await _mealBoxRepository.CreateAsync(mealBox);
         TempData["SuccessMessage"] = "Meal box created successfully!";
         return RedirectToAction("Index", "Home");
