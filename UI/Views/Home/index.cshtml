@@ -33,7 +33,7 @@ var mealTypeImages = new Dictionary<NoMoreWaste.Domain.DomainModels.Enums.MealTy
                     <div class="card-body">
                         <h5 class="card-title">@mealBox.Name</h5>
                         <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
-                        <p class="card-text"><strong>Canteen:</strong> @mealBox.CanteenId</p>
+                        <p class="card-text"><strong>Canteen:</strong> @ViewBag.CanteenName</p>
                         <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
                         <p class="card-text"><strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
                         <p class="card-text"><strong>City:</strong> @mealBox.City</p>
@@ -41,7 +41,7 @@ var mealTypeImages = new Dictionary<NoMoreWaste.Domain.DomainModels.Enums.MealTy
                         <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image"/>
                     </div>
                 </a>
-                @if (SignInManager.IsSignedIn(User) && !User.IsInRole("employee"))
+                @if (SignInManager.IsSignedIn(User) && !User.IsInRole("employee") && mealBox.ReservedStudent == null)
                 {
                 <div class="card-footer">
                     <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">

@@ -37,6 +37,13 @@ public class MealBoxController : Controller
             var userIdentity = await _userManager.GetUserAsync(User);
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
+            foreach (var mealBox in mealBoxes)
+            {
+                mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            }
+    
+            var canteenName = mealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+            ViewBag.CanteenName = canteenName;
             return View("MyMealboxes", mealBoxes);
         }
         catch (Exception e)
@@ -52,6 +59,8 @@ public class MealBoxController : Controller
         try
         {
             var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+            var canteenName = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            ViewBag.CanteenName = canteenName.Name;
             return View("MealBox", mealBox);
         }
         catch (Exception e)
@@ -70,6 +79,13 @@ public class MealBoxController : Controller
             var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
             var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+            foreach (var mealBox in sortedMealBoxes)
+            {
+                mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            }
+    
+            var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+            ViewBag.CanteenName = canteenName;
             return View("CanteenMealboxes", sortedMealBoxes);
         }
         catch (Exception e)
@@ -126,8 +142,8 @@ public class MealBoxController : Controller
 
         var userIdentity = await _userManager.GetUserAsync(User);
         var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+        var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 
-        // Retrieve existing products from the database
         var selectedProducts = new List<Product>();
         foreach (var productId in viewModel.SelectedProducts)
         {
@@ -141,6 +157,7 @@ public class MealBoxController : Controller
         var mealBox = new MealBox
         {
             Name = viewModel.Name,
+            City = canteen.City,
             PickUpDate = viewModel.PickUpDate,
             ExpireDate = viewModel.ExpireDate,
             EighteenPlus = viewModel.EighteenPlus,

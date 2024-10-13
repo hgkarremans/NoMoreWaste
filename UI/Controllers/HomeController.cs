@@ -21,7 +21,7 @@ public class HomeController : Controller
         ICanteenWorkerRepository canteenWorkerRepository,
         UserManager<IdentityUser> userManager,
         ILogger<HomeController> logger
-        )
+    )
     {
         _mealBoxRepository = mealBoxRepository;
         _canteenRepository = canteenRepository;
@@ -32,12 +32,18 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    [AllowAnonymous]
-    [HttpGet]
     public async Task<IActionResult> Index()
+{
+    var mealBoxes = await _mealBoxRepository.GetAllAsync();
+    var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+    
+    foreach (var mealBox in sortedMealBoxes)
     {
-        var mealBoxes = await _mealBoxRepository.GetAllAvailableAsync();
-        var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
-        return View(sortedMealBoxes);
+        mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
     }
+    
+    var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+    ViewBag.CanteenName = canteenName;
+    return View(sortedMealBoxes);
+}
 }
