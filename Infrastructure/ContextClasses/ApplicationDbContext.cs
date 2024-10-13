@@ -33,7 +33,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 2,
             Name = "Jane Doe",
-            Email = "Jane.gmail.com",
+            Email = "Jane@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -41,7 +41,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 3,
             Name = "Jack Doe",
-            Email = "Jack.gmail.com",
+            Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -49,7 +49,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 4,
             Name = "Jill Doe",
-            Email = "Jill.gmail.com",
+            Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -57,7 +57,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 5,
             Name = "John Doe",
-            Email = "John.gmail.com",
+            Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -65,7 +65,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 6,
             Name = "Jane Doe",
-            Email = "Jane.gmail.com",
+            Email = "Jane@gmail.com",
             BirthDate = new DateTime(2012, 01, 01),
             PhoneNumber = "123456"
         };
@@ -73,7 +73,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 7,
             Name = "Jack Doe",
-            Email = "Jack.gmail.com",
+            Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -81,7 +81,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 8,
             Name = "Jill Doe",
-            Email = "Jill.gmail.com",
+            Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -89,7 +89,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 9,
             Name = "John Doe",
-            Email = "John.gmail.com",
+            Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };
@@ -97,7 +97,7 @@ public class ApplicationDbContext : DbContext
         {
             Id = 10,
             Name = "Jane Doe",
-            Email = "Jane.gmail.com",
+            Email = "Jane@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456"
         };

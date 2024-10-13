@@ -43,8 +43,8 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
             new IdentityUser
             {
                 Id = "8e445865-a24d-4523-a6c6-9443d048cdb5",
-                UserName = "Jane.gmail.comJane.gmail.com",
-                NormalizedUserName = "JANE.GMAIL.COMJANE.GMAIL.COM",
+                UserName = "Jane@gmail.com",
+                NormalizedUserName = "JANE@GMAIL.COM",
                 PasswordHash = hasher.HashPassword(new IdentityUser(), "test1234")
             }
         );
