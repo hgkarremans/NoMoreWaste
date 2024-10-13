@@ -34,7 +34,7 @@ public class ApplicationDbContext : DbContext
             Id = 2,
             Name = "Jane Doe",
             Email = "Jane@gmail.com",
-            BirthDate = new DateTime(2006, 01, 01),
+            BirthDate = new DateTime(2012, 01, 01),
             PhoneNumber = "123456"
         };
         var student3 = new Student()

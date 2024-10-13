@@ -57,6 +57,12 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
             {
                 RoleId = "2",
                 UserId = studentId
-            });
+            },
+            new IdentityUserRole<string>()
+            {
+                RoleId = "2",
+                UserId = "8e445865-a24d-4523-a6c6-9443d048cdb5"
+            }
+            );
     }
 }
