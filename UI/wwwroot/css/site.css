@@ -116,19 +116,15 @@ h4, h5 {
   margin-right: 5px;
 }
 .mealbox-image {
-  max-width: 400px; /* Adjust the width as needed */
+  max-width: 370px; /* Adjust the width as needed */
   height: auto;
   position: absolute; /* Position the image absolutely */
-  top: 20px; /* Adjust the top position as needed */
-  right: 10px; /* Adjust the right position as needed */
-  border: 2px solid black;
+  top: 30px; /* Adjust the top position as needed */
+  right: 30px; /* Adjust the right position as needed */
+  border: 2px solid black; /* Add a black border around the image */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  padding: 5px; /* Add some padding */
+  background-color: white; /* Add a background color */
+  margin-left: 20px; /* Add left margin */
 }
-
-
-
-
-
-
-
-  
-
