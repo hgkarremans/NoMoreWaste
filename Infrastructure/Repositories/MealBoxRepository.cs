@@ -109,6 +109,11 @@ public class MealBoxRepository : IMealBoxRepository
             throw new Exception("MealBox already reserved");
         }
 
+        if (mealBox.EighteenPlus && (DateTime.Today.Year - user.BirthDate.Year) < 18)
+        {
+            throw new Exception("MealBox is 18+");
+        }
+
         mealBox.ReservedStudent = user;
         await _dbContext.SaveChangesAsync();
         return mealBox;
