@@ -19,7 +19,7 @@ public class MealBoxRepository : IMealBoxRepository
         var mealbox = await _dbContext.MealBoxes
             .Include(m => m.Products) // Ensure related Products are included
             .FirstOrDefaultAsync(x => x.Id == id);
-    
+
         // Check if mealbox is null and handle accordingly
         if (mealbox == null)
         {
@@ -50,6 +50,7 @@ public class MealBoxRepository : IMealBoxRepository
         return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
             .Where(box => box.ReservedStudent == null).ToListAsync();
     }
+
     public async Task<List<MealBox>> GetCanteenMealboxesAsync(int canteenId)
     {
         return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
@@ -64,25 +65,25 @@ public class MealBoxRepository : IMealBoxRepository
     }
 
     public async Task<MealBox> UpdateAsync(MealBox mealbox)
-{
-    var existingMealBox = await _dbContext.MealBoxes
-        .Include(m => m.ReservedStudent)
-        .FirstOrDefaultAsync(m => m.Id == mealbox.Id);
-
-    if (existingMealBox == null)
     {
-        throw new Exception("MealBox not found");
-    }
+        var existingMealBox = await _dbContext.MealBoxes
+            .Include(m => m.ReservedStudent)
+            .FirstOrDefaultAsync(m => m.Id == mealbox.Id);
 
-    if (existingMealBox.ReservedStudent != null)
-    {
-        throw new Exception("Cannot update a reserved MealBox");
-    }
+        if (existingMealBox == null)
+        {
+            throw new Exception("MealBox not found");
+        }
 
-    _dbContext.Entry(existingMealBox).CurrentValues.SetValues(mealbox);
-    await _dbContext.SaveChangesAsync();
-    return existingMealBox;
-}
+        if (existingMealBox.ReservedStudent != null)
+        {
+            throw new Exception("Cannot update a reserved MealBox");
+        }
+
+        _dbContext.Entry(existingMealBox).CurrentValues.SetValues(mealbox);
+        await _dbContext.SaveChangesAsync();
+        return existingMealBox;
+    }
 
     public async Task<MealBox> DeleteAsync(MealBox mealbox)
     {
@@ -90,10 +91,12 @@ public class MealBoxRepository : IMealBoxRepository
         {
             throw new Exception("MealBox is reserved");
         }
+
         _dbContext.MealBoxes.Remove(mealbox);
         await _dbContext.SaveChangesAsync();
         return mealbox;
     }
+
     public async Task<MealBox> ReservateMealBoxAsync(int mealBoxId, int userId)
     {
         var mealBox = _dbContext.MealBoxes.Include(
@@ -104,6 +107,7 @@ public class MealBoxRepository : IMealBoxRepository
         {
             throw new Exception("MealBox not found");
         }
+
         if (mealBox.ReservedStudent != null)
         {
             throw new Exception("MealBox already reserved");
@@ -114,15 +118,26 @@ public class MealBoxRepository : IMealBoxRepository
             throw new Exception("MealBox is 18+");
         }
 
+        var reservedMealboxes = await this.GetMyMealboxes(userId);
+        foreach (var reservedMealbox in reservedMealboxes)
+        {
+            if (reservedMealbox.PickUpDate == mealBox.PickUpDate)
+            {
+                throw new Exception("You already have a mealbox reserved for this pickup date.");
+            }
+        }
+        
+        
+
         mealBox.ReservedStudent = user;
         await _dbContext.SaveChangesAsync();
         return mealBox;
     }
+
     public async Task<bool> IsMealBoxReserved(int mealBoxId)
     {
         var mealBox = await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
             .FirstOrDefaultAsync(box => box.Id == mealBoxId);
         return mealBox.ReservedStudent != null;
     }
-    
 }
