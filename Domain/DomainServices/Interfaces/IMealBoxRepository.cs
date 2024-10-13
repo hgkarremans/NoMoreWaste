@@ -13,6 +13,7 @@ public interface IMealBoxRepository
     Task<MealBox> ReservateMealBoxAsync(int mealBoxId, int userId);
     Task<List<MealBox>> GetAllAvailableAsync();
     Task<List<MealBox>> GetCanteenMealboxesAsync(int canteenId);
+    Task<bool> IsMealBoxReserved(int mealBoxId);
     
     
 }

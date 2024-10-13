@@ -99,5 +99,11 @@ public class MealBoxRepository : IMealBoxRepository
         await _dbContext.SaveChangesAsync();
         return mealBox;
     }
+    public async Task<bool> IsMealBoxReserved(int mealBoxId)
+    {
+        var mealBox = await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .FirstOrDefaultAsync(box => box.Id == mealBoxId);
+        return mealBox.ReservedStudent != null;
+    }
     
 }

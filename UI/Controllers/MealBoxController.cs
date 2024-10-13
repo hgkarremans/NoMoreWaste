@@ -96,20 +96,21 @@ public class MealBoxController : Controller
     }
 
     public async Task<IActionResult> ReservateMealBox(int mealBoxId)
+{
+    try
     {
-        try
-        {
-            var userIdentity = await _userManager.GetUserAsync(User);
-            var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
-            var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
-            TempData["SuccessMessage"] = "Meal box reserved successfully!";
-            return RedirectToAction("Index", "home");
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        var userIdentity = await _userManager.GetUserAsync(User);
+        var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+        var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
+        TempData["SuccessMessage"] = "Meal box reserved successfully!";
+        return RedirectToAction("Index", "Home");
     }
+    catch (Exception e)
+    {
+        TempData["ErrorMessage"] = e.Message;
+        return RedirectToAction("Index", "Home");
+    }
+}
 
     [HttpGet]
     public async Task<IActionResult> CreateMealBox()
