@@ -41,7 +41,7 @@ public class MealBoxController : Controller
             {
                 mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
             }
-    
+
             var canteenName = mealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
             ViewBag.CanteenName = canteenName;
             return View("MyMealboxes", mealBoxes);
@@ -83,7 +83,7 @@ public class MealBoxController : Controller
             {
                 mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
             }
-    
+
             var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
             ViewBag.CanteenName = canteenName;
             return View("CanteenMealboxes", sortedMealBoxes);
@@ -96,21 +96,21 @@ public class MealBoxController : Controller
     }
 
     public async Task<IActionResult> ReservateMealBox(int mealBoxId)
-{
-    try
     {
-        var userIdentity = await _userManager.GetUserAsync(User);
-        var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
-        var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
-        TempData["SuccessMessage"] = "Meal box reserved successfully!";
-        return RedirectToAction("Index", "Home");
+        try
+        {
+            var userIdentity = await _userManager.GetUserAsync(User);
+            var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+            var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
+            TempData["SuccessMessage"] = "Meal box reserved successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception e)
+        {
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
+        }
     }
-    catch (Exception e)
-    {
-        TempData["ErrorMessage"] = e.Message;
-        return RedirectToAction("Index", "Home");
-    }
-}
 
     [HttpGet]
     public async Task<IActionResult> CreateMealBox()
@@ -171,5 +171,68 @@ public class MealBoxController : Controller
         await _mealBoxRepository.CreateAsync(mealBox);
         TempData["SuccessMessage"] = "Meal box created successfully!";
         return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> UpdateMealBox(int mealBoxId)
+    {
+        var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+        var viewModel = new MealBoxViewModel()
+        {
+            Name = mealBox.Name,
+            PickUpDate = mealBox.PickUpDate,
+            ExpireDate = mealBox.ExpireDate,
+            EighteenPlus = mealBox.EighteenPlus,
+            Price = mealBox.Price,
+            MealType = mealBox.MealType,
+            Products = mealBox.Products.ToList(),
+            SelectedProducts = mealBox.Products.Select(p => p.Id).ToList()
+        };
+        ViewBag.MealBoxId = mealBoxId;
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateMealBox(int id, MealBoxViewModel viewModel)
+    {
+        try
+        {
+            var mealBox = await _mealBoxRepository.GetByIdAsync(id);
+            if (mealBox == null)
+            {
+                TempData["ErrorMessage"] = "Meal box not found.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Apply updates from the view model
+            mealBox.Name = viewModel.Name;
+            mealBox.PickUpDate = viewModel.PickUpDate;
+            mealBox.ExpireDate = viewModel.ExpireDate;
+            mealBox.EighteenPlus = viewModel.EighteenPlus;
+            mealBox.Price = viewModel.Price;
+            mealBox.MealType = viewModel.MealType;
+
+            // Update products
+            var selectedProducts = new List<Product>();
+            foreach (var productId in viewModel.SelectedProducts)
+            {
+                var product = await _productRepository.GetByIdAsync(productId);
+                if (product != null)
+                {
+                    selectedProducts.Add(product);
+                }
+            }
+
+            mealBox.Products = selectedProducts;
+
+            await _mealBoxRepository.UpdateAsync(mealBox);
+            TempData["SuccessMessage"] = "Meal box updated successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception e)
+        {
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
