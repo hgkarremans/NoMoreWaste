@@ -5,30 +5,57 @@
 <h1>Current boxes for your canteen</h1>
 
 @inject SignInManager<IdentityUser> SignInManager
+@{
+    var mealTypeImages = new Dictionary<NoMoreWaste.Domain.DomainModels.Enums.MealType, string>
+    {
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Breakfast, "../Images/breakfast.jpg" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Lunch, "../Images/lunch.avif" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Dinner, "../Images/dinner.avif" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Snack, "../Images/snack.jpg" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Bread, "../Images/bread.webp" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Drink, "../Images/drink.jpg" },
+        { NoMoreWaste.Domain.DomainModels.Enums.MealType.Other, "../Images/other.jpg" }
+    };
+}
 
 <div class="container">
     <div class="row">
 
-        <a asp-controller="MealBox" asp-action="CreateMealBox"  class="button-top btn btn-primary">
+        <a asp-controller="MealBox" asp-action="CreateMealBox" class="button-top btn btn-primary">
             Add a new mealbox
         </a>
         @foreach (var mealBox in Model)
         {
             <div class="col-md-6 mb-4">
+                <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="text-decoration-none" style="color: inherit;">
                 <div class="card h-100 hover-card">
                     <div class="card-body">
                         <h5 class="card-title">@mealBox.Name</h5>
-                        <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
-                        <p class="card-text"><strong>Canteen:</strong> @mealBox.CanteenId</p>
-                        <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
-                        <p class="card-text"><strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
-                        <p class="card-text"><strong>City:</strong> @mealBox.City</p>
-                        <p class="card-text"><strong>Meal Type:</strong> @mealBox.MealType</p>
+                        <p class="card-text">
+                            <strong>Price:</strong> @mealBox.Price
+                        </p>
+                        <p class="card-text">
+                            <strong>Canteen:</strong> @mealBox.CanteenId
+                        </p>
+                        <p class="card-text">
+                            <strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")
+                        </p>
+                        <p class="card-text">
+                            <strong>Expire Date:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")
+                        </p>
+                        <p class="card-text">
+                            <strong>City:</strong> @mealBox.City
+                        </p>
+                        <p class="card-text">
+                            <strong>Meal Type:</strong> @mealBox.MealType
+                        </p>
+                        <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image"/>
                     </div>
-                    <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary">
-                        See Details!
+                    <a asp-controller="MealBox" asp-action="Update" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary">
+                        Edit this box
                     </a>
                 </div>
+                </a>
             </div>
         }
     </div>

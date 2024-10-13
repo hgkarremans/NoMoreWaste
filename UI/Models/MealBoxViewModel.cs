@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NoMoreWaste.Domain.DomainModels;
 using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace UI.Models
@@ -12,11 +13,15 @@ namespace UI.Models
 
         [Required(ErrorMessage = "Pick Up Date is required.")]
         [Display(Name = "Pick Up Date")]
-        public DateTime PickUpDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime PickUpDate { get; set; } = DateTime.Now;
+        
 
         [Required(ErrorMessage = "Expire Date is required.")]
         [Display(Name = "Expiration Date")]
-        public DateTime ExpireDate { get; set; }
+        [DataType(DataType.Date)]
+
+        public DateTime ExpireDate { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "You must confirm if you are 18 or older.")]
         [Display(Name = "18+ Only")]
@@ -31,8 +36,8 @@ namespace UI.Models
         [Display(Name = "Type of Meal")]
         public MealType MealType { get; set; }
 
-        public ICollection<int> SelectedProducts { get; set; } = new List<int>();
 
-        public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
+        public List<Product> Products { get; set; } = new List<Product>();
+        public List<int> SelectedProducts { get; set; }
     }
 }
