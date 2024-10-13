@@ -22,6 +22,7 @@
         @foreach (var mealBox in Model)
         {
             <div class="col-md-6 mb-4">
+                <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="text-decoration-none" style="color: inherit;">
                 <div class="card h-100 hover-card">
                     <div class="card-body">
                         <h5 class="card-title">@mealBox.Name</h5>
@@ -43,13 +44,14 @@
                         <p class="card-text">
                             <strong>Meal Type:</strong> @mealBox.MealType
                         </p>
-                        <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image" />
+                        <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image"/>
                     </div>
                     <a asp-controller="MealBox" asp-action="GetById" asp-route-mealBoxId="@mealBox.Id" class="btn btn-primary button-cards">
                         See Details!
                     </a>
 
                 </div>
+                </a>
             </div>
         }
     </div>
