@@ -1,6 +1,7 @@
 using Application.Repositories;
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NoMoreWaste.Domain.DomainModels;
 using NoMoreWaste.Domain.DomainModels.Enums;
 
@@ -179,15 +180,69 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
         };
         _mockContext.CanteenWorkers.Add(canteenWorker);
         _mockContext.SaveChanges();
-        
+
         //Act
         var result = await _repository.DeleteAsync(canteenWorker);
-        
-        
+
+
         //Assert 
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
+    }
+
+    [Fact]
+    public async Task GetCanteenByUserEmail_ShouldReturnCanteenId()
+    {
+        // Arrange
+        var canteen = new Canteen
+        {
+            Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false
+        };
+
+        var canteenWorker = new CanteenWorker
+        {
+            Id = 1, Name = "John Doe", PersonalNumber = 213344,
+            Email = "john.doe@gmail.com", CanteenId = 1, Canteen = canteen
+        };
+        _mockContext.CanteenWorkers.Add(canteenWorker);
+        _mockContext.SaveChanges();
+
+        //Act 
+        var result = _repository.GetCanteenByUserEmail("john.doe@gmail.com");
+
+        //Assert
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public async Task GetCanteenByUserEmail_ShouldReturnZero()
+    {
+        // Arrange
+        var canteen = new Canteen
+        {
+            Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false
+        };
+
+        var canteenWorker = new CanteenWorker
+        {
+            Id = 1, Name = "John Doe", PersonalNumber = 213344,
+            Email = "john.doe@gmail.com", CanteenId = 1, Canteen = canteen
+        };
+        _mockContext.CanteenWorkers.Add(canteenWorker);
+        _mockContext.SaveChanges();
+        
+        //Act
+        var exception = await Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.GetCanteenByUserEmail("ava.lovelace@gmail.com"));
         
 
+        //Assert
+        Assert.Equal(0, result);
+        Assert.Equal("CanteenWorker with email ava.lovelace@gmail.com not found.", result);
     }
 }
+
+    
+    
+    
+
+        
