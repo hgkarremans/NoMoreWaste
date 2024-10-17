@@ -76,7 +76,7 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
-            var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
             var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
             foreach (var mealBox in sortedMealBoxes)
@@ -142,7 +142,7 @@ public class MealBoxController : Controller
         }
 
         var userIdentity = await _userManager.GetUserAsync(User);
-        var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+        var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
         var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 
         var selectedProducts = new List<Product>();

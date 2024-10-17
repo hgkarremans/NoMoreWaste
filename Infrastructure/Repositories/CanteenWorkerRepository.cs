@@ -6,7 +6,6 @@ namespace Application.Repositories;
 
 public class CanteenWorkerRepository : ICanteenWorkerRepository
 {
-    
     private readonly ApplicationDbContext _context;
 
     public CanteenWorkerRepository(ApplicationDbContext context)
@@ -19,7 +18,7 @@ public class CanteenWorkerRepository : ICanteenWorkerRepository
         var canteenWorker = await _context.CanteenWorkers.FirstOrDefaultAsync(x => x.Id == id);
         return canteenWorker ?? throw new KeyNotFoundException($"CanteenWorker with id {id} not found.");
     }
-    
+
 
     public async Task<List<CanteenWorker>> GetAllAsync()
     {
@@ -47,9 +46,14 @@ public class CanteenWorkerRepository : ICanteenWorkerRepository
         return canteenWorker;
     }
 
-    public int GetCanteenByUserEmail(string email)
+    public async Task<int> GetCanteenByUserEmail(string email)
     {
-        var canteenWorker = _context.CanteenWorkers.FirstOrDefault(x => x.Email == email);
+        var canteenWorker = await _context.CanteenWorkers.FirstOrDefaultAsync(x => x.Email == email);
+        if (canteenWorker == null)
+        {
+            throw new KeyNotFoundException($"CanteenWorker with email {email} not found.");
+        }
+
         return canteenWorker.CanteenId;
     }
 }

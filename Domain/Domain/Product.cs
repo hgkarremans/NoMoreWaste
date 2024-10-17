@@ -12,6 +12,5 @@ public class Product
     public Boolean HasAlcohol { get; set; }
     [Required]
     public string ImageUrl { get; set; } = null!;
-    public ICollection<MealBox> MealBoxes { get; set; } = null!;
     
 }
