@@ -232,11 +232,10 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
         _mockContext.SaveChanges();
         
         //Act
-        var exception = await Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.GetCanteenByUserEmail("ava.lovelace@gmail.com"));
+        var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.GetCanteenByUserEmail("ava.lovelace@gmail.com"));
         
-
         //Assert
-        Assert.Equal(0, result);
+        Assert.Equal(0, exception);
         Assert.Equal("CanteenWorker with email ava.lovelace@gmail.com not found.", result);
     }
 }
