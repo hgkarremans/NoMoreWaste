@@ -211,7 +211,8 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
         var result = _repository.GetCanteenByUserEmail("john.doe@gmail.com");
 
         //Assert
-        Assert.Equal(1, result);
+        Assert.Equal(1, await result);
+        
     }
 
     [Fact]
@@ -235,8 +236,7 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
         var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.GetCanteenByUserEmail("ava.lovelace@gmail.com"));
         
         //Assert
-        Assert.Equal(0, exception);
-        Assert.Equal("CanteenWorker with email ava.lovelace@gmail.com not found.", result);
+        Assert.Contains("CanteenWorker with email ava.lovelace@gmail.com not found.", exception.Result.Message);
     }
 }
 
