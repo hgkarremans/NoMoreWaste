@@ -136,6 +136,22 @@ public class ProductRepositoryTest : IAsyncLifetime
         Assert.Equal(1, result.Id);
         Assert.Equal("Banana", result.Name);
     }
+
+    [Fact]
+    public async Task UpdateAsync_ShouldNotUpdateProduct()
+    {
+        var product = new Product
+        {
+            Id = 1, Name = "Apple", HasAlcohol = false, ImageUrl = "apple.jpg"
+        };
+        
+        //act 
+        var exception = Assert.ThrowsAsync<Exception>(() => _repository.UpdateAsync(product));
+        
+        //assert
+        Assert.Equal("Product not found", exception.Result.Message);
+    }
+    
     [Fact] 
     public async Task DeleteAsync_ShouldDeleteProduct()
     {
@@ -155,6 +171,21 @@ public class ProductRepositoryTest : IAsyncLifetime
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
         Assert.Equal("Apple", result.Name);
+    }
+    
+    [Fact]
+    public async Task DeleteAsync_ShouldNotDeleteProduct()
+    {
+        var product = new Product
+        {
+            Id = 1, Name = "Apple", HasAlcohol = false, ImageUrl = "apple.jpg"
+        };
+        
+        //act 
+        var exception = Assert.ThrowsAsync<Exception>(() => _repository.DeleteAsync(product));
+        
+        //assert
+        Assert.Equal("Product not found", exception.Result.Message);
     }
     
 }

@@ -46,6 +46,11 @@ public class StudentRepository : IStudentRepository
 
     public async Task<Student> UpdateAsync(Student student)
     {
+        var studentToUpdate = await _context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+        if (studentToUpdate == null)
+        {
+            throw new Exception("Student not found");
+        }
         _context.Students.Update(student);
         await _context.SaveChangesAsync();
         return student;
@@ -53,9 +58,14 @@ public class StudentRepository : IStudentRepository
 
     public async Task<Student> DeleteAsync(Student student)
     {
-        _context.Students.Remove(student);
+        var studentToDelete = await _context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+        if (studentToDelete == null)
+        {
+            throw new Exception("Student not found");
+        }
+        _context.Students.Remove(studentToDelete);
         await _context.SaveChangesAsync();
-        return student;
+        return studentToDelete;
     }
     
 }

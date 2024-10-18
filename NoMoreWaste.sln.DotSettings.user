@@ -19,6 +19,9 @@
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.CanteenWorkerRepositoryTest.GetByIdAsync_ShouldReturnCanteenWorker_WhenCanteenWorkerExists&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.CanteenWorkerRepositoryTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.IProductRepository.GetByIdAsync_ShouldNotReturnProducts_WhenProductsDoNotExist&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.GetByEmailAsync_shouldThrowError_WhenStudentDoesNotExist&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.CreateAsync_ShouldCreateStudent&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.GetAllAsync_ShouldReturnAllStudents&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	

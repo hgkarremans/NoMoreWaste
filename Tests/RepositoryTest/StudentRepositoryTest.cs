@@ -58,10 +58,10 @@ public class StudentRepositoryTest : IAsyncLifetime
         };
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-        
+
         //act
         var exception = Assert.ThrowsAsync<Exception>(() => _repository.GetByIdAsync(2));
-        
+
         //assert
         Assert.Equal("Student not found", exception.Result.Message);
     }
@@ -77,10 +77,10 @@ public class StudentRepositoryTest : IAsyncLifetime
         };
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-        
+
         //act
         var result = await _repository.GetByEmailAsync("john.doe@gmail.com");
-        
+
         //assert
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
@@ -97,12 +97,136 @@ public class StudentRepositoryTest : IAsyncLifetime
         };
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-        
+
         //act
         var exception = Assert.ThrowsAsync<Exception>(() => _repository.GetByEmailAsync("ava.lovelace@gmail.com"));
+
+        //assert
+        Assert.Equal("Student not found", exception.Result.Message);
+    }
+
+    [Fact]
+    public async Task GetAllAsync_ShouldReturnAllStudents()
+    {
+        // Arrange
+        var student = new Student
+        {
+            Id = 1, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        _mockContext.Students.Add(student);
+        _mockContext.SaveChanges();
+
+        //act
+        var result = await _repository.GetAllAsync();
+
+        //assert 
+        Assert.NotNull(result);
+        Assert.Single(result);
+        Assert.Contains("John Doe", result.Select(x => x.Name));
+    }
+
+    [Fact]
+    public async Task CreateAsync_ShouldCreateStudent()
+    {
+        // Arrange
+        var student = new Student
+        {
+            Id = 1, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+
+        //act 
+        var result = await _repository.CreateAsync(student);
+
+        //assert
+        Assert.NotNull(result);
+        Assert.Equal(1, result.Id);
+        Assert.Equal("John Doe", result.Name);
+    }
+
+    public async Task UpdateAsync_ShouldUpdateStudent()
+    {
+        // Arrange
+        var student = new Student
+        {
+            Id = 1, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        var updatedStudent = new Student()
+        {
+            Id = 1, Name = "John", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        _mockContext.Students.Add(student);
+        _mockContext.SaveChanges();
+
+        //act 
+        var result = await _repository.UpdateAsync(updatedStudent);
+
+        //assert
+        Assert.NotNull(result);
+        Assert.Equal(1, result.Id);
+        Assert.Equal("John", result.Name);
+
+    }
+
+    public async Task UpdateAsync_ShouldThrowError_WhenStudentDoesNotExist()
+    {
+        var student = new Student
+        {
+            Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        _mockContext.Students.Add(student);
+        _mockContext.SaveChanges();
+
+        // Arrange
+        var exception = Assert.ThrowsAsync<Exception>(() => _repository.UpdateAsync(student));
         
+        // Assert
+        Assert.Equal("Student not found", exception.Result.Message);
+    }
+
+    public async Task DeleteAsync_ShouldDeleteStudent()
+    {
+        // Arrange
+        var student = new Student
+        {
+            Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        _mockContext.Students.Add(student);
+        _mockContext.SaveChanges();
         
+        // Act
+        var result = await _repository.DeleteAsync(student);
+        
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Id);
+        Assert.Equal("John Doe", result.Name);
+
+    }
+
+    public async Task DeleteAsync_ShouldThrowError_WhenStudentDoesNotExist()
+    {
+        // Arrange
+        var student = new Student
+        {
+            Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            BirthDate = DateTime.Now, StudentNumber = 23133
+        };
+        
+        //act 
+        var exception = Assert.ThrowsAsync<Exception>(() => _repository.DeleteAsync(student));
+        
+        //assert
+        Assert.Equal("Student not found", exception.Result.Message);
+        
+
     }
 
 }
+        
         

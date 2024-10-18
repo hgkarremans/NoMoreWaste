@@ -37,6 +37,12 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> UpdateAsync(Product product)
     {
+        var productToUpdate = await _context.Products.FirstOrDefaultAsync(x => x.Id == product.Id);
+        if (productToUpdate == null)
+        {
+            throw new Exception("Product not found");
+        }
+
         _context.Products.Update(product);
         await _context.SaveChangesAsync();
         return product;
@@ -44,9 +50,15 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> DeleteAsync(Product product)
     {
-        _context.Products.Remove(product);
+        var productToDelete = await _context.Products.FirstOrDefaultAsync(x => x.Id == product.Id);
+        if (productToDelete == null)
+        {
+            throw new Exception("Product not found");
+        }
+
+        _context.Products.Remove(productToDelete);
         await _context.SaveChangesAsync();
-        return product;
+        return productToDelete;
     }
     
 }
