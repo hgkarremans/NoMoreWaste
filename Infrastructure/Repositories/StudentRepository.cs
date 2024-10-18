@@ -43,18 +43,24 @@ public class StudentRepository : IStudentRepository
         await _context.SaveChangesAsync();
         return student;
     }
-
     public async Task<Student> UpdateAsync(Student student)
     {
         var studentToUpdate = await _context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+
         if (studentToUpdate == null)
         {
             throw new Exception("Student not found");
         }
-        _context.Students.Update(student);
+
+        // Update the properties of the tracked entity
+        _context.Entry(studentToUpdate).CurrentValues.SetValues(student);
+
+        // Save changes to the context
         await _context.SaveChangesAsync();
-        return student;
+
+        return studentToUpdate;
     }
+
 
     public async Task<Student> DeleteAsync(Student student)
     {

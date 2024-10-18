@@ -144,6 +144,7 @@ public class StudentRepositoryTest : IAsyncLifetime
         Assert.Equal(1, result.Id);
         Assert.Equal("John Doe", result.Name);
     }
+    [Fact]
 
     public async Task UpdateAsync_ShouldUpdateStudent()
     {
@@ -153,23 +154,25 @@ public class StudentRepositoryTest : IAsyncLifetime
             Id = 1, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
-        var updatedStudent = new Student()
+        var updatedStudent = new Student
         {
-            Id = 1, Name = "John", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            Id = 1, Name = "Ava Lovelace", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
+        
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-
-        //act 
+        
+        // Act
         var result = await _repository.UpdateAsync(updatedStudent);
-
-        //assert
+            
+        // Assert
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
-        Assert.Equal("John", result.Name);
+        Assert.Equal("Ava Lovelace", result.Name);
 
     }
+    [Fact]
 
     public async Task UpdateAsync_ShouldThrowError_WhenStudentDoesNotExist()
     {
@@ -178,8 +181,7 @@ public class StudentRepositoryTest : IAsyncLifetime
             Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
-        _mockContext.Students.Add(student);
-        _mockContext.SaveChanges();
+   
 
         // Arrange
         var exception = Assert.ThrowsAsync<Exception>(() => _repository.UpdateAsync(student));
@@ -187,6 +189,7 @@ public class StudentRepositoryTest : IAsyncLifetime
         // Assert
         Assert.Equal("Student not found", exception.Result.Message);
     }
+    [Fact]
 
     public async Task DeleteAsync_ShouldDeleteStudent()
     {
@@ -208,7 +211,7 @@ public class StudentRepositoryTest : IAsyncLifetime
         Assert.Equal("John Doe", result.Name);
 
     }
-
+    [Fact]
     public async Task DeleteAsync_ShouldThrowError_WhenStudentDoesNotExist()
     {
         // Arrange

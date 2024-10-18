@@ -165,6 +165,30 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
     }
 
     [Fact]
+    public async Task UpdateAsync_ShoudNotReturnUpdatedCanteenWorker()
+    {
+        // Arrange
+        var canteen = new Canteen
+        {
+            Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false
+        };
+
+        var canteenWorker = new CanteenWorker
+        {
+            Id = 1, Name = "John Doe", PersonalNumber = 213344,
+            Email = "john.doe@gmail.com", CanteenId = 1, Canteen = canteen
+        };
+        
+        //Act
+        var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.UpdateAsync(canteenWorker));
+        
+        //Assert
+        Assert.Contains("CanteenWorker not found", exception.Result.Message);
+        
+    }
+    
+
+    [Fact]
     public async Task DeleteAsync_ShouldReturnDeletedCanteenWorker()
     {
         // Arrange
@@ -189,6 +213,30 @@ public class CanteenWorkerRepositoryTest : IAsyncLifetime
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
     }
+
+    [Fact]
+    public async Task DeleteAsync_ShouldNotReturnDeletedCanteenWorker()
+    {
+        // Arrange
+        var canteen = new Canteen
+        {
+            Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false
+        };
+
+        var canteenWorker = new CanteenWorker
+        {
+            Id = 1, Name = "John Doe", PersonalNumber = 213344,
+            Email = "john.doe@gmail.com", CanteenId = 1, Canteen = canteen
+        };
+        
+        //Act
+        var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.DeleteAsync(canteenWorker));
+        
+        //Assert
+        Assert.Contains("CanteenWorker not found", exception.Result.Message);
+        
+    }
+    
 
     [Fact]
     public async Task GetCanteenByUserEmail_ShouldReturnCanteenId()

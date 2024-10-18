@@ -116,6 +116,17 @@ namespace Tests
             Assert.Equal(1, result.Id);
             Assert.Equal("Updated Canteen", result.Name);
         }
+        [Fact]
+        public async Task UpdateAsync_ShouldNotreturnUpdatedCanteen()
+        {
+            var canteen = new Canteen { Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false};
+            
+            // act
+            var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.UpdateAsync(canteen));
+            
+            // assert
+            Assert.Equal("Canteen not found", exception.Result.Message);
+        }
 
         [Fact]
         public async Task DeleteAsync_ShouldReturnDeletedCanteen()
@@ -132,6 +143,17 @@ namespace Tests
             Assert.NotNull(result);
             Assert.Equal(1, result.Id);
             Assert.Equal("Main Canteen", result.Name);
+        }
+        [Fact]
+        public async Task DeleteAsync_ShouldNotReturnDeletedCanteen()
+        {
+            var canteen = new Canteen { Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false};
+            
+            // act
+            var exception = Assert.ThrowsAsync<KeyNotFoundException>(() => _repository.DeleteAsync(canteen));
+            
+            // assert
+            Assert.Equal("Canteen not found", exception.Result.Message);
         }
     }
 }
