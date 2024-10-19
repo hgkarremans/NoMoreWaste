@@ -55,8 +55,13 @@
                         <a asp-controller="MealBox" asp-action="UpdateMealBox" asp-route-mealBoxId="@mealBox.Id" class="button-cards btn btn-primary w-50">
                             Edit this box
                         </a>
+                        @* <form asp-controller="MealBox" asp-action="UpdateMealBox" asp-route-mealBoxId="@mealBox.Id" method="post" class="w-50"> *@
+                        @*     <button type="submit" class="button-cards w-100"> *@
+                        @*         Edit this box *@
+                        @*     </button> *@
+                        @* </form> *@
                         <form asp-controller="MealBox" asp-action="DeleteMealBox" asp-route-mealBoxId="@mealBox.Id" method="post" class="w-50">
-                            <button type="submit" class="button-danger btn w-100">
+                            <button type="submit" class="button-danger w-100">
                                 Delete this box
                             </button>
                         </form>

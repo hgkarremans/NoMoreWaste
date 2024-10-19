@@ -81,11 +81,20 @@ public class MealBoxRepository : IMealBoxRepository
 
     public async Task<MealBox> DeleteAsync(MealBox mealbox)
     {
-        if (mealbox.ReservedStudent != null)
+        var existingMealBox = await _dbContext.MealBoxes
+            .Include(m => m.ReservedStudent)
+            .FirstOrDefaultAsync(m => m.Id == mealbox.Id);
+
+        if (existingMealBox == null)
         {
-            throw new Exception("MealBox is reserved");
+            throw new Exception("MealBox not found");
         }
 
+        if (existingMealBox.ReservedStudent != null)
+        {
+            throw new Exception("Cannot delete a reserved MealBox");
+        }
+        
         _dbContext.MealBoxes.Remove(mealbox);
         await _dbContext.SaveChangesAsync();
         return mealbox;

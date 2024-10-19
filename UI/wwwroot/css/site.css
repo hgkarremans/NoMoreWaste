@@ -58,8 +58,6 @@ body {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  
-  
 }
 .button-danger {
   background-color: var(--bs-danger);
@@ -69,18 +67,23 @@ body {
   font-size: 1rem;
   cursor: pointer;
 }
+.text-danger {
+  color: var(--bs-danger);
+  font-weight: bold;
+}
 
 
 button-cards:hover {
-  background-color: var(--accent-color); 
+  background-color: var(--accent-color);
+  color: var(--bs-white);
 }
 .hover-card {
-  transition: transform 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease; 
 }
 
 .hover-card:hover {
-  transform: scale(1.05); /* Scale the card to 105% on hover */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: add shadow effect */
+  transform: scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
 h1, h2, h3 {
@@ -116,10 +119,10 @@ h4, h5 {
 }
 
 .custom-control-input {
-  width: 25px; /* Width of the checkbox */
-  height: 25px; /* Height of the checkbox */
-  cursor: pointer; /* Change cursor on hover */
-  margin-right: 10px; /* Space between checkbox and label */
+  width: 25px; 
+  height: 25px; 
+  cursor: pointer; 
+  margin-right: 10px; 
 }
 
 .custom-control-label {

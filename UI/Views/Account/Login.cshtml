@@ -8,14 +8,17 @@
 
 <html>
 <head>
-    <title></title>
+    <title>Login</title>
 </head>
-<bodyd>
+<body>
     <form asp-action="Login" method="post">
         @Html.AntiForgeryToken()
 
         <div class="card login-card">
             <div class="card-body">
+               
+                <div asp-validation-summary="All" class="text-danger"></div>
+
                 <div class="mb-1">
                     <h5>Email Address</h5>
                     <input asp-for="Email" type="email" class="form-control"/>
@@ -28,10 +31,8 @@
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
-            <form asp-area="" asp-controller="MealBox" asp-action="ReservateMealBox" method="post" class="d-inline">
-                <button type="submit" class="button-cards login-button">Sign in</button>
-            </form>
+            <button type="submit" class="button-cards login-button">Sign in</button>
         </div>
     </form>
-</bodyd>
+</body>
 </html>
