@@ -15,19 +15,13 @@ public class MealBoxRepository : IMealBoxRepository
 
     public async Task<MealBox> GetByIdAsync(int id)
     {
-        // Use Include to load related Products if necessary
         var mealbox = await _dbContext.MealBoxes
-            .Include(m => m.Products) // Ensure related Products are included
+            .Include(m => m.Products) 
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        // Check if mealbox is null and handle accordingly
         if (mealbox == null)
         {
-            // Option 1: Throw a custom exception (you may want to define your own exception class)
             throw new Exception($"MealBox with ID {id} not found.");
-
-            // Option 2: Return null if you prefer not to use exceptions for not found
-            // return null;
         }
 
         return mealbox;

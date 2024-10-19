@@ -26,6 +26,12 @@
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.DeleteAsync_ShouldDeleteStudent&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.UpdateAsync_ShouldThrowError_WhenStudentDoesNotExist&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.StudentRepositoryTest.UpdateAsync_ShouldUpdateStudent&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.GetAllAsync_ShouldReturnAllMealboxes_WhenMealboxesExist&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.UpdateAsync_ShouldUpdateMealbox&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.UpdateAsync_ShouldNotUpdateReservedMealbox&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.IsMealBoxReserved_ShouldReturnTrue&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.ReservateMealBoxAsync_ShouldNotReservateMealBox4&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E21B5A03-3849-4D44-B0F3-68B7BA9E3078::net8.0::Tests.MealboxRepositoryTest.ReservateMealBoxAsync_ShouldNotReservateMealBox3&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
