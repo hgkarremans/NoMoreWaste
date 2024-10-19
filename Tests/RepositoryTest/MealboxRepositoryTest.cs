@@ -276,6 +276,27 @@ public class MealboxRepositoryTest : IAsyncLifetime
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
     }
+    [Fact]
+    public async Task DeleteAsync_ShouldNotDeleteMealbox()
+    {
+        // Arrange
+        var canteen = new Canteen
+        {
+            Id = 1, Name = "Main Canteen", Address = "lovensdijkstraat 32", City = City.Amsterdam, IsWarmFood = false
+        };
+        var mealbox = new MealBox()
+        {
+            Id = 5, Name = "mealbox1", Canteen = canteen, CanteenId = 1, City = City.Amsterdam, Price = 10m,
+            Products = new Collection<Product>(), EighteenPlus = false, ExpireDate = DateTime.Today,
+            PickUpDate = DateTime.Today, ReservedStudent = null, MealType = MealType.Bread
+        };
+
+        //act
+        var exception = Assert.ThrowsAsync<Exception>(() => _repository.DeleteAsync(mealbox));
+
+        Assert.NotNull(exception);
+        Assert.Equal("MealBox not found", exception.Result.Message);
+    }
 
     [Fact]
     public async Task DeleteAsync_ShouldNotDeleteReservedMealbox()
@@ -305,7 +326,7 @@ public class MealboxRepositoryTest : IAsyncLifetime
         
         //assert
         Assert.NotNull(exception);
-        Assert.Equal("MealBox is reserved", exception.Result.Message);
+        Assert.Equal("Cannot delete a reserved MealBox", exception.Result.Message);
         
     }
 
