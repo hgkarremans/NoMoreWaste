@@ -2,6 +2,7 @@ using Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using UI.Views.Mealbox;
 
 namespace UI.Controllers;
@@ -33,16 +34,24 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string location)
 {
     var mealBoxes = await _mealBoxRepository.GetAllAsync();
     var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
-    
+
     foreach (var mealBox in sortedMealBoxes)
     {
         mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
     }
-    
+
+    if (!string.IsNullOrEmpty(location))
+    {
+        sortedMealBoxes = sortedMealBoxes.Where(mb => mb.Canteen.Name.Contains(location, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    var canteens = await _canteenRepository.GetAllAsync();
+    ViewBag.Canteens = new SelectList(canteens, "Name", "Name");
+
     var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
     ViewBag.CanteenName = canteenName;
     return View(sortedMealBoxes);

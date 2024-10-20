@@ -145,4 +145,42 @@ h4, h5 {
   border-radius: 12px; 
   padding-bottom: 10px;
 }
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.filter-input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-button {
+    background-color: var(--primary-color);
+    color: var(--bs-white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: var(--accent-color);
+}
 
