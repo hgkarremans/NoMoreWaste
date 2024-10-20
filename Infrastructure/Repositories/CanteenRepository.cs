@@ -56,4 +56,9 @@ public class CanteenRepository : ICanteenRepository
         await _context.SaveChangesAsync();
         return canteen;
     }
+    public async Task<Canteen> GetByCityAsync(string city)
+{
+    var canteen = await _context.Canteens.FirstOrDefaultAsync(x => x.City.ToString() == city);
+    return canteen ?? throw new KeyNotFoundException($"Canteen with city {city} not found.");
+}
 }

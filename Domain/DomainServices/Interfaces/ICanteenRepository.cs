@@ -9,5 +9,6 @@ public interface ICanteenRepository
     Task<Canteen> CreateAsync(Canteen canteen);
     Task<Canteen> UpdateAsync(Canteen canteen);
     Task<Canteen> DeleteAsync(Canteen canteen);
+    Task<Canteen> GetByCityAsync(string city);
     
 }

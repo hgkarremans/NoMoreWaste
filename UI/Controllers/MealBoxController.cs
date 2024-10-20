@@ -29,6 +29,7 @@ public class MealBoxController : Controller
         _canteenWorkerRepository = canteenWorkerRepository;
         _userManager = userManager;
     }
+
     public async Task<IActionResult> Index(string location)
     {
         var mealBoxes = await _mealBoxRepository.GetAllAsync();
@@ -39,16 +40,44 @@ public class MealBoxController : Controller
             mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
         }
 
-        if (!string.IsNullOrEmpty(location))
+        var userIdentity = await _userManager.GetUserAsync(User);
+        if (userIdentity != null)
         {
-            sortedMealBoxes = sortedMealBoxes.Where(mb => mb.Canteen.Name.Contains(location, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (User.IsInRole("student"))
+            {
+                var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+                var city = await _studentRepository.GetCityAsync(user.Id);
+                var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
+                location = canteen.Name;
+            }
+            else 
+            {
+                var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+                var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+                location = canteen.Name;
+            }
+
+            // var user = _studentRepository.GetByIdAsync()
+            //
+            // var city = await _studentRepository.GetCityAsync(user.Id);
+            // var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
+            // location = canteen.Name;
+        }
+
+        if (string.IsNullOrEmpty(location) || location == "All Locations")
+        {
+            ViewBag.SelectedLocation = "All Locations";
+        }
+        else
+        {
+            sortedMealBoxes = sortedMealBoxes
+                .Where(mb => mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+            ViewBag.SelectedLocation = location;
         }
 
         var canteens = await _canteenRepository.GetAllAsync();
         ViewBag.Canteens = new SelectList(canteens, "Name", "Name");
 
-        var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
-        ViewBag.CanteenName = canteenName;
         return View(sortedMealBoxes);
     }
 
@@ -179,13 +208,13 @@ public class MealBoxController : Controller
         }
 
         var isWarmFood = viewModel.IsWarmFood;
-        
+
         if (isWarmFood && !canteen.IsWarmFood)
         {
             TempData["ErrorMessage"] = "The canteen does not support warm food.";
             return View(viewModel);
         }
-        
+
         var mealBox = new MealBox
         {
             Name = viewModel.Name,
@@ -244,14 +273,14 @@ public class MealBoxController : Controller
             mealBox.IsWarmFood = viewModel.IsWarmFood;
             mealBox.Price = viewModel.Price;
             mealBox.MealType = viewModel.MealType;
-            
-            
+
+
             var userIdentity = await _userManager.GetUserAsync(User);
             var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var canteen = await _canteenRepository.GetByIdAsync(canteenId);
-            
+
             var isWarmFood = viewModel.IsWarmFood;
-            
+
             if (isWarmFood && !canteen.IsWarmFood)
             {
                 TempData["ErrorMessage"] = "The canteen does not support warm food.";
@@ -280,6 +309,7 @@ public class MealBoxController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
+
     [HttpPost]
     public async Task<IActionResult> DeleteMealBox(int mealBoxId)
     {

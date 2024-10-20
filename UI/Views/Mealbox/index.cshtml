@@ -9,10 +9,35 @@
 <form method="get" asp-action="Index" class="filter-form">
     <div class="form-group">
         <label for="location" class="filter-label">Filter by Location:</label>
-        <input type="text" name="location" id="location" class="form-control filter-input" value="@Context.Request.Query["location"]" />
+        <select name="location" id="location" class="form-control filter-input">
+            @if (ViewBag.SelectedLocation == "All Locations")
+            {
+                <option value="All Locations" selected>All Locations</option>
+            }
+            else
+            {
+                <option value="All Locations">All Locations</option>
+            }
+
+            @foreach (var item in (SelectList)ViewBag.Canteens)
+            {
+                @if (item.Value == ViewBag.SelectedLocation)
+                {
+                    <option value="@item.Value" selected>@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        </select>
     </div>
     <button type="submit" class="btn btn-primary filter-button">Filter</button>
 </form>
+
+
+
+
 
 
 @{
