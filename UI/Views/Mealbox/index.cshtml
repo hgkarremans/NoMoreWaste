@@ -7,43 +7,48 @@
 @inject SignInManager<IdentityUser> SignInManager
 
 <form method="get" asp-action="Index" class="filter-form">
-    <div class="form-group inline-form-group">
-        <label for="location" class="filter-label">Filter by Location:</label>
-        <select name="location" id="location" class="form-control filter-input">
-            @if (ViewBag.SelectedLocation == "All Locations")
-            {
-                <option value="All Locations" selected>All Locations</option>
-            }
-            else
-            {
-                <option value="All Locations">All Locations</option>
-            }
+    <div class="row align-items-end">
+        <div class="col-md-6">
+            <div class="form-group inline-form-group">
+                <label for="location" class="filter-label">Filter by Location:</label>
+                <select name="location" id="location" class="form-control filter-input">
+                    @if (ViewBag.SelectedLocation == "All Locations")
+                    {
+                    <option value="All Locations" selected>All Locations</option>
+                    }
+                    else
+                    {
+                    <option value="All Locations">All Locations</option>
+                    }
 
-            @foreach (var item in (SelectList)ViewBag.Canteens)
-            {
-                @if (item.Value == ViewBag.SelectedLocation)
-                {
+                    @foreach (var item in (SelectList)ViewBag.Canteens)
+                    {
+                    @if (item.Value == ViewBag.SelectedLocation)
+                    {
                     <option value="@item.Value" selected>@item.Text</option>
-                }
-                else
-                {
+                    }
+                    else
+                    {
                     <option value="@item.Value">@item.Text</option>
-                }
-            }
-        </select>
-    </div>
-    <div class="form-group inline-form-group">
-        <label for="mealType" class="filter-label">Filter by Meal Type:</label>
-        <select name="mealType" id="mealType" class="form-control filter-input">
-            <option value="">All Meal Types</option>
+                    }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group inline-form-group">
+                <label for="mealType" class="filter-label">Filter by Meal Type:</label>
+                <select name="mealType" id="mealType" class="form-control filter-input">
+                    <option value="">All Meal Types</option>
 
-            @foreach (var type in ViewBag.MealTypes)
-            {
-            <option value="@type" selected="@(ViewBag.SelectedMealType == type)">@(type.ToString())</option>
-            }
-        </select>
+                    @foreach (var type in ViewBag.MealTypes)
+                    {
+                    <option value="@type" selected="@(ViewBag.SelectedMealType == type)">@(type.ToString())</option>
+                    }
+                </select>
+            </div>
+        </div>
     </div>
-
 
     <button type="submit" class="btn btn-primary filter-button">Filter</button>
 </form>
