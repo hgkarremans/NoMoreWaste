@@ -32,13 +32,18 @@
             }
         </select>
     </div>
+    <div class="form-group">
+        <label for="mealType" class="filter-label">Filter by Meal Type:</label>
+        <select name="mealType" id="mealType" class="form-control filter-input">
+            <option value="">All Meal Types</option>
+            @foreach (var type in ViewBag.MealTypes)
+            {
+            <option value="@type" @(ViewBag.SelectedMealType == type ? "selected" : "")>@type</option>
+            }
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary filter-button">Filter</button>
 </form>
-
-
-
-
-
 
 @{
     var mealTypeImages = new Dictionary<NoMoreWaste.Domain.DomainModels.Enums.MealType, string>
@@ -86,22 +91,34 @@
                                 }
                                 @if (@mealBox.EighteenPlus)
                                 {
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M18 5h1v1a1 1 0 0 0 2 0V5h1a1 1 0 0 0 0-2h-1V2a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2M7 7v10a1 1 0 0 0 2 0V7a1 1 0 0 0-2 0m14.6 2a1 1 0 0 0-.78 1.18a9 9 0 1 1-7-7a1 1 0 1 0 .4-2A10.8 10.8 0 0 0 12 1a11 11 0 1 0 11 11a10.8 10.8 0 0 0-.22-2.2A1 1 0 0 0 21.6 9M11 9v1a3 3 0 0 0 .78 2a3 3 0 0 0-.78 2v1a3 3 0 0 0 3 3h1a3 3 0 0 0 3-3v-1a3 3 0 0 0-.78-2a3 3 0 0 0 .78-2V9a3 3 0 0 0-3-3h-1a3 3 0 0 0-3 3m5 6a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1Zm0-6v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M18 5h1v1a1 1 0 0 0 2 0V5h1a1 1 0 0 0 0-2h-1V2a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2M7 7v10a1 1 0 0 0 2 0V7a1 1 0 0 0-2 0m14.6 2a1 1 0 0 0-.78 1.18a9 9 0 1 1-7-7a1 1 0 1 0 .4-2A10.8 10.8 0 0 0 12 1a11 11 0 1 0 11 11a10.8 10.8 0 0 0-.22-2.2A1 1 0 0 0 21.6 9M11 9v1a3 3 0 0 0 .78 2a3 3 0 0 0-.78 2v1a3 3 0 0 0 3 3h1a3 3 0 0 0 3-3v-1a3 3 0 0 0-.78-2a3 3 0 0 0 .78-2V9a3 3 0 0 0-3-3h-1a3 3 0 0 0-3 3m5 6a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1Zm0-6v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1"/>
+                                    </svg>
                                 }
                             </h5>
-                            <p class="card-text"><strong>Price:</strong> @mealBox.Price</p>
-                            <p class="card-text"><strong>Location:</strong> @ViewBag.CanteenName</p>
-                            <p class="card-text"><strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")</p>
-                            <p class="card-text"><strong>Date of expire:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")</p>
-                            <p class="card-text"><strong>Type of meal:</strong> @mealBox.MealType</p>
+                            <p class="card-text">
+                                <strong>Price:</strong> @mealBox.Price
+                            </p>
+                            <p class="card-text">
+                                <strong>Location:</strong> @ViewBag.CanteenName
+                            </p>
+                            <p class="card-text">
+                                <strong>Pick-Up Date:</strong> @mealBox.PickUpDate.ToString("dd-MM-yyyy")
+                            </p>
+                            <p class="card-text">
+                                <strong>Date of expire:</strong> @mealBox.ExpireDate.ToString("dd-MM-yyyy")
+                            </p>
+                            <p class="card-text">
+                                <strong>Type of meal:</strong> @mealBox.MealType
+                            </p>
                             <img src="@mealTypeImages[mealBox.MealType]" alt="@mealBox.MealType" class="img-fluid mealbox-image"/>
                         </div>
                     </a>
-                    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("employee") )
+                    @if (SignInManager.IsSignedIn(User) && !User.IsInRole("employee"))
                     {
                         <div class="card-footer">
                             <form asp-controller="MealBox" asp-action="ReservateMealBox" method="post">
-                                <input type="hidden" name="mealBoxId" value="@mealBox.Id" />
+                                <input type="hidden" name="mealBoxId" value="@mealBox.Id"/>
                                 <button type="submit" class="button-cards">Reservate this box!</button>
                             </form>
                         </div>
