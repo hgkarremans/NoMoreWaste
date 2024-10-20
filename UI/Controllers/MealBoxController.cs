@@ -31,63 +31,64 @@ public class MealBoxController : Controller
     }
 
     public async Task<IActionResult> Index(string location, NoMoreWaste.Domain.DomainModels.Enums.MealType? mealType)
-{
-    var mealBoxes = await _mealBoxRepository.GetAllAsync();
-    var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
-
-    foreach (var mealBox in sortedMealBoxes)
     {
-        mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
-    }
+        var mealBoxes = await _mealBoxRepository.GetAllAsync();
+        var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
 
-    var userIdentity = await _userManager.GetUserAsync(User);
-    if (userIdentity != null && string.IsNullOrEmpty(location))
-    {
-        if (User.IsInRole("student"))
+        foreach (var mealBox in sortedMealBoxes)
         {
-            var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
-            var city = await _studentRepository.GetCityAsync(user.Id);
-            var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
-            ViewBag.SelectedLocation = canteen.Name;
+            mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+        }
+
+        var userIdentity = await _userManager.GetUserAsync(User);
+        if (userIdentity != null && string.IsNullOrEmpty(location))
+        {
+            if (User.IsInRole("student"))
+            {
+                var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+                var city = await _studentRepository.GetCityAsync(user.Id);
+                var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
+                ViewBag.SelectedLocation = canteen.Name;
+            }
+            else
+            {
+                var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+                var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+                ViewBag.SelectedLocation = canteen.Name;
+            }
         }
         else
         {
-            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
-            var canteen = await _canteenRepository.GetByIdAsync(canteenId);
-            ViewBag.SelectedLocation = canteen.Name;
+            ViewBag.SelectedLocation = location ?? "All Locations";
         }
-    }
-    else
-    {
-        ViewBag.SelectedLocation = location ?? "All Locations";
-    }
 
-    // Filter by location
-    if (!string.IsNullOrEmpty(location) && location != "All Locations")
-    {
-        sortedMealBoxes = sortedMealBoxes
-            .Where(mb => mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+        // Filter by location
+        if (!string.IsNullOrEmpty(location) && location != "All Locations")
+        {
+            sortedMealBoxes = sortedMealBoxes
+                .Where(mb => mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        // Filter by MealType
+        if (mealType.HasValue)
+        {
+            sortedMealBoxes = sortedMealBoxes.Where(mb => mb.MealType == mealType.Value).ToList();
+            ViewBag.SelectedMealType = mealType.Value;
+        }
+        else
+        {
+            ViewBag.SelectedMealType = NoMoreWaste.Domain.DomainModels.Enums.MealType.Other; // Default
+        }
+
+        var canteens = await _canteenRepository.GetAllAsync();
+        ViewBag.Canteens = new SelectList(canteens, "Name", "Name");
+
+        // Pass all the meal types to the view
+        ViewBag.MealTypes = Enum.GetValues(typeof(NoMoreWaste.Domain.DomainModels.Enums.MealType))
+            .Cast<NoMoreWaste.Domain.DomainModels.Enums.MealType>();
+
+        return View(sortedMealBoxes);
     }
-
-    // Filter by MealType
-    if (mealType.HasValue)
-    {
-        sortedMealBoxes = sortedMealBoxes.Where(mb => mb.MealType == mealType.Value).ToList();
-        ViewBag.SelectedMealType = mealType.Value;
-    }
-    else
-    {
-        ViewBag.SelectedMealType = NoMoreWaste.Domain.DomainModels.Enums.MealType.Other; // Default
-    }
-
-    var canteens = await _canteenRepository.GetAllAsync();
-    ViewBag.Canteens = new SelectList(canteens, "Name", "Name");
-
-    // Pass all the meal types to the view
-    ViewBag.MealTypes = Enum.GetValues(typeof(NoMoreWaste.Domain.DomainModels.Enums.MealType)).Cast<NoMoreWaste.Domain.DomainModels.Enums.MealType>();
-
-    return View(sortedMealBoxes);
-}
 
 
     [HttpGet]

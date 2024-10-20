@@ -36,9 +36,10 @@
         <label for="mealType" class="filter-label">Filter by Meal Type:</label>
         <select name="mealType" id="mealType" class="form-control filter-input">
             <option value="">All Meal Types</option>
+
             @foreach (var type in ViewBag.MealTypes)
             {
-            <option value="" selected="@(ViewBag.SelectedMealType == type)">All Meal Types</option>
+            <option value="@type" selected="@(ViewBag.SelectedMealType == type)">@(type.ToString())</option>
             }
         </select>
     </div>
