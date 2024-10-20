@@ -209,6 +209,7 @@ public class MealBoxController : Controller
             mealBox.PickUpDate = viewModel.PickUpDate;
             mealBox.ExpireDate = viewModel.ExpireDate;
             mealBox.EighteenPlus = viewModel.EighteenPlus;
+            mealBox.IsWarmFood = viewModel.IsWarmFood;
             mealBox.Price = viewModel.Price;
             mealBox.MealType = viewModel.MealType;
 
