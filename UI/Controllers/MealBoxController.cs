@@ -77,7 +77,7 @@ public class MealBoxController : Controller
         }
         else
         {
-            ViewBag.SelectedMealType = NoMoreWaste.Domain.DomainModels.Enums.MealType.Other; // Default
+            ViewBag.SelectedMealType = ""; // This sets the default to an empty string
         }
 
         var canteens = await _canteenRepository.GetAllAsync();

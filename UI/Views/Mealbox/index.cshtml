@@ -43,7 +43,7 @@
 
                     @foreach (var type in ViewBag.MealTypes)
                     {
-                    <option value="@type" selected="@(ViewBag.SelectedMealType == type)">@(type.ToString())</option>
+                        <option value="@type" selected="@(ViewBag.SelectedMealType?.ToString() == type.ToString())">@(type.ToString())</option>
                     }
                 </select>
             </div>
