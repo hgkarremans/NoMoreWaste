@@ -27,7 +27,8 @@ public class ApplicationDbContext : DbContext
             Name = "HG Karremans",
             Email = "hg@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student2 = new Student()
         {
@@ -35,7 +36,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jane Doe",
             Email = "Jane@gmail.com",
             BirthDate = new DateTime(2012, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Amsterdam
         };
         var student3 = new Student()
         {
@@ -43,7 +45,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jack Doe",
             Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student4 = new Student()
         {
@@ -51,7 +54,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jill Doe",
             Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student5 = new Student()
         {
@@ -59,7 +63,8 @@ public class ApplicationDbContext : DbContext
             Name = "John Doe",
             Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student6 = new Student()
         {
@@ -67,7 +72,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jane Doe",
             Email = "Jane@gmail.com",
             BirthDate = new DateTime(2012, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student7 = new Student()
         {
@@ -75,7 +81,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jack Doe",
             Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student8 = new Student()
         {
@@ -83,7 +90,8 @@ public class ApplicationDbContext : DbContext
             Name = "Jill Doe",
             Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student9 = new Student()
         {
@@ -91,16 +99,10 @@ public class ApplicationDbContext : DbContext
             Name = "John Doe",
             Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
-        var student10 = new Student()
-        {
-            Id = 10,
-            Name = "Jane Doe",
-            Email = "Jane@gmail.com",
-            BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
-        };
+
 
         //CANTEENS
 
@@ -272,7 +274,7 @@ public class ApplicationDbContext : DbContext
             IsWarmFood = false
         };
         modelBuilder.Entity<Student>().HasData(student, student2, student3, student4, student5, student6, student7,
-            student8, student9, student10);
+            student8, student9);
         modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
         modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
         modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);

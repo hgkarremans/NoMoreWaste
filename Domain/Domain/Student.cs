@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace NoMoreWaste.Domain.DomainModels;
 
@@ -16,4 +17,6 @@ public class Student
     public DateTime BirthDate { get; set; }
     [Required]
     public int StudentNumber { get; set; }
+    [Required]
+    public City City { get; set; }
 }
