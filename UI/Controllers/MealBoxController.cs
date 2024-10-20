@@ -155,6 +155,14 @@ public class MealBoxController : Controller
             }
         }
 
+        var isWarmFood = viewModel.IsWarmFood;
+        
+        if (isWarmFood && !canteen.IsWarmFood)
+        {
+            TempData["ErrorMessage"] = "The canteen does not support warm food.";
+            return View(viewModel);
+        }
+        
         var mealBox = new MealBox
         {
             Name = viewModel.Name,
@@ -183,6 +191,7 @@ public class MealBoxController : Controller
             PickUpDate = mealBox.PickUpDate,
             ExpireDate = mealBox.ExpireDate,
             EighteenPlus = mealBox.EighteenPlus,
+            IsWarmFood = mealBox.IsWarmFood,
             Price = mealBox.Price,
             MealType = mealBox.MealType,
             Products = mealBox.Products.ToList(),
@@ -212,8 +221,20 @@ public class MealBoxController : Controller
             mealBox.IsWarmFood = viewModel.IsWarmFood;
             mealBox.Price = viewModel.Price;
             mealBox.MealType = viewModel.MealType;
+            
+            
+            var userIdentity = await _userManager.GetUserAsync(User);
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+            
+            var isWarmFood = viewModel.IsWarmFood;
+            
+            if (isWarmFood && !canteen.IsWarmFood)
+            {
+                TempData["ErrorMessage"] = "The canteen does not support warm food.";
+                return View(viewModel);
+            }
 
-            // Update products
             var selectedProducts = new List<Product>();
             foreach (var productId in viewModel.SelectedProducts)
             {

@@ -1,6 +1,20 @@
 @using NoMoreWaste.Domain.DomainModels.Enums
 @model UI.Models.MealBoxViewModel
 
+
+@if (TempData["SuccessMessage"] != null)
+{
+<div class="alert alert-success" role="alert">
+    @TempData["SuccessMessage"]
+</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+<div class="alert alert-danger" role="alert">
+    @TempData["ErrorMessage"]
+</div>
+}
+
 <div class="container mt-5">
     <div class="card" style="max-width: 1000px; margin: auto;">
         <div class="card-body">
