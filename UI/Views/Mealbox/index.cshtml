@@ -7,7 +7,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 
 <form method="get" asp-action="Index" class="filter-form">
-    <div class="form-group">
+    <div class="form-group inline-form-group">
         <label for="location" class="filter-label">Filter by Location:</label>
         <select name="location" id="location" class="form-control filter-input">
             @if (ViewBag.SelectedLocation == "All Locations")
@@ -32,16 +32,18 @@
             }
         </select>
     </div>
-    <div class="form-group">
+    <div class="form-group inline-form-group">
         <label for="mealType" class="filter-label">Filter by Meal Type:</label>
         <select name="mealType" id="mealType" class="form-control filter-input">
             <option value="">All Meal Types</option>
             @foreach (var type in ViewBag.MealTypes)
             {
-            <option value="@type" @(ViewBag.SelectedMealType == type ? "selected" : "")>@type</option>
+            <option value="" selected="@(ViewBag.SelectedMealType == type)">All Meal Types</option>
             }
         </select>
     </div>
+
+
     <button type="submit" class="btn btn-primary filter-button">Filter</button>
 </form>
 

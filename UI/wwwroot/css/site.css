@@ -183,4 +183,8 @@ h4, h5 {
 .filter-button:hover {
     background-color: var(--accent-color);
 }
+.inline-form-group {
+    display: inline-block;
+    margin-right: 10px;
+}
 
