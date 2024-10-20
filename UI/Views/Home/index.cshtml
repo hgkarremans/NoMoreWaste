@@ -9,16 +9,11 @@
 <form method="get" asp-action="Index" class="filter-form">
     <div class="form-group">
         <label for="location" class="filter-label">Filter by Location:</label>
-        <select name="location" id="location" class="form-control filter-input">
-            <option value="">-- Select Location --</option>
-            @foreach (var canteen in ViewBag.Canteens)
-            {
-            <option value="@canteen.Value" @(canteen.Value == Context.Request.Query["location"] ? "selected" : "")>@canteen.Text</option>
-            }
-        </select>
+        <input type="text" name="location" id="location" class="form-control filter-input" value="@Context.Request.Query["location"]" />
     </div>
     <button type="submit" class="btn btn-primary filter-button">Filter</button>
 </form>
+
 
 @{
     var mealTypeImages = new Dictionary<NoMoreWaste.Domain.DomainModels.Enums.MealType, string>
