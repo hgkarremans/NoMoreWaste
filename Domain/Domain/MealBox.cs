@@ -29,6 +29,8 @@ public class MealBox
     [Required]
 
     public ICollection<Product> Products { get; set; } = null!;
+    [Required]
+    public Boolean IsWarmFood { get; set; }
     
     
     

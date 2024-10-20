@@ -166,9 +166,9 @@ public class ApplicationDbContext : DbContext
         var product3 = new Product()
         {
             Id = 3,
-            Name = "beer",
-            HasAlcohol = true,
-            ImageUrl = "beer.jpg"
+            Name = "pasta",
+            HasAlcohol = false,
+            ImageUrl = "pasta.jpg"
         };
         var product4 = new Product()
         {
@@ -197,7 +197,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
 
         var mealBox2 = new MealBox()
@@ -211,7 +212,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox3 = new MealBox()
         {
@@ -224,12 +226,13 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox4 = new MealBox()
         {
             Id = 4,
-            Name = "Fruitbox",
+            Name = "Dinner",
             Price = 5M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
@@ -237,7 +240,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox5 = new MealBox()
         {
@@ -250,7 +254,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox6 = new MealBox()
         {
@@ -263,7 +268,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         modelBuilder.Entity<Student>().HasData(student, student2, student3, student4, student5, student6, student7,
             student8, student9, student10);
@@ -286,8 +292,9 @@ public class ApplicationDbContext : DbContext
                         new { ProductsId = 5, MealBoxId = 1 },
                         new { ProductsId = 2, MealBoxId = 2 },
                         new { ProductsId = 4, MealBoxId = 3 },
-                        new { ProductsId = 1, MealBoxId = 4 },
-                        new { ProductsId = 5, MealBoxId = 4 }
+                        new { ProductsId = 3, MealBoxId = 4 },
+                        new { ProductsId = 4, MealBoxId = 4 }
+                        
                     );
                 });
     }
