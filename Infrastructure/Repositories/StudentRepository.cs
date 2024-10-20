@@ -1,6 +1,7 @@
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
+using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace Application.Repositories;
 
@@ -72,6 +73,15 @@ public class StudentRepository : IStudentRepository
         _context.Students.Remove(studentToDelete);
         await _context.SaveChangesAsync();
         return studentToDelete;
+    }
+    public async Task<City> GetCityAsync(int userId)
+    {
+        var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == userId);
+        if (student == null)
+        {
+            throw new Exception("Student not found");
+        }
+        return student.City;
     }
     
 }

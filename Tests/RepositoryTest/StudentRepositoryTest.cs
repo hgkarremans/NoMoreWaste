@@ -2,12 +2,12 @@ using Application.Repositories;
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
+using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace Tests;
 
 public class StudentRepositoryTest : IAsyncLifetime
 {
-
     private ApplicationDbContext _mockContext;
     private StudentRepository _repository;
 
@@ -144,8 +144,8 @@ public class StudentRepositoryTest : IAsyncLifetime
         Assert.Equal(1, result.Id);
         Assert.Equal("John Doe", result.Name);
     }
-    [Fact]
 
+    [Fact]
     public async Task UpdateAsync_ShouldUpdateStudent()
     {
         // Arrange
@@ -159,21 +159,20 @@ public class StudentRepositoryTest : IAsyncLifetime
             Id = 1, Name = "Ava Lovelace", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
-        
+
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-        
+
         // Act
         var result = await _repository.UpdateAsync(updatedStudent);
-            
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(1, result.Id);
         Assert.Equal("Ava Lovelace", result.Name);
-
     }
-    [Fact]
 
+    [Fact]
     public async Task UpdateAsync_ShouldThrowError_WhenStudentDoesNotExist()
     {
         var student = new Student
@@ -181,16 +180,16 @@ public class StudentRepositoryTest : IAsyncLifetime
             Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
-   
+
 
         // Arrange
         var exception = Assert.ThrowsAsync<Exception>(() => _repository.UpdateAsync(student));
-        
+
         // Assert
         Assert.Equal("Student not found", exception.Result.Message);
     }
-    [Fact]
 
+    [Fact]
     public async Task DeleteAsync_ShouldDeleteStudent()
     {
         // Arrange
@@ -201,16 +200,16 @@ public class StudentRepositoryTest : IAsyncLifetime
         };
         _mockContext.Students.Add(student);
         _mockContext.SaveChanges();
-        
+
         // Act
         var result = await _repository.DeleteAsync(student);
-        
+
         // Assert
         Assert.NotNull(result);
         Assert.Equal(2, result.Id);
         Assert.Equal("John Doe", result.Name);
-
     }
+
     [Fact]
     public async Task DeleteAsync_ShouldThrowError_WhenStudentDoesNotExist()
     {
@@ -220,16 +219,33 @@ public class StudentRepositoryTest : IAsyncLifetime
             Id = 2, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
             BirthDate = DateTime.Now, StudentNumber = 23133
         };
-        
+
         //act 
         var exception = Assert.ThrowsAsync<Exception>(() => _repository.DeleteAsync(student));
-        
+
         //assert
         Assert.Equal("Student not found", exception.Result.Message);
-        
-
     }
 
+    [Fact]
+    public async Task GetCityAsync_ShouldReturnCity_WhenStudentExists()
+    {
+        // Arrange
+
+        var student = new Student
+        {
+            Id = 1, Name = "John Doe", Email = "john.doe@gmail.com", PhoneNumber = "0612345678",
+            StudentNumber = 32232, BirthDate = DateTime.Today, City = City.Breda
+        };
+        
+        _mockContext.Students.Add(student);
+        _mockContext.SaveChanges();
+        
+        // Act
+        var result = await _repository.GetCityAsync(1);
+        
+        // Assert
+        Assert.Equal(City.Breda, result);
+        
+    }
 }
-        
-        
