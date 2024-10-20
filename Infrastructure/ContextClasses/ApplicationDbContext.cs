@@ -27,80 +27,82 @@ public class ApplicationDbContext : DbContext
             Name = "HG Karremans",
             Email = "hg@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student2 = new Student()
         {
             Id = 2,
             Name = "Jane Doe",
-            Email = "Jane.gmail.com",
-            BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            Email = "Jane@gmail.com",
+            BirthDate = new DateTime(2012, 01, 01),
+            PhoneNumber = "123456",
+            City = City.Amsterdam
         };
         var student3 = new Student()
         {
             Id = 3,
             Name = "Jack Doe",
-            Email = "Jack.gmail.com",
+            Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student4 = new Student()
         {
             Id = 4,
             Name = "Jill Doe",
-            Email = "Jill.gmail.com",
+            Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student5 = new Student()
         {
             Id = 5,
             Name = "John Doe",
-            Email = "John.gmail.com",
+            Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student6 = new Student()
         {
             Id = 6,
             Name = "Jane Doe",
-            Email = "Jane.gmail.com",
-            BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            Email = "Jane@gmail.com",
+            BirthDate = new DateTime(2012, 01, 01),
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student7 = new Student()
         {
             Id = 7,
             Name = "Jack Doe",
-            Email = "Jack.gmail.com",
+            Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student8 = new Student()
         {
             Id = 8,
             Name = "Jill Doe",
-            Email = "Jill.gmail.com",
+            Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
         var student9 = new Student()
         {
             Id = 9,
             Name = "John Doe",
-            Email = "John.gmail.com",
+            Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
+            PhoneNumber = "123456",
+            City = City.Breda
         };
-        var student10 = new Student()
-        {
-            Id = 10,
-            Name = "Jane Doe",
-            Email = "Jane.gmail.com",
-            BirthDate = new DateTime(2006, 01, 01),
-            PhoneNumber = "123456"
-        };
+
 
         //CANTEENS
 
@@ -166,9 +168,9 @@ public class ApplicationDbContext : DbContext
         var product3 = new Product()
         {
             Id = 3,
-            Name = "beer",
-            HasAlcohol = true,
-            ImageUrl = "beer.jpg"
+            Name = "pasta",
+            HasAlcohol = false,
+            ImageUrl = "pasta.jpg"
         };
         var product4 = new Product()
         {
@@ -197,7 +199,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
 
         var mealBox2 = new MealBox()
@@ -211,7 +214,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox3 = new MealBox()
         {
@@ -224,12 +228,13 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox4 = new MealBox()
         {
             Id = 4,
-            Name = "Fruitbox",
+            Name = "Dinner",
             Price = 5M,
             CanteenId = 1,
             PickUpDate = DateTime.Today.AddDays(4),
@@ -237,7 +242,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox5 = new MealBox()
         {
@@ -250,7 +256,8 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = true,
             MealType = MealType.Drink,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         var mealBox6 = new MealBox()
         {
@@ -263,10 +270,11 @@ public class ApplicationDbContext : DbContext
             City = City.Breda,
             EighteenPlus = false,
             MealType = MealType.Breakfast,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            IsWarmFood = false
         };
         modelBuilder.Entity<Student>().HasData(student, student2, student3, student4, student5, student6, student7,
-            student8, student9, student10);
+            student8, student9);
         modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
         modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
         modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);
@@ -274,7 +282,7 @@ public class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<MealBox>()
             .HasMany(p => p.Products)
-            .WithMany(t => t.MealBoxes)
+            .WithMany()
             .UsingEntity<Dictionary<string, object>>(
                 "MealBoxProduct",
                 r => r.HasOne<Product>().WithMany().HasForeignKey("ProductsId"),
@@ -285,10 +293,11 @@ public class ApplicationDbContext : DbContext
                     je.HasData(
                         new { ProductsId = 5, MealBoxId = 1 },
                         new { ProductsId = 2, MealBoxId = 2 },
-                        new { ProductsId = 4 , MealBoxId = 3 },
-                        new { ProductsId = 1, MealBoxId = 4 },
-                        new { ProductsId = 5, MealBoxId = 4}
+                        new { ProductsId = 4, MealBoxId = 3 },
+                        new { ProductsId = 3, MealBoxId = 4 },
+                        new { ProductsId = 4, MealBoxId = 4 }
+                        
                     );
-                });                                                                                      
+                });
     }
 }

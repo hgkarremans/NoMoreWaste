@@ -2,6 +2,7 @@ using Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NoMoreWaste.Domain.DomainModels;
 using UI.Models;
 
@@ -29,6 +30,66 @@ public class MealBoxController : Controller
         _userManager = userManager;
     }
 
+    public async Task<IActionResult> Index(string location, NoMoreWaste.Domain.DomainModels.Enums.MealType? mealType)
+{
+    var mealBoxes = await _mealBoxRepository.GetAllAsync();
+    var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+
+    foreach (var mealBox in sortedMealBoxes)
+    {
+        mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+    }
+
+    var userIdentity = await _userManager.GetUserAsync(User);
+    if (userIdentity != null && string.IsNullOrEmpty(location))
+    {
+        if (User.IsInRole("student"))
+        {
+            var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+            var city = await _studentRepository.GetCityAsync(user.Id);
+            var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
+            ViewBag.SelectedLocation = canteen.Name;
+        }
+        else
+        {
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+            ViewBag.SelectedLocation = canteen.Name;
+        }
+    }
+    else
+    {
+        ViewBag.SelectedLocation = location ?? "All Locations";
+    }
+
+    // Filter by location
+    if (!string.IsNullOrEmpty(location) && location != "All Locations")
+    {
+        sortedMealBoxes = sortedMealBoxes
+            .Where(mb => mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+
+    // Filter by MealType
+    if (mealType.HasValue)
+    {
+        sortedMealBoxes = sortedMealBoxes.Where(mb => mb.MealType == mealType.Value).ToList();
+        ViewBag.SelectedMealType = mealType.Value;
+    }
+    else
+    {
+        ViewBag.SelectedMealType = NoMoreWaste.Domain.DomainModels.Enums.MealType.Other; // Default
+    }
+
+    var canteens = await _canteenRepository.GetAllAsync();
+    ViewBag.Canteens = new SelectList(canteens, "Name", "Name");
+
+    // Pass all the meal types to the view
+    ViewBag.MealTypes = Enum.GetValues(typeof(NoMoreWaste.Domain.DomainModels.Enums.MealType)).Cast<NoMoreWaste.Domain.DomainModels.Enums.MealType>();
+
+    return View(sortedMealBoxes);
+}
+
+
     [HttpGet]
     public async Task<IActionResult> GetMyMealBoxes()
     {
@@ -37,6 +98,13 @@ public class MealBoxController : Controller
             var userIdentity = await _userManager.GetUserAsync(User);
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
+            foreach (var mealBox in mealBoxes)
+            {
+                mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            }
+
+            var canteenName = mealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+            ViewBag.CanteenName = canteenName;
             return View("MyMealboxes", mealBoxes);
         }
         catch (Exception e)
@@ -52,6 +120,8 @@ public class MealBoxController : Controller
         try
         {
             var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+            var canteenName = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            ViewBag.CanteenName = canteenName.Name;
             return View("MealBox", mealBox);
         }
         catch (Exception e)
@@ -67,9 +137,16 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
-            var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
             var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+            foreach (var mealBox in sortedMealBoxes)
+            {
+                mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            }
+
+            var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+            ViewBag.CanteenName = canteenName;
             return View("CanteenMealboxes", sortedMealBoxes);
         }
         catch (Exception e)
@@ -84,14 +161,15 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
-            var user = _studentRepository.GetByEmailAsync(userIdentity.Email);
-            var mealBox = _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
+            var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+            var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
             TempData["SuccessMessage"] = "Meal box reserved successfully!";
-            return RedirectToAction("Index", "home");
+            return RedirectToAction("Index", "Home");
         }
         catch (Exception e)
         {
-            return BadRequest(e.Message);
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
         }
     }
 
@@ -125,9 +203,9 @@ public class MealBoxController : Controller
         }
 
         var userIdentity = await _userManager.GetUserAsync(User);
-        var canteenId = _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+        var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+        var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 
-        // Retrieve existing products from the database
         var selectedProducts = new List<Product>();
         foreach (var productId in viewModel.SelectedProducts)
         {
@@ -138,9 +216,18 @@ public class MealBoxController : Controller
             }
         }
 
+        var isWarmFood = viewModel.IsWarmFood;
+
+        if (isWarmFood && !canteen.IsWarmFood)
+        {
+            TempData["ErrorMessage"] = "The canteen does not support warm food.";
+            return View(viewModel);
+        }
+
         var mealBox = new MealBox
         {
             Name = viewModel.Name,
+            City = canteen.City,
             PickUpDate = viewModel.PickUpDate,
             ExpireDate = viewModel.ExpireDate,
             EighteenPlus = viewModel.EighteenPlus,
@@ -153,5 +240,105 @@ public class MealBoxController : Controller
         await _mealBoxRepository.CreateAsync(mealBox);
         TempData["SuccessMessage"] = "Meal box created successfully!";
         return RedirectToAction("Index", "Home");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> UpdateMealBox(int mealBoxId)
+    {
+        var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+        var viewModel = new MealBoxViewModel()
+        {
+            Name = mealBox.Name,
+            PickUpDate = mealBox.PickUpDate,
+            ExpireDate = mealBox.ExpireDate,
+            EighteenPlus = mealBox.EighteenPlus,
+            IsWarmFood = mealBox.IsWarmFood,
+            Price = mealBox.Price,
+            MealType = mealBox.MealType,
+            Products = mealBox.Products.ToList(),
+            SelectedProducts = mealBox.Products.Select(p => p.Id).ToList()
+        };
+        ViewBag.MealBoxId = mealBoxId;
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateMealBox(int id, MealBoxViewModel viewModel)
+    {
+        try
+        {
+            var mealBox = await _mealBoxRepository.GetByIdAsync(id);
+            if (mealBox == null)
+            {
+                TempData["ErrorMessage"] = "Meal box not found.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Apply updates from the view model
+            mealBox.Name = viewModel.Name;
+            mealBox.PickUpDate = viewModel.PickUpDate;
+            mealBox.ExpireDate = viewModel.ExpireDate;
+            mealBox.EighteenPlus = viewModel.EighteenPlus;
+            mealBox.IsWarmFood = viewModel.IsWarmFood;
+            mealBox.Price = viewModel.Price;
+            mealBox.MealType = viewModel.MealType;
+
+
+            var userIdentity = await _userManager.GetUserAsync(User);
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+
+            var isWarmFood = viewModel.IsWarmFood;
+
+            if (isWarmFood && !canteen.IsWarmFood)
+            {
+                TempData["ErrorMessage"] = "The canteen does not support warm food.";
+                return View(viewModel);
+            }
+
+            var selectedProducts = new List<Product>();
+            foreach (var productId in viewModel.SelectedProducts)
+            {
+                var product = await _productRepository.GetByIdAsync(productId);
+                if (product != null)
+                {
+                    selectedProducts.Add(product);
+                }
+            }
+
+            mealBox.Products = selectedProducts;
+
+            await _mealBoxRepository.UpdateAsync(mealBox);
+            TempData["SuccessMessage"] = "Meal box updated successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception e)
+        {
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteMealBox(int mealBoxId)
+    {
+        try
+        {
+            var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
+            if (mealBox == null)
+            {
+                TempData["ErrorMessage"] = "Meal box not found.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            await _mealBoxRepository.DeleteAsync(mealBox);
+            TempData["SuccessMessage"] = "Meal box deleted successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        catch (Exception e)
+        {
+            TempData["ErrorMessage"] = e.Message;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

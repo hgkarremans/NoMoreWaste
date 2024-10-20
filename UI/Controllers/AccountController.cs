@@ -79,7 +79,7 @@ public class AccountController : Controller
                     return LocalRedirect(returnUrl);
                 }
 
-                return RedirectToAction("index", "home");
+                return RedirectToAction("index", "MealBox");
             }
 
             ModelState.AddModelError(string.Empty, "Email/password is invalid");
@@ -93,6 +93,6 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("index", "home");
+        return RedirectToAction("index", "MealBox");
     }
 }

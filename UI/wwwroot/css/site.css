@@ -59,17 +59,31 @@ body {
   font-size: 1rem;
   cursor: pointer;
 }
+.button-danger {
+  background-color: var(--bs-danger);
+  color: var(--bs-white);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.text-danger {
+  color: var(--bs-danger);
+  font-weight: bold;
+}
+
 
 button-cards:hover {
-  background-color: var(--accent-color); 
+  background-color: var(--accent-color);
+  color: var(--bs-white);
 }
 .hover-card {
-  transition: transform 0.3s ease; /* Smooth transition */
+  transition: transform 0.3s ease; 
 }
 
 .hover-card:hover {
-  transform: scale(1.05); /* Scale the card to 105% on hover */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: add shadow effect */
+  transform: scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
 h1, h2, h3 {
@@ -105,10 +119,10 @@ h4, h5 {
 }
 
 .custom-control-input {
-  width: 25px; /* Width of the checkbox */
-  height: 25px; /* Height of the checkbox */
-  cursor: pointer; /* Change cursor on hover */
-  margin-right: 10px; /* Space between checkbox and label */
+  width: 25px; 
+  height: 25px; 
+  cursor: pointer; 
+  margin-right: 10px; 
 }
 
 .custom-control-label {
@@ -119,10 +133,58 @@ h4, h5 {
   max-width: 370px; /* Adjust the width as needed */
   height: auto;
   position: absolute; /* Position the image absolutely */
-  top: 30px; /* Adjust the top position as needed */
+  top: 10px; /* Adjust the top position as needed */
   right: 30px; /* Adjust the right position as needed */
   border-radius: 8px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   background-color: white; /* Add a background color */
   margin-left: 20px; /* Add left margin */
+  opacity: 0.8; /* Reduce the opacity to make the image stand out less */
 }
+.login-card {
+  border-radius: 12px; 
+  padding-bottom: 10px;
+}
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.filter-input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-button {
+    background-color: var(--primary-color);
+    color: var(--bs-white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-button:hover {
+    background-color: var(--accent-color);
+}
+.inline-form-group {
+    display: inline-block;
+    margin-right: 10px;
+}
+

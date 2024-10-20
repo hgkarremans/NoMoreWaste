@@ -26,6 +26,10 @@ namespace UI.Models
         [Required(ErrorMessage = "You must confirm if you are 18 or older.")]
         [Display(Name = "18+ Only")]
         public bool EighteenPlus { get; set; }
+        [Required(ErrorMessage = "Temperature is required.")]
+        [Display(Name = "Is it hot or cold?")]
+        public bool IsWarmFood { get; set; }
+        
 
         [Required(ErrorMessage = "Price is required.")]
         [Display(Name = "Price (€)")] 

@@ -14,10 +14,10 @@ public class CanteenRepository : ICanteenRepository
     }
 
     public async Task<Canteen> GetByIdAsync(int id)
-{
-    var canteen = await _context.Canteens.FirstOrDefaultAsync(x => x.Id == id);
-    return canteen ?? throw new KeyNotFoundException($"Canteen with id {id} not found.");
-}
+    {
+        var canteen = await _context.Canteens.FirstOrDefaultAsync(x => x.Id == id);
+        return canteen ?? throw new KeyNotFoundException($"Canteen with id {id} not found.");
+    }
 
     public async Task<List<Canteen>> GetAllAsync()
     {
@@ -33,6 +33,12 @@ public class CanteenRepository : ICanteenRepository
 
     public async Task<Canteen> UpdateAsync(Canteen canteen)
     {
+        var canteenToUpdate = await _context.Canteens.FirstOrDefaultAsync(x => x.Id == canteen.Id);
+        if (canteenToUpdate == null)
+        {
+            throw new KeyNotFoundException($"Canteen not found");
+        }
+
         _context.Canteens.Update(canteen);
         await _context.SaveChangesAsync();
         return canteen;
@@ -40,9 +46,19 @@ public class CanteenRepository : ICanteenRepository
 
     public async Task<Canteen> DeleteAsync(Canteen canteen)
     {
+        var canteenToDelete = await _context.Canteens.FirstOrDefaultAsync(x => x.Id == canteen.Id);
+        if (canteenToDelete == null)
+        {
+            throw new KeyNotFoundException("Canteen not found");
+        }
+
         _context.Canteens.Remove(canteen);
         await _context.SaveChangesAsync();
         return canteen;
     }
-    
-   }
+    public async Task<Canteen> GetByCityAsync(string city)
+{
+    var canteen = await _context.Canteens.FirstOrDefaultAsync(x => x.City.ToString() == city);
+    return canteen ?? throw new KeyNotFoundException($"Canteen with city {city} not found.");
+}
+}

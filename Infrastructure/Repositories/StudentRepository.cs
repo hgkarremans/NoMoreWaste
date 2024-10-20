@@ -1,6 +1,7 @@
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
+using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace Application.Repositories;
 
@@ -43,19 +44,44 @@ public class StudentRepository : IStudentRepository
         await _context.SaveChangesAsync();
         return student;
     }
-
     public async Task<Student> UpdateAsync(Student student)
     {
-        _context.Students.Update(student);
+        var studentToUpdate = await _context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+
+        if (studentToUpdate == null)
+        {
+            throw new Exception("Student not found");
+        }
+
+        // Update the properties of the tracked entity
+        _context.Entry(studentToUpdate).CurrentValues.SetValues(student);
+
+        // Save changes to the context
         await _context.SaveChangesAsync();
-        return student;
+
+        return studentToUpdate;
     }
+
 
     public async Task<Student> DeleteAsync(Student student)
     {
-        _context.Students.Remove(student);
+        var studentToDelete = await _context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+        if (studentToDelete == null)
+        {
+            throw new Exception("Student not found");
+        }
+        _context.Students.Remove(studentToDelete);
         await _context.SaveChangesAsync();
-        return student;
+        return studentToDelete;
+    }
+    public async Task<City> GetCityAsync(int userId)
+    {
+        var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == userId);
+        if (student == null)
+        {
+            throw new Exception("Student not found");
+        }
+        return student.City;
     }
     
 }

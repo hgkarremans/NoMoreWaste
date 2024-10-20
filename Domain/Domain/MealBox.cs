@@ -25,9 +25,12 @@ public class MealBox
     [Required]
     public MealType MealType { get; set; }
     public Student? ReservedStudent { get; set; }
+    
     [Required]
 
     public ICollection<Product> Products { get; set; } = null!;
+    [Required]
+    public Boolean IsWarmFood { get; set; }
     
     
     
