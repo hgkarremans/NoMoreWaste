@@ -7,7 +7,7 @@ using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace Tests;
 
-public class CanteenWorkerRepositoryTest : IAsyncLifetime
+public class CanteenWorkerRepositoryTests : IAsyncLifetime
 {
     private ApplicationDbContext _mockContext;
     private CanteenWorkerRepository _repository;

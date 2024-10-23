@@ -7,7 +7,7 @@ using NoMoreWaste.Domain.DomainModels.Enums;
 
 namespace Tests;
 
-public class MealboxRepositoryTest : IAsyncLifetime
+public class MealboxRepositoryTests : IAsyncLifetime
 {
     private ApplicationDbContext _mockContext;
     private MealBoxRepository _repository;

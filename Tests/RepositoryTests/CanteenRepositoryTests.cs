@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class CanteenRepositoryTest : IAsyncLifetime
+    public class CanteenRepositoryTests : IAsyncLifetime
     {
         private ApplicationDbContext _mockContext;
         private CanteenRepository _repository;

@@ -6,7 +6,7 @@ using NoMoreWaste.Domain.DomainModels;
 
 namespace Tests;
 
-public class ProductRepositoryTest : IAsyncLifetime
+public class ProductRepositoryTests : IAsyncLifetime
 {
     
     private ApplicationDbContext _mockContext;
