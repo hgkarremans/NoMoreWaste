@@ -26,7 +26,12 @@ public class MealBoxController
     {
         return _mealBoxRepository.GetByIdAsync(id).Result;
     }
-    // POST: api/MealBox
+
+    [HttpPatch("{mealBoxId}", Name = "ReservateMealbox")]
+    public IActionResult ReservateMealbopx(int mealBoxId, int studentId)
+    {
+        throw new NotImplementedException();
+    }
     
     [HttpDelete("{id}", Name="DeleteMealBox")]
     public void DeleteMealBox([FromRoute]int id)
