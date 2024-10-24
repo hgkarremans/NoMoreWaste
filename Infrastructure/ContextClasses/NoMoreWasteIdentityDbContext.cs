@@ -6,10 +6,9 @@ namespace Infrastructure.ContextClasses;
 
 public class NoMoreWasteIdentityDbContext : IdentityDbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
+    public NoMoreWasteIdentityDbContext(DbContextOptions<NoMoreWasteIdentityDbContext> options) : base(options)
     {
-        options.UseSqlServer(
-            "");
+        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -17,7 +17,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 );
 builder.Services.AddDbContext<NoMoreWasteIdentityDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"))
-        .ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning))
 );
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
