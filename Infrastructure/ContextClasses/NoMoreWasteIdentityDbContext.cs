@@ -46,7 +46,7 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
                 Id = "8e445865-a24d-4523-a6c6-9443d048cdb5",
                 UserName = "Jane@gmail.com",
                 NormalizedUserName = "JANE@GMAIL.COM",
-                PasswordHash = hasher.HashPassword(new IdentityUser(), "test1234")
+                PasswordHash = hasher.HashPassword(new IdentityUser(), "test12345")
             }
         );
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(
