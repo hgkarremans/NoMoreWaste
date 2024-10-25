@@ -2,7 +2,6 @@ using Application;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NoMoreWaste.Domain.DomainModels;
-using Core.Domain.Exceptions;
 
 namespace VoedselApi.Controllers;
 
@@ -38,7 +37,11 @@ public class MealBoxController
         }
         catch (NullReferenceException e)
         {
-            return NotFound();
+            return new NotFoundObjectResult(e.Message);
+        }
+        catch (Exception e)
+        {
+            return new BadRequestObjectResult(e.Message);
         }
     }
 
