@@ -29,11 +29,12 @@ public class MealBoxController
     }
 
     [HttpPatch("{mealBoxId}", Name = "ReservateMealbox")]
-    public IActionResult ReservateMealbopx(int mealBoxId, int studentId)
+    public async Task<IActionResult> ReservateMealbox(int mealBoxId, int studentId)
     {
         try
         {
-            return new OkObjectResult(_mealBoxRepository.ReservateMealBoxAsync(mealBoxId, studentId));
+            var result = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, studentId);
+            return new OkObjectResult(result);
         }
         catch (NullReferenceException e)
         {
