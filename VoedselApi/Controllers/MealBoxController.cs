@@ -1,6 +1,8 @@
 using Application;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NoMoreWaste.Domain.DomainModels;
+using Core.Domain.Exceptions;
 
 namespace VoedselApi.Controllers;
 
@@ -20,9 +22,9 @@ public class MealBoxController
     {
         return _mealBoxRepository.GetAllAsync().Result;
     }
-    
+
     [HttpGet("{id}", Name = "GetMealBox")]
-    public MealBox GetMealBox([FromRoute]int id)
+    public MealBox GetMealBox([FromRoute] int id)
     {
         return _mealBoxRepository.GetByIdAsync(id).Result;
     }
@@ -30,18 +32,25 @@ public class MealBoxController
     [HttpPatch("{mealBoxId}", Name = "ReservateMealbox")]
     public IActionResult ReservateMealbopx(int mealBoxId, int studentId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return new OkObjectResult(_mealBoxRepository.ReservateMealBoxAsync(mealBoxId, studentId));
+        }
+        catch (NullReferenceException e)
+        {
+            return NotFound();
+        }
     }
-    
-    [HttpDelete("{id}", Name="DeleteMealBox")]
-    public void DeleteMealBox([FromRoute]int id)
+
+    [HttpDelete("{id}", Name = "DeleteMealBox")]
+    public void DeleteMealBox([FromRoute] int id)
     {
         throw new NotImplementedException();
     }
-    [HttpPut("{id}", Name="UpdateMealBox")]
+
+    [HttpPut("{id}", Name = "UpdateMealBox")]
     public void UpdateMealBox([FromBody] MealBox mealBox)
     {
         throw new NotImplementedException();
     }
-    
 }
