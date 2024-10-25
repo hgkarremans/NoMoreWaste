@@ -1,42 +1,49 @@
 using Application;
 using Application.Repositories;
-using GraphiQl;
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
+using HotChocolate.AspNetCore;
+using VoedselApi.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); }
-);
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Configure the database context
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+// Enable Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+// Register repositories
 builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();
-// builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
-// builder.Services.AddScoped<IProductRepository, ProductRepository>();
-// builder.Services.AddScoped<ICanteenRepository, CanteenRepository>();
-// builder.Services.AddScoped<ICanteenWorkerRepository, CanteenWorkerRepository>();
 
+// Configure GraphQL with HotChocolate
+builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<Query>(); // Register your query class here
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Enable Swagger for all environments (including production)
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+    options.RoutePrefix = "swagger"; // Serve Swagger UI at /swagger
+});
+
+// Enable GraphQL and GraphiQL
+app.MapGraphQL("/graphql"); // GraphQL endpoint
+
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
