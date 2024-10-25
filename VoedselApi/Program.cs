@@ -26,7 +26,7 @@ builder.Services.AddScoped<IMealBoxRepository, MealBoxRepository>();
 // Configure GraphQL with HotChocolate
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<Query>(); // Register your query class here
+    .AddQueryType<Query>(); 
 
 var app = builder.Build();
 
@@ -35,11 +35,11 @@ app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
-    options.RoutePrefix = "swagger"; // Serve Swagger UI at /swagger
+    options.RoutePrefix = "swagger"; 
 });
 
 // Enable GraphQL and GraphiQL
-app.MapGraphQL("/graphql"); // GraphQL endpoint
+app.MapGraphQL("/graphql");
 
 
 app.UseHttpsRedirection();
