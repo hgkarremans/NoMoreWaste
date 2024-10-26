@@ -19,4 +19,6 @@ public class Student
     public int StudentNumber { get; set; }
     [Required]
     public City City { get; set; }
+    [Required]
+    public int NoShows { get; set; }
 }

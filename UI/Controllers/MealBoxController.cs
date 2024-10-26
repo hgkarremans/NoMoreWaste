@@ -365,4 +365,33 @@ public class MealBoxController : Controller
             return RedirectToAction("Index", "Mealbox");
         }
     }
+    [HttpGet]
+    public async Task<IActionResult> GetReservedMealboxesForCanteen()
+    {
+        try
+        {
+            var userIdentity = await _userManager.GetUserAsync(User);
+            if (userIdentity == null || userIdentity.UserName == null)
+            {
+                throw new ArgumentNullException(nameof(userIdentity.UserName), "User identity or username is null");
+            }
+
+            var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+            var mealBoxes = await _mealBoxRepository.GetReservedMealboxesForCanteens(canteenId);
+            var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
+            foreach (var mealBox in sortedMealBoxes)
+            {
+                mealBox.Canteen = await _canteenRepository.GetByIdAsync(mealBox.CanteenId);
+            }
+
+            var canteenName = sortedMealBoxes.FirstOrDefault()?.Canteen?.Name ?? "Unknown Canteen";
+            ViewBag.CanteenName = canteenName;
+            return View("ReservedCanteenMealboxes", sortedMealBoxes);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

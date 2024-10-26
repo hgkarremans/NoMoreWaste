@@ -150,4 +150,10 @@ public class MealBoxRepository : IMealBoxRepository
 
         return mealBox != null && mealBox.ReservedStudent != null;
     }
+    public async Task<List<MealBox>> GetReservedMealboxesForCanteens(int canteenId)
+    {
+        return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
+            .Where(box => box.Canteen != null && box.Canteen.Id == canteenId && box.ReservedStudent != null)
+            .ToListAsync();
+    }
 }

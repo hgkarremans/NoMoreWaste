@@ -28,7 +28,8 @@ public class ApplicationDbContext : DbContext
             Email = "hg@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 2
         };
         var student2 = new Student()
         {
@@ -37,7 +38,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jane@gmail.com",
             BirthDate = new DateTime(2012, 01, 01),
             PhoneNumber = "123456",
-            City = City.Amsterdam
+            City = City.Amsterdam,
+            NoShows = 0
         };
         var student3 = new Student()
         {
@@ -46,7 +48,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student4 = new Student()
         {
@@ -55,7 +58,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student5 = new Student()
         {
@@ -64,7 +68,8 @@ public class ApplicationDbContext : DbContext
             Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student6 = new Student()
         {
@@ -73,7 +78,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jane@gmail.com",
             BirthDate = new DateTime(2012, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student7 = new Student()
         {
@@ -82,7 +88,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jack@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student8 = new Student()
         {
@@ -91,7 +98,8 @@ public class ApplicationDbContext : DbContext
             Email = "Jill@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
         var student9 = new Student()
         {
@@ -100,7 +108,8 @@ public class ApplicationDbContext : DbContext
             Email = "John@gmail.com",
             BirthDate = new DateTime(2006, 01, 01),
             PhoneNumber = "123456",
-            City = City.Breda
+            City = City.Breda,
+            NoShows = 0
         };
 
 

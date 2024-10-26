@@ -30,8 +30,4 @@
       <_ContentIncludedByDefault Remove="Views\Mealbox\Index.cshtml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Views\Mealbox\" />
-    </ItemGroup>
-
 </Project>
