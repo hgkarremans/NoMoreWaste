@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241024154155_devApplication1")]
+    [Migration("20241026195049_devApplication1")]
     partial class devApplication1
     {
         /// <inheritdoc />
@@ -164,6 +164,14 @@ namespace Infrastructure.Migrations
                             Email = "hg.karremans@gmail.com",
                             Name = "Hg Karremans",
                             PersonalNumber = 123456
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CanteenId = 2,
+                            Email = "jane.doe@gmail.com",
+                            Name = "Jane Doe",
+                            PersonalNumber = 12345
                         });
                 });
 
@@ -221,11 +229,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 1,
                             Name = "Bierbox",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 10m
                         },
                         new
@@ -234,11 +242,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 2,
                             Name = "Fruitbox",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         },
                         new
@@ -247,11 +255,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 1,
                             Name = "Wijnbox",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 15m
                         },
                         new
@@ -260,11 +268,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 2,
                             Name = "Dinner",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         },
                         new
@@ -273,11 +281,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = true,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 1,
                             Name = "Bierbox",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 10m
                         },
                         new
@@ -286,11 +294,11 @@ namespace Infrastructure.Migrations
                             CanteenId = 1,
                             City = 4,
                             EighteenPlus = false,
-                            ExpireDate = new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            ExpireDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             IsWarmFood = false,
                             MealType = 2,
                             Name = "Fruitbox",
-                            PickUpDate = new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            PickUpDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             Price = 5m
                         });
                 });

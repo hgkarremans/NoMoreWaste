@@ -183,19 +183,23 @@ namespace Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "CanteenWorkers",
                 columns: new[] { "Id", "CanteenId", "Email", "Name", "PersonalNumber" },
-                values: new object[] { 1, 1, "hg.karremans@gmail.com", "Hg Karremans", 123456 });
+                values: new object[,]
+                {
+                    { 1, 1, "hg.karremans@gmail.com", "Hg Karremans", 123456 },
+                    { 2, 2, "jane.doe@gmail.com", "Jane Doe", 12345 }
+                });
 
             migrationBuilder.InsertData(
                 table: "MealBoxes",
                 columns: new[] { "Id", "CanteenId", "City", "EighteenPlus", "ExpireDate", "IsWarmFood", "MealType", "Name", "PickUpDate", "Price", "ReservedStudentId" },
                 values: new object[,]
                 {
-                    { 1, 1, 4, true, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Bierbox", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 10m, null },
-                    { 2, 1, 4, false, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Fruitbox", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 5m, null },
-                    { 3, 1, 4, true, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Wijnbox", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 15m, null },
-                    { 4, 1, 4, false, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Dinner", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 5m, null },
-                    { 5, 1, 4, true, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Bierbox", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 10m, null },
-                    { 6, 1, 4, false, new DateTime(2024, 11, 3, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Fruitbox", new DateTime(2024, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 5m, null }
+                    { 1, 1, 4, true, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Bierbox", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 10m, null },
+                    { 2, 1, 4, false, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Fruitbox", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 5m, null },
+                    { 3, 1, 4, true, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Wijnbox", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 15m, null },
+                    { 4, 1, 4, false, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Dinner", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 5m, null },
+                    { 5, 1, 4, true, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 1, "Bierbox", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 10m, null },
+                    { 6, 1, 4, false, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Local), false, 2, "Fruitbox", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Local), 5m, null }
                 });
 
             migrationBuilder.InsertData(

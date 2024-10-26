@@ -157,27 +157,27 @@ namespace Infrastructure.Migrations
                         {
                             Id = "8e445865-a24d-4523-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "76fda287-9282-480e-9f03-d400a716a1ec",
+                            ConcurrencyStamp = "4fa1fc5b-33d8-4ee7-a62e-33930c14b47f",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "HG.KARREMANS@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKCHUy21zpY/n96i5mZwj5SZ+0OXXVBxwLR+awhkq5+TBDHi8DPk5Su8radRMUgwxg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKQFqzVW5ux9hUmhlM9O6AZ3PjTx5U77q4bRSFjJzk9ML0BGARYV6KiDEVlYQIZUxg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ef6b1098-e047-4dfe-b922-9be770110637",
+                            SecurityStamp = "2f730017-7d28-4716-aa53-03d643aaffcc",
                             TwoFactorEnabled = false,
                             UserName = "hg.karremans@gmail.com"
                         },
                         new
                         {
-                            Id = "e93f7a7d-5fe3-44fc-8e2b-e2ff69f4411c",
+                            Id = "45420bbc-f01b-4d5c-b1a1-d0ff56bd2e54",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aabcc881-1d89-488a-8dc5-0b091d20b381",
+                            ConcurrencyStamp = "c1a6a6f0-1dff-420b-9e83-04112b1fc7c0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "HG@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEP1pFL/KGrdaOotRjVySzeNtGZvFPqpenY4Etvh61dDG/g/PblsqJiEzzqlwKCc+iA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFgVh8T0fW2yUcMWsc+FKM6lR/bGtZ24g9JwaLacKSPPam4Ywskswj5Kkl4qZELusQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d3a5b397-e796-497e-aed6-0ae3b2f540d0",
+                            SecurityStamp = "6df49edd-1944-4e9d-a6bb-a5981d26221b",
                             TwoFactorEnabled = false,
                             UserName = "hg@gmail.com"
                         },
@@ -185,15 +185,29 @@ namespace Infrastructure.Migrations
                         {
                             Id = "8e445865-a24d-4523-a6c6-9443d048cdb5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "868b27e7-3b62-48b6-8fae-d893b7291f09",
+                            ConcurrencyStamp = "36eddc37-0df9-4f77-a930-3b4244c740b8",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "JANE@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJoPYpMteM30P7gTx5BV4bEWYVRo+mSx8FLMFjNoMBKJrBdcB2DPpUd0zxft743E+Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEKDDLgSemMoRPcfSUS+hUhM8FCdvxHnK+fe5puYMA0zt/Zo1fDbjgHiu7LFM+lQkw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e0fc468a-b479-46fc-a1e8-df06cf74164a",
+                            SecurityStamp = "5065fd6a-de2a-442a-81a7-28f587f3b9d0",
                             TwoFactorEnabled = false,
                             UserName = "Jane@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "8e445865-a24d-4523-a6c6-9443d048cdb2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8ee1d73a-1481-41e2-9fb2-8e5a3e6abb99",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "JANE.DOE@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDwfWvIbcrNMan+0R35c2E0rVRcUmGFsqtFBOIygD+PM5VVTyXIDUXodVg6ITUXsfA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ca412f05-f708-4e01-9758-5f90aa55bb16",
+                            TwoFactorEnabled = false,
+                            UserName = "jane.doe@gmail.com"
                         });
                 });
 
@@ -266,13 +280,18 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            UserId = "e93f7a7d-5fe3-44fc-8e2b-e2ff69f4411c",
+                            UserId = "45420bbc-f01b-4d5c-b1a1-d0ff56bd2e54",
                             RoleId = "2"
                         },
                         new
                         {
                             UserId = "8e445865-a24d-4523-a6c6-9443d048cdb5",
                             RoleId = "2"
+                        },
+                        new
+                        {
+                            UserId = "8e445865-a24d-4523-a6c6-9443d048cdb2",
+                            RoleId = "1"
                         });
                 });
 

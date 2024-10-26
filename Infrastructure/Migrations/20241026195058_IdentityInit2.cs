@@ -172,9 +172,10 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "8e445865-a24d-4523-a6c6-9443d048cdb5", 0, "868b27e7-3b62-48b6-8fae-d893b7291f09", null, false, false, null, null, "JANE@GMAIL.COM", "AQAAAAIAAYagAAAAEJoPYpMteM30P7gTx5BV4bEWYVRo+mSx8FLMFjNoMBKJrBdcB2DPpUd0zxft743E+Q==", null, false, "e0fc468a-b479-46fc-a1e8-df06cf74164a", false, "Jane@gmail.com" },
-                    { "8e445865-a24d-4523-a6c6-9443d048cdb9", 0, "76fda287-9282-480e-9f03-d400a716a1ec", null, false, false, null, null, "HG.KARREMANS@GMAIL.COM", "AQAAAAIAAYagAAAAEKCHUy21zpY/n96i5mZwj5SZ+0OXXVBxwLR+awhkq5+TBDHi8DPk5Su8radRMUgwxg==", null, false, "ef6b1098-e047-4dfe-b922-9be770110637", false, "hg.karremans@gmail.com" },
-                    { "e93f7a7d-5fe3-44fc-8e2b-e2ff69f4411c", 0, "aabcc881-1d89-488a-8dc5-0b091d20b381", null, false, false, null, null, "HG@GMAIL.COM", "AQAAAAIAAYagAAAAEP1pFL/KGrdaOotRjVySzeNtGZvFPqpenY4Etvh61dDG/g/PblsqJiEzzqlwKCc+iA==", null, false, "d3a5b397-e796-497e-aed6-0ae3b2f540d0", false, "hg@gmail.com" }
+                    { "45420bbc-f01b-4d5c-b1a1-d0ff56bd2e54", 0, "c1a6a6f0-1dff-420b-9e83-04112b1fc7c0", null, false, false, null, null, "HG@GMAIL.COM", "AQAAAAIAAYagAAAAEFgVh8T0fW2yUcMWsc+FKM6lR/bGtZ24g9JwaLacKSPPam4Ywskswj5Kkl4qZELusQ==", null, false, "6df49edd-1944-4e9d-a6bb-a5981d26221b", false, "hg@gmail.com" },
+                    { "8e445865-a24d-4523-a6c6-9443d048cdb2", 0, "8ee1d73a-1481-41e2-9fb2-8e5a3e6abb99", null, false, false, null, null, "JANE.DOE@GMAIL.COM", "AQAAAAIAAYagAAAAEDwfWvIbcrNMan+0R35c2E0rVRcUmGFsqtFBOIygD+PM5VVTyXIDUXodVg6ITUXsfA==", null, false, "ca412f05-f708-4e01-9758-5f90aa55bb16", false, "jane.doe@gmail.com" },
+                    { "8e445865-a24d-4523-a6c6-9443d048cdb5", 0, "36eddc37-0df9-4f77-a930-3b4244c740b8", null, false, false, null, null, "JANE@GMAIL.COM", "AQAAAAIAAYagAAAAEEKDDLgSemMoRPcfSUS+hUhM8FCdvxHnK+fe5puYMA0zt/Zo1fDbjgHiu7LFM+lQkw==", null, false, "5065fd6a-de2a-442a-81a7-28f587f3b9d0", false, "Jane@gmail.com" },
+                    { "8e445865-a24d-4523-a6c6-9443d048cdb9", 0, "4fa1fc5b-33d8-4ee7-a62e-33930c14b47f", null, false, false, null, null, "HG.KARREMANS@GMAIL.COM", "AQAAAAIAAYagAAAAEKQFqzVW5ux9hUmhlM9O6AZ3PjTx5U77q4bRSFjJzk9ML0BGARYV6KiDEVlYQIZUxg==", null, false, "2f730017-7d28-4716-aa53-03d643aaffcc", false, "hg.karremans@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -182,9 +183,10 @@ namespace Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
+                    { "2", "45420bbc-f01b-4d5c-b1a1-d0ff56bd2e54" },
+                    { "1", "8e445865-a24d-4523-a6c6-9443d048cdb2" },
                     { "2", "8e445865-a24d-4523-a6c6-9443d048cdb5" },
-                    { "1", "8e445865-a24d-4523-a6c6-9443d048cdb9" },
-                    { "2", "e93f7a7d-5fe3-44fc-8e2b-e2ff69f4411c" }
+                    { "1", "8e445865-a24d-4523-a6c6-9443d048cdb9" }
                 });
 
             migrationBuilder.CreateIndex(
