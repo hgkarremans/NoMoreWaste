@@ -240,7 +240,7 @@ public class MealBoxController : Controller
         var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 
         var selectedProducts = new List<Product>();
-        foreach (var productId in viewModel.SelectedProducts)
+        foreach (var productId in viewModel.SelectedProducts!)
         {
             var product = await _productRepository.GetByIdAsync(productId);
             selectedProducts.Add(product);
@@ -328,7 +328,7 @@ public class MealBoxController : Controller
             }
 
             var selectedProducts = new List<Product>();
-            foreach (var productId in viewModel.SelectedProducts)
+            foreach (var productId in viewModel.SelectedProducts!)
             {
                 var product = await _productRepository.GetByIdAsync(productId);
                 selectedProducts.Add(product);

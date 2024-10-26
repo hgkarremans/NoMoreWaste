@@ -42,6 +42,6 @@ namespace UI.Models
 
 
         public List<Product> Products { get; set; } = new List<Product>();
-        public List<int> SelectedProducts { get; set; }
+        public List<int>? SelectedProducts { get; set; }
     }
 }
