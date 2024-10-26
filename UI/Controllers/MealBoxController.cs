@@ -1,5 +1,4 @@
 using Application;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -45,16 +44,30 @@ public class MealBoxController : Controller
         {
             if (User.IsInRole("student"))
             {
-                var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
-                var city = await _studentRepository.GetCityAsync(user.Id);
-                var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
-                ViewBag.SelectedLocation = canteen.Name;
+                if (userIdentity.UserName != null)
+                {
+                    var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
+                    var city = await _studentRepository.GetCityAsync(user.Id);
+                    var canteen = await _canteenRepository.GetByCityAsync(city.ToString());
+                    ViewBag.SelectedLocation = canteen.Name;
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(userIdentity.UserName), "UserName is null");
+                }
             }
             else
             {
-                var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
-                var canteen = await _canteenRepository.GetByIdAsync(canteenId);
-                ViewBag.SelectedLocation = canteen.Name;
+                if (userIdentity.UserName != null)
+                {
+                    var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
+                    var canteen = await _canteenRepository.GetByIdAsync(canteenId);
+                    ViewBag.SelectedLocation = canteen.Name;
+                }
+                else
+                {
+                    throw new ArgumentNullException(nameof(userIdentity.UserName), "UserName is null");
+                }
             }
         }
         else
@@ -66,8 +79,10 @@ public class MealBoxController : Controller
         if (!string.IsNullOrEmpty(location) && location != "All Locations")
         {
             sortedMealBoxes = sortedMealBoxes
-                .Where(mb => mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase)).ToList();
+                .Where(mb => mb.Canteen != null && mb.Canteen.Name.Equals(location, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
+
 
         // Filter by MealType
         if (mealType.HasValue)
@@ -97,6 +112,11 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
+            if (userIdentity == null || userIdentity.UserName == null)
+            {
+                throw new ArgumentNullException(nameof(userIdentity.UserName), "UserName is null");
+            }
+
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetMyMealboxes(user.Id);
             foreach (var mealBox in mealBoxes)
@@ -138,6 +158,11 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
+            if (userIdentity == null || userIdentity.UserName == null)
+            {
+                throw new ArgumentNullException(nameof(userIdentity.UserName), "User identity or username is null");
+            }
+
             var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var mealBoxes = await _mealBoxRepository.GetCanteenMealboxesAsync(canteenId);
             var sortedMealBoxes = mealBoxes.OrderBy(mb => mb.PickUpDate).ToList();
@@ -162,6 +187,11 @@ public class MealBoxController : Controller
         try
         {
             var userIdentity = await _userManager.GetUserAsync(User);
+            if (userIdentity == null || userIdentity.UserName == null)
+            {
+                throw new ArgumentNullException(nameof(userIdentity.UserName), "User identity or username is null");
+            }
+
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
             var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
             TempData["SuccessMessage"] = "Meal box reserved successfully!";
@@ -204,6 +234,11 @@ public class MealBoxController : Controller
         }
 
         var userIdentity = await _userManager.GetUserAsync(User);
+        if (userIdentity == null || userIdentity.UserName == null)
+        {
+            throw new ArgumentNullException(nameof(userIdentity.UserName), "User identity or username is null");
+        }
+
         var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
         var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 

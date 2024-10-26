@@ -148,6 +148,14 @@ public class ApplicationDbContext : DbContext
             PersonalNumber = 123456,
             CanteenId = 1
         };
+        var worker2 = new CanteenWorker()
+        {
+            Id = 2,
+            Name = "Jane Doe",
+            Email = "jane.doe@gmail.com",
+            PersonalNumber = 12345,
+            CanteenId = 2
+        };
 
         //PRODUCTS
 
@@ -278,7 +286,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Canteen>().HasData(LA, LB, LC, LD);
         modelBuilder.Entity<Product>().HasData(product1, product2, product3, product4, product5);
         modelBuilder.Entity<MealBox>().HasData(mealBox1, mealBox2, mealBox3, mealBox4, mealBox5, mealBox6);
-        modelBuilder.Entity<CanteenWorker>().HasData(worker);
+        modelBuilder.Entity<CanteenWorker>().HasData(worker, worker2);
 
         modelBuilder.Entity<MealBox>()
             .HasMany(p => p.Products)

@@ -47,6 +47,14 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
                 UserName = "Jane@gmail.com",
                 NormalizedUserName = "JANE@GMAIL.COM",
                 PasswordHash = hasher.HashPassword(new IdentityUser(), "test12345")
+            },
+            new IdentityUser
+            {
+                Id = "8e445865-a24d-4523-a6c6-9443d048cdb2",
+                UserName = "jane.doe@gmail.com",
+                NormalizedUserName = "JANE.DOE@GMAIL.COM",
+                PasswordHash = hasher.HashPassword(new IdentityUser(), "test12345")
+                
             }
         );
         modelBuilder.Entity<IdentityUserRole<string>>().HasData(
@@ -63,6 +71,11 @@ public class NoMoreWasteIdentityDbContext : IdentityDbContext
             {
                 RoleId = "2",
                 UserId = "8e445865-a24d-4523-a6c6-9443d048cdb5"
+            },
+            new IdentityUserRole<string>()
+            {
+                RoleId = "1",
+                UserId = "8e445865-a24d-4523-a6c6-9443d048cdb2"
             }
             );
     }
