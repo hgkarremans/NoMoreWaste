@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Application.Repositories;
 using Infrastructure.ContextClasses;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
 using NoMoreWaste.Domain.DomainModels.Enums;

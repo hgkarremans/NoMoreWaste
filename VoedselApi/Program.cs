@@ -3,6 +3,7 @@ using Application.Repositories;
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using HotChocolate.AspNetCore;
+using Infrastructure.Repositories;
 using VoedselApi.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);

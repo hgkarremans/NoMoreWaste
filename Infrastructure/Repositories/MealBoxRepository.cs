@@ -1,8 +1,9 @@
+using Application;
 using Infrastructure.ContextClasses;
 using Microsoft.EntityFrameworkCore;
 using NoMoreWaste.Domain.DomainModels;
 
-namespace Application.Repositories;
+namespace Infrastructure.Repositories;
 
 public class MealBoxRepository : IMealBoxRepository
 {
@@ -16,7 +17,7 @@ public class MealBoxRepository : IMealBoxRepository
     public async Task<MealBox> GetByIdAsync(int id)
     {
         var mealbox = await _dbContext.MealBoxes
-            .Include(m => m.Products) 
+            .Include(m => m.Products)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (mealbox == null)
@@ -36,7 +37,8 @@ public class MealBoxRepository : IMealBoxRepository
     public async Task<List<MealBox>> GetMyMealboxes(int userId)
     {
         return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
-            .Where(box => box.ReservedStudent.Id == userId).ToListAsync();
+            .Where(box => box.ReservedStudent != null && box.ReservedStudent.Id == userId)
+            .ToListAsync();
     }
 
     public async Task<List<MealBox>> GetAllAvailableAsync()
@@ -48,7 +50,8 @@ public class MealBoxRepository : IMealBoxRepository
     public async Task<List<MealBox>> GetCanteenMealboxesAsync(int canteenId)
     {
         return await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
-            .Where(box => box.Canteen.Id == canteenId).ToListAsync();
+            .Where(box => box.Canteen != null && box.Canteen.Id == canteenId)
+            .ToListAsync();
     }
 
     public async Task<MealBox> CreateAsync(MealBox mealbox)
@@ -94,7 +97,7 @@ public class MealBoxRepository : IMealBoxRepository
         {
             throw new Exception("Cannot delete a reserved MealBox");
         }
-        
+
         _dbContext.MealBoxes.Remove(mealbox);
         await _dbContext.SaveChangesAsync();
         return mealbox;
@@ -116,10 +119,14 @@ public class MealBoxRepository : IMealBoxRepository
             throw new Exception("MealBox already reserved");
         }
 
-        if (mealBox.EighteenPlus && (mealBox.PickUpDate.Year - user.BirthDate.Year) < 18)
+        if (mealBox.EighteenPlus)
         {
-            throw new Exception("MealBox is 18+");
+            if (user == null || (mealBox.PickUpDate.Year - user.BirthDate.Year) < 18)
+            {
+                throw new Exception("MealBox is 18+");
+            }
         }
+
 
         var reservedMealboxes = await this.GetMyMealboxes(userId);
         foreach (var reservedMealbox in reservedMealboxes)
@@ -129,8 +136,7 @@ public class MealBoxRepository : IMealBoxRepository
                 throw new Exception("You already have a mealbox reserved for this pickup date.");
             }
         }
-        
-        
+
 
         mealBox.ReservedStudent = user;
         await _dbContext.SaveChangesAsync();
@@ -141,6 +147,7 @@ public class MealBoxRepository : IMealBoxRepository
     {
         var mealBox = await _dbContext.MealBoxes.Include(box => box.ReservedStudent)
             .FirstOrDefaultAsync(box => box.Id == mealBoxId);
-        return mealBox.ReservedStudent != null;
+
+        return mealBox != null && mealBox.ReservedStudent != null;
     }
 }
