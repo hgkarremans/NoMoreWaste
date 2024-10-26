@@ -165,12 +165,12 @@ public class MealBoxController : Controller
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
             var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
             TempData["SuccessMessage"] = "Meal box reserved successfully!";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
         catch (Exception e)
         {
             TempData["ErrorMessage"] = e.Message;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
     }
 
@@ -240,7 +240,7 @@ public class MealBoxController : Controller
 
         await _mealBoxRepository.CreateAsync(mealBox);
         TempData["SuccessMessage"] = "Meal box created successfully!";
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Mealbox");
     }
 
     [HttpGet]
@@ -272,7 +272,7 @@ public class MealBoxController : Controller
             if (mealBox == null)
             {
                 TempData["ErrorMessage"] = "Meal box not found.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Mealbox");
             }
 
             // Apply updates from the view model
@@ -311,12 +311,12 @@ public class MealBoxController : Controller
 
             await _mealBoxRepository.UpdateAsync(mealBox);
             TempData["SuccessMessage"] = "Meal box updated successfully!";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
         catch (Exception e)
         {
             TempData["ErrorMessage"] = e.Message;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
     }
 
@@ -329,17 +329,17 @@ public class MealBoxController : Controller
             if (mealBox == null)
             {
                 TempData["ErrorMessage"] = "Meal box not found.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Mealbox");
             }
 
             await _mealBoxRepository.DeleteAsync(mealBox);
             TempData["SuccessMessage"] = "Meal box deleted successfully!";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
         catch (Exception e)
         {
             TempData["ErrorMessage"] = e.Message;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Mealbox");
         }
     }
 }
