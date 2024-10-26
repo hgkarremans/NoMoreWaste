@@ -70,10 +70,7 @@ public class MealBoxController : Controller
                 }
             }
         }
-        else
-        {
-            ViewBag.SelectedLocation = location ?? "All Locations";
-        }
+
 
         // Filter by location
         if (!string.IsNullOrEmpty(location) && location != "All Locations")
@@ -193,7 +190,7 @@ public class MealBoxController : Controller
             }
 
             var user = await _studentRepository.GetByEmailAsync(userIdentity.UserName);
-            var mealBox = await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
+            await _mealBoxRepository.ReservateMealBoxAsync(mealBoxId, user.Id);
             TempData["SuccessMessage"] = "Meal box reserved successfully!";
             return RedirectToAction("Index", "Mealbox");
         }
@@ -246,10 +243,7 @@ public class MealBoxController : Controller
         foreach (var productId in viewModel.SelectedProducts)
         {
             var product = await _productRepository.GetByIdAsync(productId);
-            if (product != null)
-            {
-                selectedProducts.Add(product);
-            }
+            selectedProducts.Add(product);
         }
 
         var isWarmFood = viewModel.IsWarmFood;
@@ -304,11 +298,7 @@ public class MealBoxController : Controller
         try
         {
             var mealBox = await _mealBoxRepository.GetByIdAsync(id);
-            if (mealBox == null)
-            {
-                TempData["ErrorMessage"] = "Meal box not found.";
-                return RedirectToAction("Index", "Mealbox");
-            }
+
 
             // Apply updates from the view model
             mealBox.Name = viewModel.Name;
@@ -321,6 +311,11 @@ public class MealBoxController : Controller
 
 
             var userIdentity = await _userManager.GetUserAsync(User);
+            if (userIdentity == null || userIdentity.UserName == null)
+            {
+                throw new ArgumentNullException(nameof(userIdentity.UserName), "User identity or username is null");
+            }
+
             var canteenId = await _canteenWorkerRepository.GetCanteenByUserEmail(userIdentity.UserName);
             var canteen = await _canteenRepository.GetByIdAsync(canteenId);
 
@@ -336,10 +331,7 @@ public class MealBoxController : Controller
             foreach (var productId in viewModel.SelectedProducts)
             {
                 var product = await _productRepository.GetByIdAsync(productId);
-                if (product != null)
-                {
-                    selectedProducts.Add(product);
-                }
+                selectedProducts.Add(product);
             }
 
             mealBox.Products = selectedProducts;
@@ -361,11 +353,7 @@ public class MealBoxController : Controller
         try
         {
             var mealBox = await _mealBoxRepository.GetByIdAsync(mealBoxId);
-            if (mealBox == null)
-            {
-                TempData["ErrorMessage"] = "Meal box not found.";
-                return RedirectToAction("Index", "Mealbox");
-            }
+
 
             await _mealBoxRepository.DeleteAsync(mealBox);
             TempData["SuccessMessage"] = "Meal box deleted successfully!";
